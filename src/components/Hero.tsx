@@ -68,7 +68,7 @@ export default function Hero() {
             className="text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-gray-900 leading-[1.1]"
           >
             Официальный WhatsApp для бизнеса. <br className="hidden md:block" />
-            <span className="text-brand">Без банов. С ИИ.</span>
+            <span className="text-brand">Без блокировок и ограничений</span>
           </motion.h1>
           
           <motion.p 
