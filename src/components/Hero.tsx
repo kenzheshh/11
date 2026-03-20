@@ -77,7 +77,7 @@ export default function Hero() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="mt-6 text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed"
           >
-            Объедините отдел продаж в одном окне. Делайте массовые рассылки легально, контролируйте менеджеров и отвечайте клиентам в 2 раза быстрее с помощью ИИ-суфлера.
+            Подключите WABA и перестаньте терять клиентов из-за блокировок
           </motion.p>
 
           <motion.div 
@@ -87,7 +87,7 @@ export default function Hero() {
             className="mt-10 flex flex-col sm:flex-row gap-4 justify-center items-center"
           >
             <button className="w-full sm:w-auto px-8 py-4 bg-brand hover:bg-brand-hover text-white rounded-xl font-semibold text-lg transition-all shadow-[0_0_20px_rgba(10,128,94,0.4)] hover:shadow-[0_0_30px_rgba(10,128,94,0.6)] hover:-translate-y-0.5 relative overflow-hidden group">
-              <span className="relative z-10">Начать 7 дней бесплатно</span>
+              <span className="relative z-10">Подключить WABA</span>
               <motion.div 
                 animate={{ x: ['-100%', '200%'] }}
                 transition={{ duration: 3, repeat: Infinity, ease: "linear", repeatDelay: 1 }}

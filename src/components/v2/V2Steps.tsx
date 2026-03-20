@@ -153,6 +153,18 @@ export default function V2Steps() {
         </div>
 
       </div>
+
+      {/* Big CTA Button */}
+      <div className="mt-20 relative z-10 flex justify-center">
+        <button className="px-10 py-5 bg-emerald-500 hover:bg-emerald-600 text-white rounded-2xl font-bold text-xl transition-all shadow-[0_0_30px_rgba(16,185,129,0.5)] hover:shadow-[0_0_40px_rgba(16,185,129,0.7)] hover:-translate-y-1 relative overflow-hidden group">
+          <span className="relative z-10">Подключить WABA</span>
+          <motion.div 
+            animate={{ x: ['-100%', '200%'] }}
+            transition={{ duration: 3, repeat: Infinity, ease: "linear", repeatDelay: 1 }}
+            className="absolute inset-0 w-1/2 h-full bg-gradient-to-r from-transparent via-white/30 to-transparent skew-x-12 z-0"
+          />
+        </button>
+      </div>
     </div>
   );
 }

@@ -54,8 +54,16 @@ export default function V2Experience() {
               </span>
             </h1>
             <p className="text-lg md:text-xl text-slate-300 mb-12 leading-relaxed">
-              Платформа WaBase. Объедините команду, автоматизируйте ответы и перестаньте терять клиентов из-за блокировок.
+              Подключите WABA и перестаньте терять клиентов из-за блокировок
             </p>
+            <button className="px-8 py-4 bg-emerald-500 hover:bg-emerald-600 text-white rounded-xl font-bold text-lg transition-all shadow-[0_0_20px_rgba(16,185,129,0.4)] hover:shadow-[0_0_30px_rgba(16,185,129,0.6)] hover:-translate-y-0.5 relative overflow-hidden group pointer-events-auto w-fit">
+              <span className="relative z-10">Подключить WABA</span>
+              <motion.div 
+                animate={{ x: ['-100%', '200%'] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "linear", repeatDelay: 1 }}
+                className="absolute inset-0 w-1/2 h-full bg-gradient-to-r from-transparent via-white/30 to-transparent skew-x-12 z-0"
+              />
+            </button>
           </div>
           
         </motion.div>
@@ -89,7 +97,7 @@ export default function V2Experience() {
             <p className="text-lg text-slate-300 mb-8 leading-relaxed">
               Забудьте о серых схемах и постоянном страхе блокировки номера. Мы используем официальный WhatsApp Business API, чтобы вы могли сфокусироваться на продажах, а не на технических проблемах.
             </p>
-            <ul className="space-y-4">
+            <ul className="space-y-4 mb-10">
               {[
                 'Зеленая галочка верификации',
                 'Массовые рассылки без риска',
@@ -103,6 +111,14 @@ export default function V2Experience() {
                 </li>
               ))}
             </ul>
+            <button className="px-8 py-4 bg-emerald-500 hover:bg-emerald-600 text-white rounded-xl font-bold text-lg transition-all shadow-[0_0_20px_rgba(16,185,129,0.4)] hover:shadow-[0_0_30px_rgba(16,185,129,0.6)] hover:-translate-y-0.5 relative overflow-hidden group pointer-events-auto w-fit">
+              <span className="relative z-10">Подключить WABA</span>
+              <motion.div 
+                animate={{ x: ['-100%', '200%'] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "linear", repeatDelay: 1 }}
+                className="absolute inset-0 w-1/2 h-full bg-gradient-to-r from-transparent via-white/30 to-transparent skew-x-12 z-0"
+              />
+            </button>
           </motion.div>
         </motion.div>
 

@@ -58,6 +58,18 @@ export default function V2Pricing() {
             </motion.div>
           ))}
         </div>
+
+        {/* CTA after timeline */}
+        <div className="mt-16 text-center">
+          <button className="px-10 py-5 bg-emerald-500 hover:bg-emerald-600 text-white rounded-2xl font-bold text-xl transition-all shadow-[0_0_30px_rgba(16,185,129,0.5)] hover:shadow-[0_0_40px_rgba(16,185,129,0.7)] hover:-translate-y-1 relative overflow-hidden group mx-auto">
+            <span className="relative z-10">Подключить WABA</span>
+            <motion.div 
+              animate={{ x: ['-100%', '200%'] }}
+              transition={{ duration: 3, repeat: Infinity, ease: "linear", repeatDelay: 1 }}
+              className="absolute inset-0 w-1/2 h-full bg-gradient-to-r from-transparent via-white/30 to-transparent skew-x-12 z-0"
+            />
+          </button>
+        </div>
       </div>
 
       {/* Screen 5: Pricing */}
@@ -142,7 +154,7 @@ export default function V2Pricing() {
               Оставьте заявку прямо сейчас и получите бесплатный аудит вашего текущего WhatsApp-маркетинга.
             </p>
             <button className="bg-emerald-500 hover:bg-emerald-400 text-white px-8 py-5 rounded-2xl font-bold text-lg transition-all shadow-[0_0_40px_rgba(16,185,129,0.4)] hover:shadow-[0_0_60px_rgba(16,185,129,0.6)] flex items-center gap-3 mx-auto group">
-              Начать бесплатно
+              Подключить WABA
               <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
             </button>
             <p className="mt-6 text-sm text-slate-400">
