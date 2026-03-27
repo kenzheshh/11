@@ -12,8 +12,7 @@ import V2Testimonials from './components/v2/V2Testimonials';
 import V2Pricing from './components/v2/V2Pricing';
 import V2Navbar from './components/v2/V2Navbar';
 import V2Footer from './components/v2/V2Footer';
-import Modal from './components/ui/Modal';
-import AmoCrmForm from './components/AmoCrmForm';
+import AmoModal from './components/AmoModal';
 
 export default function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -37,9 +36,7 @@ export default function App() {
       </main>
       <V2Footer />
       
-      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-        <AmoCrmForm />
-      </Modal>
+      <AmoModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </div>
   );
 }
