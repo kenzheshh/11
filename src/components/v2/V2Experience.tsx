@@ -131,9 +131,9 @@ export default function V2Experience() {
             </p>
             <ul className="space-y-5 mb-10">
               {[
-                'Зеленая галочка верификации',
+                'Верификация в Meta',
                 'Массовые рассылки без риска',
-                'Интеграции с любой CRM'
+                'Интеграции с CRM системами'
               ].map((item, i) => (
                 <li key={i} className="flex items-center gap-4 text-slate-200 text-lg">
                   <div className="w-8 h-8 rounded-full bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center shadow-[0_0_15px_rgba(16,185,129,0.2)]">
