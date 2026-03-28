@@ -88,15 +88,12 @@ export default function V2Pricing() {
               Готовы работать с <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">WABA?</span>
             </h2>
             <p className="text-xl text-slate-400 mb-12 max-w-2xl mx-auto font-light">
-              Оставьте заявку прямо сейчас и получите бесплатный аудит вашего текущего WhatsApp-маркетинга.
+              Оставьте заявку прямо сейчас и подключите официальный WhatsApp для вашего бизнеса.
             </p>
             <button onClick={() => window.dispatchEvent(new CustomEvent('open-amo-modal'))} className="bg-emerald-500 hover:bg-emerald-400 text-white px-10 py-5 rounded-full font-bold text-xl transition-all shadow-[0_0_40px_rgba(16,185,129,0.4)] hover:shadow-[0_0_60px_rgba(16,185,129,0.6)] flex items-center gap-3 mx-auto group hover:-translate-y-1">
               Подключить WABA
               <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
             </button>
-            <p className="mt-8 text-sm text-slate-500 font-light">
-              14 дней бесплатно • Без привязки карты • Отмена в любой момент
-            </p>
           </div>
         </div>
       </div>

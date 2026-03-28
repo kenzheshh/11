@@ -15,7 +15,7 @@ const steps = [
   },
   {
     title: 'Интеграция',
-    description: 'Подключаем номер к WhatsApp Business API и настраиваем интеграцию с вашей CRM (amoCRM, Bitrix24 и др.).',
+    description: 'Подключаем номер к WhatsApp Business API и настраиваем интеграцию с вашей CRM.',
     icon: Plug
   },
   {
