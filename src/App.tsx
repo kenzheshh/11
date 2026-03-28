@@ -4,7 +4,8 @@
  */
 
 import { useState, useEffect } from 'react';
-import V2Experience from './components/v2/V2Experience';
+import V2Hero from './components/v2/V2Hero';
+import V2Transformation from './components/v2/V2Transformation';
 import V2FeaturesCarousel from './components/v2/V2FeaturesCarousel';
 import V2Process from './components/v2/V2Process';
 import V2Coexistence from './components/v2/V2Coexistence';
@@ -25,9 +26,9 @@ export default function App() {
 
   return (
     <div className="bg-[#050505] text-white min-h-screen font-sans selection:bg-emerald-500 selection:text-white">
-      <V2Navbar />
       <main>
-        <V2Experience />
+        <V2Hero />
+        <V2Transformation />
         <V2FeaturesCarousel />
         <V2Process />
         <V2Coexistence />
@@ -35,6 +36,7 @@ export default function App() {
         <V2Pricing />
       </main>
       <V2Footer />
+      <V2Navbar />
       
       <AmoModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </div>

@@ -35,12 +35,12 @@ export default function V2FeaturesCarousel() {
   }, [activeFeature]);
 
   return (
-    <div className="bg-[#050505] py-32 relative overflow-hidden border-t border-white/5" id="features">
+    <div className="bg-[#050505] py-20 md:py-32 relative overflow-hidden border-t border-white/5" id="features">
       {/* Background Elements */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl h-[500px] bg-emerald-900/10 blur-[120px] rounded-full pointer-events-none" />
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-8 md:mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight text-white">
             Единое <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">рабочее пространство</span>
           </h2>
@@ -49,7 +49,7 @@ export default function V2FeaturesCarousel() {
           </p>
         </div>
 
-        <div className="flex flex-col gap-12 items-center">
+        <div className="flex flex-col gap-6 md:gap-12 items-center">
           {/* Top: Feature Selection (Horizontal) */}
           <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-4">
             {features.map((feature) => (
@@ -81,7 +81,7 @@ export default function V2FeaturesCarousel() {
 
           {/* Bottom: Interactive Mockup */}
           <div className="w-full max-w-5xl mx-auto">
-            <div className="glass-panel rounded-3xl border border-white/10 overflow-hidden flex h-[600px] shadow-2xl relative">
+            <div className="glass-panel rounded-3xl border border-white/10 overflow-hidden flex h-[500px] md:h-[600px] shadow-2xl relative">
               
               {/* Left Sidebar: Chat List */}
               <div className={`w-full md:w-1/3 border-r border-white/10 bg-black/40 flex-col transition-opacity duration-500 ${mobileView === 'list' ? 'flex' : 'hidden md:flex'} ${activeFeature === 'all-in-one' ? 'opacity-100 ring-2 ring-emerald-500/50 relative z-10' : 'opacity-50'}`}>

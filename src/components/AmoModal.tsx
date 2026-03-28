@@ -46,7 +46,7 @@ export default function AmoModal({ isOpen, onClose }: AmoModalProps) {
           <X className="w-5 h-5" />
         </button>
         <div className="p-6 sm:p-8 max-h-[85vh] overflow-y-auto custom-scrollbar">
-          <AmoCrmForm />
+          {isOpen && <AmoCrmForm />}
         </div>
       </div>
     </div>
