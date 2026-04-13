@@ -31,9 +31,9 @@ export default function V2Hero() {
             transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             className="text-4xl md:text-7xl lg:text-[80px] font-bold tracking-tighter mb-4 md:mb-6 leading-[1.1]"
           >
-            Официальный WhatsApp для бизнеса.<br />
+            Массовые рассылки без блокировки<br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-emerald-300 to-cyan-400">
-              Без блокировок.
+              WhatsApp Business API
             </span>
           </motion.h1>
           

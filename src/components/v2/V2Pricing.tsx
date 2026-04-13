@@ -12,7 +12,7 @@ export default function V2Pricing() {
       {/* Screen 5: Pricing */}
       <div className="max-w-7xl mx-auto px-6 lg:px-8 mb-32 relative z-10" id="pricing">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-6xl font-bold mb-6 tracking-tight text-white">Простые <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">тарифы</span> для роста</h2>
+          <h2 className="text-4xl md:text-6xl font-bold mb-6 tracking-tight text-white">Тарифы <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">WABA</span></h2>
           <p className="text-xl text-slate-400 font-light max-w-2xl mx-auto">Выберите план, который подходит вашему бизнесу. Никаких скрытых платежей.</p>
         </div>
 

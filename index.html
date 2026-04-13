@@ -1,15 +1,111 @@
 <!doctype html>
-<html lang="en">
+<html lang="ru">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>WABA Integration</title>
+    
+    <!-- SEO Meta Tags -->
+    <title>WABase — Интеграция WhatsApp Business API для бизнеса в Казахстане</title>
+    <meta name="description" content="Подключите WhatsApp Business API (WABA) для рассылок, чат-ботов и автоматизации продаж. Интеграция с CRM за 5 минут. Без блокировок. Официальный провайдер.">
+    <meta name="keywords" content="WhatsApp Business API, WABA, интеграция WhatsApp, WhatsApp рассылка, WhatsApp CRM, чат-бот WhatsApp, WhatsApp для бизнеса Казахстан">
+    <link rel="canonical" href="https://wabase.ai/">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="WABase">
+
+    <!-- Language Alternatives -->
+    <meta http-equiv="content-language" content="ru">
+    <link rel="alternate" hreflang="ru" href="https://wabase.ai/">
+    <link rel="alternate" hreflang="kk" href="https://wabase.ai/kk/">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://wabase.ai/">
+    <meta property="og:title" content="WABase — WhatsApp Business API для роста продаж">
+    <meta property="og:description" content="Рассылки, чат-боты, интеграция с CRM. Подключение за 5 минут. Без блокировок.">
+    <meta property="og:image" content="https://wabase.ai/og-image.png">
+    <meta property="og:locale" content="ru_RU">
+    <meta property="og:site_name" content="WABase">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="WABase — WhatsApp Business API для бизнеса">
+    <meta name="twitter:description" content="Рассылки, автоматизация, CRM-интеграция через WABA">
+
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
+    <!-- Schema.org Organization -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "WABase",
+      "url": "https://wabase.ai",
+      "logo": "https://wabase.ai/logo.png",
+      "description": "Интеграция WhatsApp Business API для автоматизации коммуникаций и роста продаж",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "KZ",
+        "addressLocality": "Астана"
+      },
+      "sameAs": [
+        "https://t.me/wabase",
+        "https://instagram.com/wabase"
+      ]
+    }
+    </script>
+
+    <!-- Schema.org FAQ -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Что такое WhatsApp Business API?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "WhatsApp Business API (WABA) — это официальный интерфейс Meta для массовых рассылок, чат-ботов и интеграции с CRM."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Сколько стоит подключение WABA?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Подключение бесплатное. Вы платите только за отправленные сообщения по тарифам Meta."
+          }
+        }
+      ]
+    }
+    </script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9PTZ8ZMG2E"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-9PTZ8ZMG2E');
+    </script>
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function(m,e,t,r,i,k,a){
+            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();
+            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=108519237', 'ym');
+
+        ym(108519237, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+    </script>
+    <!-- /Yandex.Metrika counter -->
   </head>
   <body>
+    <noscript><div><img src="https://mc.yandex.ru/watch/108519237" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

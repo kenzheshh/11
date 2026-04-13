@@ -31,7 +31,7 @@ export default function V2Process() {
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-20">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight text-white">
-            Как происходит <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">подключение</span>
+            Как подключить <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">WABA</span> через WABase
           </h2>
           <p className="text-xl text-slate-400 font-light">
             Прозрачный процесс от заявки до первых сообщений вашим клиентам. Мы берем всю техническую часть на себя.

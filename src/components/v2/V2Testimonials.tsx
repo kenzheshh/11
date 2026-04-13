@@ -32,7 +32,7 @@ export default function V2Testimonials() {
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-20">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight text-white">
-            Что говорят <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">клиенты</span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">Кейсы</span> клиентов
           </h2>
           <p className="text-xl text-slate-400 font-light">
             Компании, которые уже масштабировали свои продажи с помощью официального WhatsApp Business API.

@@ -66,8 +66,8 @@ export default function V2Transformation() {
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
             className="flex-1 text-left"
           >
-            <h2 className="text-3xl md:text-6xl font-bold tracking-tighter mb-4 md:mb-8 leading-[1.1] text-white">
-              Ваш бизнес в <span className="text-emerald-400">безопасности</span>
+            <h2 className="text-3xl md:text-5xl font-bold tracking-tighter mb-4 md:mb-8 leading-[1.1] text-white">
+              Почему бизнес выбирает <span className="text-emerald-400">WhatsApp Business API</span>
             </h2>
             <p className="text-base md:text-xl text-slate-400 mb-6 md:mb-10 leading-relaxed font-light">
               Забудьте о постоянных блокировках и потере клиентской базы. Официальный WhatsApp Business API — это стабильность и доверие клиентов.
