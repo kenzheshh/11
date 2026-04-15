@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { CheckCircle2, ShieldCheck, Zap, ArrowRight, Shield, Info, ChevronDown, ChevronUp, RefreshCw } from 'lucide-react';
+import { PRICES_USD, COUNTRY_TO_CURRENCY, CURRENCY_SYMBOLS, COUNTRY_CODE_TO_RU } from '../../lib/pricingData';
 
 interface PricingData {
   country: string;
@@ -23,21 +24,83 @@ export default function V2Pricing() {
   const [selectedCountry, setSelectedCountry] = useState<string>("");
   const [loading, setLoading] = useState(true);
   const [isRefreshing, setIsRefreshing] = useState(false);
+  const [exchangeRates, setExchangeRates] = useState<Record<string, number>>({});
+  const [lastFetchTime, setLastFetchTime] = useState<number>(0);
+
+  const fetchExchangeRates = async () => {
+    try {
+      const res = await fetch('https://open.er-api.com/v6/latest/USD');
+      if (res.ok) {
+        const data = await res.json();
+        setExchangeRates(data.rates);
+        setLastFetchTime(Date.now());
+        return data.rates;
+      }
+    } catch (error) {
+      console.error("Failed to fetch exchange rates:", error);
+    }
+    return null;
+  };
+
+  const calculatePricing = (country: string, rates: Record<string, number>) => {
+    const currencyCode = COUNTRY_TO_CURRENCY[country] || "USD";
+    const symbol = CURRENCY_SYMBOLS[currencyCode] || currencyCode;
+    const usdPrices = PRICES_USD[country] || PRICES_USD["США"];
+    const rate = rates[currencyCode] || 1;
+
+    return {
+      country,
+      currency: currencyCode,
+      symbol,
+      timestamp: Math.floor(Date.now() / 1000),
+      prices: {
+        marketing: Number((usdPrices.marketing * rate).toFixed(2)),
+        utility: Number((usdPrices.utility * rate).toFixed(2)),
+        authentication: Number((usdPrices.auth * rate).toFixed(2)),
+        usd_marketing: usdPrices.marketing,
+        usd_utility: usdPrices.utility,
+        usd_authentication: usdPrices.auth
+      },
+      availableCountries: Object.keys(PRICES_USD).sort()
+    };
+  };
 
   const fetchPricing = async (country?: string) => {
     try {
       setIsRefreshing(true);
-      const url = country ? `/api/pricing?country=${encodeURIComponent(country)}` : '/api/pricing';
-      const res = await fetch(url);
-      if (res.ok) {
-        const data = await res.json();
-        setPricingData(data);
-        if (!country) {
-          setSelectedCountry(data.country);
+      
+      let rates = exchangeRates;
+      // Refresh rates if older than 1 hour or not loaded
+      if (Object.keys(rates).length === 0 || Date.now() - lastFetchTime > 3600000) {
+        const newRates = await fetchExchangeRates();
+        if (newRates) rates = newRates;
+      }
+
+      let targetCountry = country;
+
+      if (!targetCountry) {
+        try {
+          const geoRes = await fetch('https://ipapi.co/json/');
+          if (geoRes.ok) {
+            const geoData = await geoRes.json();
+            const ruCountry = COUNTRY_CODE_TO_RU[geoData.country_code];
+            if (ruCountry && PRICES_USD[ruCountry]) {
+              targetCountry = ruCountry;
+            }
+          }
+        } catch (e) {
+          console.error("Geolocation failed:", e);
         }
+        if (!targetCountry) targetCountry = "Казахстан"; // Fallback
+      }
+
+      const data = calculatePricing(targetCountry, rates);
+      setPricingData(data);
+      if (!country) {
+        setSelectedCountry(data.country);
       }
     } catch (error) {
-      console.error("Failed to fetch pricing:", error);
+      console.error("Failed to calculate pricing:", error);
     } finally {
       setLoading(false);
       setIsRefreshing(false);

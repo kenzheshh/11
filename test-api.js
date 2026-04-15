@@ -1,14 +1,7 @@
-import http from 'http';
+import https from 'https';
 
-http.get('http://localhost:3000/api/pricing', (res) => {
+https.get('https://ipapi.co/json/', { headers: { 'User-Agent': 'nodejs' } }, (res) => {
   let data = '';
-  res.on('data', (chunk) => {
-    data += chunk;
-  });
-  res.on('end', () => {
-    console.log('Status:', res.statusCode);
-    console.log('Body:', data);
-  });
-}).on('error', (err) => {
-  console.log('Error:', err.message);
+  res.on('data', (chunk) => data += chunk);
+  res.on('end', () => console.log(data));
 });
