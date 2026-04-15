@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { CheckCircle2, ShieldCheck, Zap, ArrowRight, Shield, Info, ChevronDown, ChevronUp, RefreshCw } from 'lucide-react';
+import { useLanguage } from '../../contexts/LanguageContext';
 
 interface PricingData {
   country: string;
@@ -19,6 +20,7 @@ interface PricingData {
 }
 
 export default function V2Pricing() {
+  const { t, language } = useLanguage();
   const [pricingData, setPricingData] = useState<PricingData | null>(null);
   const [selectedCountry, setSelectedCountry] = useState<string>("");
   const [loading, setLoading] = useState(true);
@@ -78,8 +80,8 @@ export default function V2Pricing() {
       {/* Screen 5: Pricing */}
       <div className="max-w-7xl mx-auto px-6 lg:px-8 mb-32 relative z-10" id="pricing">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-6xl font-bold mb-6 tracking-tight text-white">Тарифы <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">WABA</span></h2>
-          <p className="text-xl text-slate-400 font-light max-w-2xl mx-auto">Выберите план, который подходит вашему бизнесу. Никаких скрытых платежей.</p>
+          <h2 className="text-4xl md:text-6xl font-bold mb-6 tracking-tight text-white">{t.pricing.title}</h2>
+          <p className="text-xl text-slate-400 font-light max-w-2xl mx-auto">{t.pricing.subtitle}</p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
@@ -148,11 +150,11 @@ export default function V2Pricing() {
             </div>
             <div className="w-full md:w-72 shrink-0">
               <div className="flex justify-between items-end mb-2">
-                <label className="block text-sm font-medium text-slate-400">Выберите страну получателя</label>
+                <label className="block text-sm font-medium text-slate-400">{t.pricing.selectCountry}</label>
                 <div className="flex items-center gap-2">
                   {pricingData?.timestamp && (
                     <span className="text-xs text-slate-500">
-                      Обновлено: {formatTime(pricingData.timestamp)}
+                      {t.pricing.updated} {formatTime(pricingData.timestamp)}
                     </span>
                   )}
                   <button 
@@ -184,40 +186,40 @@ export default function V2Pricing() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="bg-black/40 border border-white/5 rounded-2xl p-6 relative overflow-hidden group hover:border-emerald-500/30 transition-colors">
               <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-              <div className="text-sm text-slate-400 mb-2">Marketing</div>
+              <div className="text-sm text-slate-400 mb-2">{t.pricing.marketing}</div>
               <div className="text-4xl font-bold text-white mb-1">
                 {pricingData ? formatPrice(pricingData.prices.marketing, pricingData.symbol) : "..."}
               </div>
               {pricingData && (
                 <div className="text-xs text-slate-500 mb-3">≈ ${pricingData.prices.usd_marketing} USD</div>
               )}
-              <div className="text-xs text-slate-500">Рекламные рассылки, акции, спецпредложения</div>
+              <div className="text-xs text-slate-500">{t.pricing.marketingDesc}</div>
             </div>
             <div className="bg-black/40 border border-white/5 rounded-2xl p-6 relative overflow-hidden group hover:border-blue-500/30 transition-colors">
               <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-              <div className="text-sm text-slate-400 mb-2">Utility</div>
+              <div className="text-sm text-slate-400 mb-2">{t.pricing.utility}</div>
               <div className="text-4xl font-bold text-white mb-1">
                 {pricingData ? formatPrice(pricingData.prices.utility, pricingData.symbol) : "..."}
               </div>
               {pricingData && (
                 <div className="text-xs text-slate-500 mb-3">≈ ${pricingData.prices.usd_utility} USD</div>
               )}
-              <div className="text-xs text-slate-500">Уведомления о заказах, статусы доставки</div>
+              <div className="text-xs text-slate-500">{t.pricing.utilityDesc}</div>
             </div>
             <div className="bg-black/40 border border-white/5 rounded-2xl p-6 relative overflow-hidden group hover:border-purple-500/30 transition-colors">
               <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-              <div className="text-sm text-slate-400 mb-2">Authentication</div>
+              <div className="text-sm text-slate-400 mb-2">{t.pricing.auth}</div>
               <div className="text-4xl font-bold text-white mb-1">
                 {pricingData ? formatPrice(pricingData.prices.authentication, pricingData.symbol) : "..."}
               </div>
               {pricingData && (
                 <div className="text-xs text-slate-500 mb-3">≈ ${pricingData.prices.usd_authentication} USD</div>
               )}
-              <div className="text-xs text-slate-500">Коды подтверждения (OTP), пароли</div>
+              <div className="text-xs text-slate-500">{t.pricing.authDesc}</div>
             </div>
           </div>
           <p className="text-xs text-slate-500 mt-6 text-center">
-            * Цены указаны в локальной валюте ({pricingData?.currency || "USD"}) за один диалог (24-часовое окно).
+            {t.pricing.disclaimer.replace('{currency}', pricingData?.currency || "USD")}
           </p>
         </div>
       </div>
@@ -229,13 +231,13 @@ export default function V2Pricing() {
           
           <div className="relative z-10">
             <h2 className="text-4xl md:text-6xl font-bold text-white mb-6 tracking-tight">
-              Готовы работать с <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">WABA?</span>
+              {t.pricing.ready} <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">WABA?</span>
             </h2>
             <p className="text-xl text-slate-400 mb-12 max-w-2xl mx-auto font-light">
-              Оставьте заявку прямо сейчас и подключите официальный WhatsApp для вашего бизнеса.
+              {t.pricing.readySubtitle}
             </p>
             <button onClick={() => window.dispatchEvent(new CustomEvent('open-amo-modal'))} className="bg-emerald-500 hover:bg-emerald-400 text-white px-10 py-5 rounded-full font-bold text-xl transition-all shadow-[0_0_40px_rgba(16,185,129,0.4)] hover:shadow-[0_0_60px_rgba(16,185,129,0.6)] flex items-center gap-3 mx-auto group hover:-translate-y-1">
-              Подключить WABA
+              {t.pricing.connect}
               <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
             </button>
           </div>

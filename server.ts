@@ -139,6 +139,34 @@ async function getExchangeRates() {
 
 async function startServer() {
   // API routes FIRST
+  app.get("/api/geo", (req, res) => {
+    try {
+      const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
+      let countryCode = "KZ"; // Default
+      
+      if (ip && typeof ip === 'string') {
+        const realIp = ip.split(',')[0].trim();
+        const geo = geoip.lookup(realIp);
+        if (geo && geo.country) {
+          countryCode = geo.country;
+        }
+      }
+
+      const cisCountries = ["RU", "KZ", "BY", "UA", "AM", "AZ", "GE", "KG", "MD", "TJ", "TM", "UZ"];
+      let language = "en";
+      if (cisCountries.includes(countryCode)) {
+        language = "ru";
+      } else if (countryCode === "TR") {
+        language = "tr";
+      }
+
+      res.json({ countryCode, language });
+    } catch (error) {
+      console.error("Geo API Error:", error);
+      res.status(500).json({ error: "Internal Server Error" });
+    }
+  });
+
   app.get("/api/pricing", async (req, res) => {
     try {
       let countryName = "Казахстан"; // Default
