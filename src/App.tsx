@@ -14,7 +14,6 @@ import V2Pricing from './components/v2/V2Pricing';
 import V2Navbar from './components/v2/V2Navbar';
 import V2Footer from './components/v2/V2Footer';
 import AmoModal from './components/AmoModal';
-import { LanguageProvider } from './contexts/LanguageContext';
 
 export default function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -26,22 +25,20 @@ export default function App() {
   }, []);
 
   return (
-    <LanguageProvider>
-      <div className="bg-[#050505] text-white min-h-screen font-sans selection:bg-emerald-500 selection:text-white">
-        <main>
-          <V2Hero />
-          <V2Transformation />
-          <V2FeaturesCarousel />
-          <V2Process />
-          <V2Coexistence />
-          <V2Testimonials />
-          <V2Pricing />
-        </main>
-        <V2Footer />
-        <V2Navbar />
-        
-        <AmoModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
-      </div>
-    </LanguageProvider>
+    <div className="bg-[#050505] text-white min-h-screen font-sans selection:bg-emerald-500 selection:text-white">
+      <main>
+        <V2Hero />
+        <V2Transformation />
+        <V2FeaturesCarousel />
+        <V2Process />
+        <V2Coexistence />
+        <V2Testimonials />
+        <V2Pricing />
+      </main>
+      <V2Footer />
+      <V2Navbar />
+      
+      <AmoModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+    </div>
   );
 }

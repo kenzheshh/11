@@ -1,10 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { useLanguage } from '../../contexts/LanguageContext';
 
 export default function V2Hero() {
-  const { t } = useLanguage();
-
   return (
     <section className="relative min-h-screen flex items-center justify-center bg-[#050505] overflow-hidden bg-grid-pattern">
       {/* Mesh Gradient Background */}
@@ -34,7 +31,7 @@ export default function V2Hero() {
             transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             className="text-4xl md:text-7xl lg:text-[80px] font-bold tracking-tighter mb-4 md:mb-6 leading-[1.1]"
           >
-            {t.hero.title}<br />
+            Массовые рассылки без блокировки<br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-emerald-300 to-cyan-400">
               WhatsApp Business API
             </span>
@@ -47,7 +44,7 @@ export default function V2Hero() {
             transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
             className="text-base md:text-2xl text-slate-400 mb-8 md:mb-12 leading-relaxed max-w-2xl font-light"
           >
-            {t.hero.subtitle}
+            Подключите WABA и перестаньте терять клиентов из-за блокировок.
           </motion.p>
           
           <motion.div
@@ -57,7 +54,7 @@ export default function V2Hero() {
             transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
           >
             <button onClick={() => window.dispatchEvent(new CustomEvent('open-amo-modal'))} className="px-8 py-4 bg-emerald-500 hover:bg-emerald-400 text-white rounded-full font-bold text-lg transition-all shadow-[0_0_30px_rgba(16,185,129,0.3)] hover:shadow-[0_0_50px_rgba(16,185,129,0.5)] hover:-translate-y-1 relative overflow-hidden group">
-              <span className="relative z-10">{t.hero.cta}</span>
+              <span className="relative z-10">Начать бесплатно</span>
               <motion.div 
                 animate={{ x: ['-100%', '200%'] }}
                 transition={{ duration: 3, repeat: Infinity, ease: "linear", repeatDelay: 1 }}

@@ -7,7 +7,7 @@ import path from 'path';
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = parseInt(process.env.PORT || '3000', 10);
 const CACHE_TTL_MS = parseInt(process.env.CACHE_TTL_MS || '3600000', 10);
 const OXR_APP_ID = process.env.OXR_APP_ID;
 
