@@ -1,72 +1,73 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { CheckCircle2, ShieldCheck, Zap, ArrowRight, Shield, Info, ChevronDown, ChevronUp } from 'lucide-react';
+import { CheckCircle2, ShieldCheck, Zap, ArrowRight, Shield, Info, ChevronDown, ChevronUp, RefreshCw } from 'lucide-react';
 
-const metaPricingData = [
-  {"country": "Австралия", "marketing": "$0,1135", "utility": "$0,0212", "auth": "$0,0212"},
-  {"country": "Австрия", "marketing": "$0,0921", "utility": "$0,0311", "auth": "$0,0311"},
-  {"country": "Азербайджан", "marketing": "$0,1331", "utility": "$0,0382", "auth": "$0,0382"},
-  {"country": "Аргентина", "marketing": "$0,0961", "utility": "$0,0464", "auth": "$0,0464"},
-  {"country": "Армения", "marketing": "$0,1331", "utility": "$0,0382", "auth": "$0,0382"},
-  {"country": "Бангладеш", "marketing": "$0,1135", "utility": "$0,0212", "auth": "$0,0212"},
-  {"country": "Бельгия", "marketing": "$0,0921", "utility": "$0,0311", "auth": "$0,0311"},
-  {"country": "Бразилия", "marketing": "$0,0972", "utility": "$0,0134", "auth": "$0,0134"},
-  {"country": "Великобритания", "marketing": "$0,0825", "utility": "$0,0396", "auth": "$0,0396"},
-  {"country": "Венгрия", "marketing": "$0,1331", "utility": "$0,0382", "auth": "$0,0382"},
-  {"country": "Вьетнам", "marketing": "$0,1135", "utility": "$0,0212", "auth": "$0,0212"},
-  {"country": "Германия", "marketing": "$0,2104", "utility": "$0,0963", "auth": "$0,0963"},
-  {"country": "Греция", "marketing": "$0,1331", "utility": "$0,0382", "auth": "$0,0382"},
-  {"country": "Грузия", "marketing": "$0,1331", "utility": "$0,0382", "auth": "$0,0382"},
-  {"country": "Дания", "marketing": "$0,0921", "utility": "$0,0311", "auth": "$0,0311"},
-  {"country": "Египет", "marketing": "$0,1001", "utility": "$0,0079", "auth": "$0,0079"},
-  {"country": "Израиль", "marketing": "$0,0555", "utility": "$0,0108", "auth": "$0,0108"},
-  {"country": "Индия", "marketing": "$0,0196", "utility": "$0,0041", "auth": "$0,0041"},
-  {"country": "Индонезия", "marketing": "$0,0644", "utility": "$0,0447", "auth": "$0,0447"},
-  {"country": "Испания", "marketing": "$0,0956", "utility": "$0,0361", "auth": "$0,0361"},
-  {"country": "Италия", "marketing": "$0,1073", "utility": "$0,0533", "auth": "$0,0533"},
-  {"country": "Казахстан", "marketing": "$0,0939", "utility": "$0,0150", "auth": "$0,0150", "highlight": true},
-  {"country": "Канада", "marketing": "$0,0398", "utility": "$0,0076", "auth": "$0,0076"},
-  {"country": "Колумбия", "marketing": "$0,0207", "utility": "$0,0031", "auth": "$0,0031"},
-  {"country": "Малайзия", "marketing": "$0,1331", "utility": "$0,0258", "auth": "$0,0258"},
-  {"country": "Мексика", "marketing": "$0,0482", "utility": "$0,0163", "auth": "$0,0163"},
-  {"country": "Нигерия", "marketing": "$0,0805", "utility": "$0,0132", "auth": "$0,0132"},
-  {"country": "Нидерланды", "marketing": "$0,2459", "utility": "$0,0877", "auth": "$0,0877"},
-  {"country": "Норвегия", "marketing": "$0,0921", "utility": "$0,0311", "auth": "$0,0311"},
-  {"country": "ОАЭ", "marketing": "$0,0779", "utility": "$0,0287", "auth": "$0,0287"},
-  {"country": "Пакистан", "marketing": "$0,0739", "utility": "$0,0189", "auth": "$0,0189"},
-  {"country": "Перу", "marketing": "$0,1091", "utility": "$0,0361", "auth": "$0,0361"},
-  {"country": "Польша", "marketing": "$0,1331", "utility": "$0,0382", "auth": "$0,0382"},
-  {"country": "Португалия", "marketing": "$0,0921", "utility": "$0,0311", "auth": "$0,0311"},
-  {"country": "Россия", "marketing": "$0,1242", "utility": "$0,0705", "auth": "$0,0705"},
-  {"country": "Румыния", "marketing": "$0,1331", "utility": "$0,0382", "auth": "$0,0382"},
-  {"country": "США", "marketing": "$0,0398", "utility": "$0,0076", "auth": "$0,0076"},
-  {"country": "Саудовская Аравия", "marketing": "$0,0782", "utility": "$0,0201", "auth": "$0,0201"},
-  {"country": "Словакия", "marketing": "$0,1331", "utility": "$0,0382", "auth": "$0,0382"},
-  {"country": "Таиланд", "marketing": "$0,1135", "utility": "$0,0212", "auth": "$0,0212"},
-  {"country": "Турция", "marketing": "$0,0182", "utility": "$0,0033", "auth": "$0,0033"},
-  {"country": "Узбекистан", "marketing": "$0,1135", "utility": "$0,0212", "auth": "$0,0212"},
-  {"country": "Украина", "marketing": "$0,1331", "utility": "$0,0382", "auth": "$0,0382"},
-  {"country": "Филиппины", "marketing": "$0,1135", "utility": "$0,0212", "auth": "$0,0212"},
-  {"country": "Финляндия", "marketing": "$0,0921", "utility": "$0,0311", "auth": "$0,0311"},
-  {"country": "Франция", "marketing": "$0,1330", "utility": "$0,0533", "auth": "$0,0533"},
-  {"country": "Чехия", "marketing": "$0,1331", "utility": "$0,0382", "auth": "$0,0382"},
-  {"country": "Чили", "marketing": "$0,1375", "utility": "$0,0361", "auth": "$0,0361"},
-  {"country": "Швейцария", "marketing": "$0,0921", "utility": "$0,0311", "auth": "$0,0311"},
-  {"country": "Швеция", "marketing": "$0,0921", "utility": "$0,0311", "auth": "$0,0311"},
-  {"country": "Южная Африка", "marketing": "$0,0595", "utility": "$0,0148", "auth": "$0,0148"}
-];
-
-const EXCHANGE_RATE = 480;
-
-const formatToKZT = (usdPrice?: string) => {
-  if (!usdPrice) return "";
-  const num = parseFloat(usdPrice.replace('$', '').replace(',', '.'));
-  return `~${(num * EXCHANGE_RATE).toFixed(1).replace('.', ',')} ₸`;
-};
+interface PricingData {
+  country: string;
+  currency: string;
+  symbol: string;
+  timestamp: number;
+  prices: {
+    marketing: number;
+    utility: number;
+    authentication: number;
+    usd_marketing: number;
+    usd_utility: number;
+    usd_authentication: number;
+  };
+  availableCountries: string[];
+}
 
 export default function V2Pricing() {
-  const [selectedCountry, setSelectedCountry] = useState("Казахстан");
-  const currentMetaPrice = metaPricingData.find(d => d.country === selectedCountry) || metaPricingData.find(d => d.country === "Казахстан");
+  const [pricingData, setPricingData] = useState<PricingData | null>(null);
+  const [selectedCountry, setSelectedCountry] = useState<string>("");
+  const [loading, setLoading] = useState(true);
+  const [isRefreshing, setIsRefreshing] = useState(false);
+
+  const fetchPricing = async (country?: string) => {
+    try {
+      setIsRefreshing(true);
+      const url = country ? `/api/pricing?country=${encodeURIComponent(country)}` : '/api/pricing';
+      const res = await fetch(url);
+      if (res.ok) {
+        const data = await res.json();
+        setPricingData(data);
+        if (!country) {
+          setSelectedCountry(data.country);
+        }
+      }
+    } catch (error) {
+      console.error("Failed to fetch pricing:", error);
+    } finally {
+      setLoading(false);
+      setIsRefreshing(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchPricing();
+    const interval = setInterval(() => {
+      fetchPricing(selectedCountry || undefined);
+    }, 5 * 60 * 1000); // Auto-refresh every 5 minutes
+    return () => clearInterval(interval);
+  }, []);
+
+  const handleCountryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const newCountry = e.target.value;
+    setSelectedCountry(newCountry);
+    fetchPricing(newCountry);
+  };
+
+  const formatPrice = (price: number, symbol: string) => {
+    return `${symbol}${price.toFixed(2)}`;
+  };
+
+  const formatTime = (timestamp: number) => {
+    if (!timestamp) return "";
+    const date = new Date(timestamp * 1000);
+    return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  };
+
 
   return (
     <div className="bg-[#050505] text-slate-300 py-32 relative overflow-hidden border-t border-white/5">
@@ -146,15 +147,33 @@ export default function V2Pricing() {
               </p>
             </div>
             <div className="w-full md:w-72 shrink-0">
-              <label className="block text-sm font-medium text-slate-400 mb-2">Выберите страну получателя</label>
+              <div className="flex justify-between items-end mb-2">
+                <label className="block text-sm font-medium text-slate-400">Выберите страну получателя</label>
+                <div className="flex items-center gap-2">
+                  {pricingData?.timestamp && (
+                    <span className="text-xs text-slate-500">
+                      Обновлено: {formatTime(pricingData.timestamp)}
+                    </span>
+                  )}
+                  <button 
+                    onClick={() => fetchPricing(selectedCountry)}
+                    disabled={isRefreshing}
+                    className="p-1.5 rounded-md hover:bg-white/5 text-slate-400 hover:text-white transition-colors disabled:opacity-50"
+                    title="Обновить курсы валют"
+                  >
+                    <RefreshCw className={`w-4 h-4 ${isRefreshing ? 'animate-spin' : ''}`} />
+                  </button>
+                </div>
+              </div>
               <div className="relative">
                 <select 
                   value={selectedCountry}
-                  onChange={(e) => setSelectedCountry(e.target.value)}
-                  className="w-full appearance-none bg-[#0a0a0a] border border-white/10 text-white py-3.5 px-4 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500/50 cursor-pointer"
+                  onChange={handleCountryChange}
+                  disabled={loading}
+                  className="w-full appearance-none bg-[#0a0a0a] border border-white/10 text-white py-3.5 px-4 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500/50 cursor-pointer disabled:opacity-50"
                 >
-                  {metaPricingData.map(d => (
-                    <option key={d.country} value={d.country}>{d.country}</option>
+                  {pricingData?.availableCountries.map(country => (
+                    <option key={country} value={country}>{country}</option>
                   ))}
                 </select>
                 <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 pointer-events-none" />
@@ -166,24 +185,39 @@ export default function V2Pricing() {
             <div className="bg-black/40 border border-white/5 rounded-2xl p-6 relative overflow-hidden group hover:border-emerald-500/30 transition-colors">
               <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
               <div className="text-sm text-slate-400 mb-2">Marketing</div>
-              <div className="text-4xl font-bold text-white mb-2">{formatToKZT(currentMetaPrice?.marketing)}</div>
+              <div className="text-4xl font-bold text-white mb-1">
+                {pricingData ? formatPrice(pricingData.prices.marketing, pricingData.symbol) : "..."}
+              </div>
+              {pricingData && (
+                <div className="text-xs text-slate-500 mb-3">≈ ${pricingData.prices.usd_marketing} USD</div>
+              )}
               <div className="text-xs text-slate-500">Рекламные рассылки, акции, спецпредложения</div>
             </div>
             <div className="bg-black/40 border border-white/5 rounded-2xl p-6 relative overflow-hidden group hover:border-blue-500/30 transition-colors">
               <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
               <div className="text-sm text-slate-400 mb-2">Utility</div>
-              <div className="text-4xl font-bold text-white mb-2">{formatToKZT(currentMetaPrice?.utility)}</div>
+              <div className="text-4xl font-bold text-white mb-1">
+                {pricingData ? formatPrice(pricingData.prices.utility, pricingData.symbol) : "..."}
+              </div>
+              {pricingData && (
+                <div className="text-xs text-slate-500 mb-3">≈ ${pricingData.prices.usd_utility} USD</div>
+              )}
               <div className="text-xs text-slate-500">Уведомления о заказах, статусы доставки</div>
             </div>
             <div className="bg-black/40 border border-white/5 rounded-2xl p-6 relative overflow-hidden group hover:border-purple-500/30 transition-colors">
               <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
               <div className="text-sm text-slate-400 mb-2">Authentication</div>
-              <div className="text-4xl font-bold text-white mb-2">{formatToKZT(currentMetaPrice?.auth)}</div>
+              <div className="text-4xl font-bold text-white mb-1">
+                {pricingData ? formatPrice(pricingData.prices.authentication, pricingData.symbol) : "..."}
+              </div>
+              {pricingData && (
+                <div className="text-xs text-slate-500 mb-3">≈ ${pricingData.prices.usd_authentication} USD</div>
+              )}
               <div className="text-xs text-slate-500">Коды подтверждения (OTP), пароли</div>
             </div>
           </div>
           <p className="text-xs text-slate-500 mt-6 text-center">
-            * Цены указаны в тенге (₸) за один диалог (24-часовое окно).
+            * Цены указаны в локальной валюте ({pricingData?.currency || "USD"}) за один диалог (24-часовое окно).
           </p>
         </div>
       </div>
