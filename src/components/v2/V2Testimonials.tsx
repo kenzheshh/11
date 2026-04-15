@@ -28,7 +28,7 @@ const reviews = [
 
 export default function V2Testimonials() {
   return (
-    <div className="bg-[#050505] py-32 relative overflow-hidden border-t border-white/5">
+    <div className="bg-[#050505] py-32 relative overflow-hidden border-t border-white/5" id="cases">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-20">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight text-white">

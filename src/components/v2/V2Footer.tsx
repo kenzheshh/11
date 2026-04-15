@@ -22,7 +22,7 @@ export default function V2Footer() {
             <h4 className="text-white font-semibold mb-6">Продукт</h4>
             <ul className="space-y-4 text-sm font-light">
               <li><a href="#features" className="hover:text-emerald-400 transition-colors">Возможности</a></li>
-              <li><a href="#integrations" className="hover:text-emerald-400 transition-colors">Интеграции</a></li>
+              <li><a href="#cases" className="hover:text-emerald-400 transition-colors">Кейсы</a></li>
               <li><a href="#pricing" className="hover:text-emerald-400 transition-colors">Тарифы</a></li>
             </ul>
           </div>

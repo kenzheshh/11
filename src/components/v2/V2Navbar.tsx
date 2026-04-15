@@ -26,7 +26,7 @@ export default function V2Navbar() {
           
           <div className="hidden md:flex items-center space-x-8 bg-white/5 px-6 py-2 rounded-full border border-white/10 backdrop-blur-md">
             <a href="#features" className="text-sm font-medium text-slate-300 hover:text-emerald-400 transition-colors">Возможности</a>
-            <a href="#integrations" className="text-sm font-medium text-slate-300 hover:text-emerald-400 transition-colors">Интеграции</a>
+            <a href="#cases" className="text-sm font-medium text-slate-300 hover:text-emerald-400 transition-colors">Кейсы</a>
             <a href="#pricing" className="text-sm font-medium text-slate-300 hover:text-emerald-400 transition-colors">Тарифы</a>
           </div>
 
@@ -56,7 +56,7 @@ export default function V2Navbar() {
           >
             <div className="px-6 pt-4 pb-8 space-y-4">
               <a href="#features" className="block text-lg font-medium text-slate-300 hover:text-emerald-400 transition-colors">Возможности</a>
-              <a href="#integrations" className="block text-lg font-medium text-slate-300 hover:text-emerald-400 transition-colors">Интеграции</a>
+              <a href="#cases" className="block text-lg font-medium text-slate-300 hover:text-emerald-400 transition-colors">Кейсы</a>
               <a href="#pricing" className="block text-lg font-medium text-slate-300 hover:text-emerald-400 transition-colors">Тарифы</a>
               <div className="pt-6 flex flex-col gap-4 border-t border-white/10">
                 <button className="w-full text-center py-3 border border-white/10 rounded-xl text-base font-medium text-white hover:bg-white/5 transition-colors">Войти</button>
