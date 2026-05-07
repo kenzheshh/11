@@ -1,8 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Smartphone, Server, RefreshCw, ShieldCheck, Bot, Phone } from 'lucide-react';
+import { useLanguage } from '../../contexts/LanguageContext';
 
 export default function V2Coexistence() {
+  const { t } = useLanguage();
   return (
     <div className="bg-[#050505] py-32 relative overflow-hidden border-t border-white/5">
       {/* Background Elements */}
@@ -18,11 +20,11 @@ export default function V2Coexistence() {
               WhatsApp Coexistence
             </div>
             <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight text-white leading-tight">
-              Один номер. <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">Два интерфейса.</span>
+              {t('Один номер.', 'One number.')} <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">{t('Два интерфейса.', 'Two interfaces.')}</span>
             </h2>
             <p className="text-lg text-slate-400 font-light mb-8 leading-relaxed">
-              Официальная функция Meta, позволяющая использовать один и тот же номер телефона одновременно в приложении WhatsApp Business и через Cloud API (WABA).
+              {t('Официальная функция Meta, позволяющая использовать один и тот же номер телефона одновременно в приложении WhatsApp Business и через Cloud API (WABA).', 'The official Meta feature that allows you to use the same phone number simultaneously in the WhatsApp Business app and via the Cloud API (WABA).')}
             </p>
             
             <ul className="space-y-6 mb-10">
@@ -31,8 +33,8 @@ export default function V2Coexistence() {
                   <Bot className="w-6 h-6" />
                 </div>
                 <div>
-                  <h4 className="text-white font-bold text-lg mb-1">Гибридный режим</h4>
-                  <p className="text-slate-400 text-sm font-light leading-relaxed">Продолжайте вести личные диалоги через телефон, в то время как боты или CRM обрабатывают автоматические запросы.</p>
+                  <h4 className="text-white font-bold text-lg mb-1">{t('Гибридный режим', 'Hybrid mode')}</h4>
+                  <p className="text-slate-400 text-sm font-light leading-relaxed">{t('Продолжайте вести личные диалоги через телефон, в то время как боты или CRM обрабатывают автоматические запросы.', 'Continue personal conversations via phone while bots or CRM process automatic requests.')}</p>
                 </div>
               </li>
               <li className="flex gap-4">
@@ -40,8 +42,8 @@ export default function V2Coexistence() {
                   <RefreshCw className="w-6 h-6" />
                 </div>
                 <div>
-                  <h4 className="text-white font-bold text-lg mb-1">Единая история</h4>
-                  <p className="text-slate-400 text-sm font-light leading-relaxed">Переписки в мобильном приложении и через API полностью синхронизируются. Вы не потеряете ни одного сообщения.</p>
+                  <h4 className="text-white font-bold text-lg mb-1">{t('Единая история', 'Unified history')}</h4>
+                  <p className="text-slate-400 text-sm font-light leading-relaxed">{t('Переписки в мобильном приложении и через API полностью синхронизируются. Вы не потеряете ни одного сообщения.', 'Chats in the mobile app and via API are fully synchronized. You won\'t lose a single message.')}</p>
                 </div>
               </li>
               <li className="flex gap-4">
@@ -49,14 +51,14 @@ export default function V2Coexistence() {
                   <ShieldCheck className="w-6 h-6" />
                 </div>
                 <div>
-                  <h4 className="text-white font-bold text-lg mb-1">Безопасность и экономия</h4>
-                  <p className="text-slate-400 text-sm font-light leading-relaxed">Снижается риск блокировки номера при автоматизации. Идеально для компаний, которые хотят внедрять WABA, но не готовы отказываться от приложения.</p>
+                  <h4 className="text-white font-bold text-lg mb-1">{t('Безопасность и экономия', 'Security and savings')}</h4>
+                  <p className="text-slate-400 text-sm font-light leading-relaxed">{t('Снижается риск блокировки номера при автоматизации. Идеально для компаний, которые хотят внедрять WABA, но не готовы отказываться от приложения.', 'Reduces the risk of number blocking during automation. Ideal for companies wanting to implement WABA without abandoning the app.')}</p>
                 </div>
               </li>
             </ul>
 
             <button onClick={() => window.dispatchEvent(new CustomEvent('open-amo-modal'))} className="flex items-center gap-2 text-emerald-400 font-bold hover:text-emerald-300 transition-colors group">
-              Узнать подробнее о Coexistence
+              {t('Узнать подробнее о Coexistence', 'Learn more about Coexistence')}
               <span className="group-hover:translate-x-1 transition-transform">→</span>
             </button>
           </div>

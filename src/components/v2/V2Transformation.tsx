@@ -1,8 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ShieldCheck, Zap, MessageSquare, CheckCircle2 } from 'lucide-react';
+import { useLanguage } from '../../contexts/LanguageContext';
 
 export default function V2Transformation() {
+  const { t } = useLanguage();
   return (
     <section className="relative min-h-screen flex items-center justify-center bg-[#050505] overflow-hidden py-20 md:py-32">
       {/* Mesh Gradient Background */}
@@ -29,7 +31,7 @@ export default function V2Transformation() {
                 <div className="flex gap-3">
                   <div className="w-8 h-8 rounded-full bg-emerald-500/20 border border-emerald-500/30" />
                   <div className="bg-white/5 border border-white/10 rounded-2xl rounded-tl-none p-3 max-w-[80%] text-sm text-slate-200">
-                    Здравствуйте! Как подключить WABA?
+                    {t('Здравствуйте! Как подключить WABA?', 'Hello! How do I connect to WABA?')}
                   </div>
                 </div>
                 <div className="flex gap-3 flex-row-reverse">
@@ -37,13 +39,13 @@ export default function V2Transformation() {
                     <Zap className="w-4 h-4 text-emerald-400" />
                   </div>
                   <div className="bg-emerald-500/10 border border-emerald-500/20 rounded-2xl rounded-tr-none p-3 max-w-[80%] text-sm text-emerald-50">
-                    Привет! Мы поможем вам с регистрацией. Это займет всего 15 минут.
+                    {t('Привет! Мы поможем вам с регистрацией. Это займет всего 15 минут.', 'Hi! We will help you with registration. It only takes 15 minutes.')}
                   </div>
                 </div>
                 <div className="flex gap-3">
                   <div className="w-8 h-8 rounded-full bg-emerald-500/20 border border-emerald-500/30" />
                   <div className="bg-white/5 border border-white/10 rounded-2xl rounded-tl-none p-3 max-w-[80%] text-sm text-slate-200">
-                    А мой номер не заблокируют?
+                    {t('А мой номер не заблокируют?', 'Will my number get blocked?')}
                   </div>
                 </div>
                 <div className="flex gap-3 flex-row-reverse">
@@ -51,7 +53,7 @@ export default function V2Transformation() {
                     <ShieldCheck className="w-4 h-4 text-emerald-400" />
                   </div>
                   <div className="bg-emerald-500/10 border border-emerald-500/20 rounded-2xl rounded-tr-none p-3 max-w-[80%] text-sm text-emerald-50">
-                    Нет! WABA — это официальный канал. Блокировки исключены.
+                    {t('Нет! WABA — это официальный канал. Блокировки исключены.', 'No! WABA is the official channel. Blocks are excluded.')}
                   </div>
                 </div>
               </div>
@@ -67,17 +69,17 @@ export default function V2Transformation() {
             className="flex-1 text-left"
           >
             <h2 className="text-3xl md:text-5xl font-bold tracking-tighter mb-4 md:mb-8 leading-[1.1] text-white">
-              Почему бизнес выбирает <span className="text-emerald-400">WhatsApp Business API</span>
+              {t('Почему бизнес выбирает', 'Why businesses choose')} <span className="text-emerald-400">WhatsApp Business API</span>
             </h2>
             <p className="text-base md:text-xl text-slate-400 mb-6 md:mb-10 leading-relaxed font-light">
-              Забудьте о постоянных блокировках и потере клиентской базы. Официальный WhatsApp Business API — это стабильность и доверие клиентов.
+              {t('Забудьте о постоянных блокировках и потере клиентской базы. Официальный WhatsApp Business API — это стабильность и доверие клиентов.', 'Forget about constant blocking and loss of customer base. The official WhatsApp Business API means stability and customer trust.')}
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6 mb-8 md:mb-12">
               {[
-                { icon: ShieldCheck, text: 'Никаких блокировок' },
-                { icon: Zap, text: 'Мгновенная доставка' },
-                { icon: MessageSquare, text: 'Массовые рассылки' },
-                { icon: CheckCircle2, text: 'Верификация в Meta' }
+                { icon: ShieldCheck, text: t('Никаких блокировок', 'No blocks') },
+                { icon: Zap, text: t('Мгновенная доставка', 'Instant delivery') },
+                { icon: MessageSquare, text: t('Массовые рассылки', 'Bulk messaging') },
+                { icon: CheckCircle2, text: t('Верификация в Meta', 'Meta verification') }
               ].map((item, idx) => (
                 <div key={idx} className="flex items-center gap-3 group">
                   <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center group-hover:bg-emerald-500/20 transition-colors">
@@ -88,7 +90,7 @@ export default function V2Transformation() {
               ))}
             </div>
             <button onClick={() => window.dispatchEvent(new CustomEvent('open-amo-modal'))} className="px-6 md:px-8 py-3 md:py-4 bg-white/5 hover:bg-white/10 text-white rounded-full font-bold text-base md:text-lg transition-all border border-white/10 hover:border-white/20 flex items-center gap-3 group">
-              Узнать больше
+              {t('Узнать больше', 'Learn more')}
               <Zap className="w-5 h-5 text-emerald-400 group-hover:scale-110 transition-transform" />
             </button>
           </motion.div>

@@ -1,29 +1,32 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MessageSquare, Users, UserCircle, Phone, Instagram, Search, MoreVertical, Send, Paperclip, CheckCheck, ChevronLeft, Info } from 'lucide-react';
-
-const features = [
-  {
-    id: 'all-in-one',
-    title: 'Все чаты в одном окне',
-    description: 'WhatsApp, Telegram, Instagram и другие источники в едином интерфейсе. Менеджерам больше не нужно переключаться между вкладками.',
-    icon: MessageSquare,
-  },
-  {
-    id: 'routing',
-    title: 'Передача ответственного',
-    description: 'Мгновенно переводите диалог на нужного менеджера или отдел. Вся история переписки сохраняется при передаче.',
-    icon: Users,
-  },
-  {
-    id: 'crm',
-    title: 'Карточка клиента',
-    description: 'Вся информация о клиенте, история покупок и теги из CRM отображаются прямо в окне диалога.',
-    icon: UserCircle,
-  }
-];
+import { useLanguage } from '../../contexts/LanguageContext';
 
 export default function V2FeaturesCarousel() {
+  const { t } = useLanguage();
+  
+  const features = [
+    {
+      id: 'all-in-one',
+      title: t('Все чаты в одном окне', 'All chats in one window'),
+      description: t('WhatsApp, Telegram, Instagram и другие источники в едином интерфейсе. Менеджерам больше не нужно переключаться между вкладками.', 'WhatsApp, Telegram, Instagram, and other sources in a single interface. Managers no longer need to switch tabs.'),
+      icon: MessageSquare,
+    },
+    {
+      id: 'routing',
+      title: t('Передача ответственного', 'Assignee transfer'),
+      description: t('Мгновенно переводите диалог на нужного менеджера или отдел. Вся история переписки сохраняется при передаче.', 'Instantly transfer dialog to the right manager or department. Full chat history is preserved.'),
+      icon: Users,
+    },
+    {
+      id: 'crm',
+      title: t('Карточка клиента', 'Client profile'),
+      description: t('Вся информация о клиенте, история покупок и теги из CRM отображаются прямо в окне диалога.', 'All client info, purchase history, and CRM tags are displayed right in the chat window.'),
+      icon: UserCircle,
+    }
+  ];
+
   const [activeFeature, setActiveFeature] = useState(features[0].id);
   const [mobileView, setMobileView] = useState<'list' | 'chat' | 'crm'>('list');
 
@@ -42,10 +45,10 @@ export default function V2FeaturesCarousel() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-8 md:mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight text-white">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">Возможности</span> WABase
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">{t('Возможности', 'Features')}</span> WABase
           </h2>
           <p className="text-xl text-slate-400 font-light">
-            Удобное диалоговое окно, которое объединяет все каналы связи, данные из CRM и инструменты командной работы.
+            {t('Удобное диалоговое окно, которое объединяет все каналы связи, данные из CRM и инструменты командной работы.', 'A convenient dialog window that combines all communication channels, CRM data, and teamwork tools.')}
           </p>
         </div>
 
@@ -88,7 +91,7 @@ export default function V2FeaturesCarousel() {
                 <div className="p-4 border-b border-white/10">
                   <div className="bg-white/5 rounded-lg px-3 py-2 flex items-center gap-2 text-slate-400">
                     <Search className="w-4 h-4" />
-                    <span className="text-sm">Поиск...</span>
+                    <span className="text-sm">{t('Поиск...', 'Search...')}</span>
                   </div>
                 </div>
                 <div className="flex-1 overflow-hidden flex flex-col">
@@ -104,10 +107,10 @@ export default function V2FeaturesCarousel() {
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="flex justify-between items-baseline mb-1">
-                        <h4 className="text-white font-medium text-sm truncate">Александр (WhatsApp)</h4>
+                        <h4 className="text-white font-medium text-sm truncate">{t('Александр (WhatsApp)', 'Alexander (WhatsApp)')}</h4>
                         <span className="text-xs text-emerald-400">12:45</span>
                       </div>
-                      <p className="text-xs text-slate-400 truncate">Отлично, давайте презентацию!</p>
+                      <p className="text-xs text-slate-400 truncate">{t('Отлично, давайте презентацию!', 'Great, let\'s see the presentation!')}</p>
                     </div>
                   </div>
                   {/* Chat Item 2 */}
@@ -122,10 +125,10 @@ export default function V2FeaturesCarousel() {
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="flex justify-between items-baseline mb-1">
-                        <h4 className="text-white font-medium text-sm truncate">Мария (Telegram)</h4>
-                        <span className="text-xs text-slate-500">Вчера</span>
+                        <h4 className="text-white font-medium text-sm truncate">{t('Мария (Telegram)', 'Maria (Telegram)')}</h4>
+                        <span className="text-xs text-slate-500">{t('Вчера', 'Yesterday')}</span>
                       </div>
-                      <p className="text-xs text-slate-400 truncate">Подскажите статус заказа?</p>
+                      <p className="text-xs text-slate-400 truncate">{t('Подскажите статус заказа?', 'Could you tell me the order status?')}</p>
                     </div>
                   </div>
                   {/* Chat Item 3 */}
@@ -140,10 +143,10 @@ export default function V2FeaturesCarousel() {
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="flex justify-between items-baseline mb-1">
-                        <h4 className="text-white font-medium text-sm truncate">Елена (Instagram)</h4>
-                        <span className="text-xs text-slate-500">Вчера</span>
+                        <h4 className="text-white font-medium text-sm truncate">{t('Елена (Instagram)', 'Elena (Instagram)')}</h4>
+                        <span className="text-xs text-slate-500">{t('Вчера', 'Yesterday')}</span>
                       </div>
-                      <p className="text-xs text-slate-400 truncate">Сколько стоит доставка?</p>
+                      <p className="text-xs text-slate-400 truncate">{t('Сколько стоит доставка?', 'How much is shipping?')}</p>
                     </div>
                   </div>
                 </div>
@@ -159,10 +162,10 @@ export default function V2FeaturesCarousel() {
                     </button>
                     <div className="flex flex-col cursor-pointer md:cursor-default" onClick={() => setMobileView('crm')}>
                       <h3 className="text-white font-medium flex items-center gap-2">
-                        Александр
+                        {t('Александр', 'Alexander')}
                         <span className="hidden sm:inline-flex px-2 py-0.5 rounded text-[10px] bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 uppercase tracking-wider">WhatsApp</span>
                       </h3>
-                      <span className="text-xs text-slate-400 md:hidden">Нажмите для инфо</span>
+                      <span className="text-xs text-slate-400 md:hidden">{t('Нажмите для инфо', 'Tap for info')}</span>
                     </div>
                   </div>
                   <div className="flex items-center gap-2">

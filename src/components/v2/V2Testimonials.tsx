@@ -1,41 +1,44 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Star, Quote } from 'lucide-react';
-
-const reviews = [
-  {
-    name: 'Михаил Воронов',
-    role: 'Руководитель отдела продаж, AutoDealer',
-    content: 'Переход на официальный API спас наш отдел продаж. Раньше номера блокировали каждую неделю, мы теряли базу. Сейчас мы делаем рассылки на 10 000 контактов и конверсия выросла на 35% благодаря ИИ-ассистенту.',
-    rating: 5,
-    avatar: 'М'
-  },
-  {
-    name: 'Елена Смирнова',
-    role: 'CEO, BeautyLab',
-    content: 'Очень удобное диалоговое окно! Все сообщения из Инсты, Телеграма и Ватсапа падают в одно место. Менеджеры больше не путаются, а я вижу всю аналитику. Подключение заняло реально пару часов.',
-    rating: 5,
-    avatar: 'Е'
-  },
-  {
-    name: 'Алексей Д.',
-    role: 'Основатель, EdTech Platform',
-    content: 'Долго сомневались из-за цены за диалоги в WABA, но ребята из WaBase настроили нам правильную маршрутизацию и шаблоны. В итоге стоимость лида упала, а доходимость на вебинары выросла в 2 раза.',
-    rating: 5,
-    avatar: 'А'
-  }
-];
+import { useLanguage } from '../../contexts/LanguageContext';
 
 export default function V2Testimonials() {
+  const { t } = useLanguage();
+
+  const reviews = [
+    {
+      name: t('Михаил Воронов', 'Mikhail Voronov'),
+      role: t('Руководитель отдела продаж, AutoDealer', 'Head of Sales, AutoDealer'),
+      content: t('Переход на официальный API спас наш отдел продаж. Раньше номера блокировали каждую неделю, мы теряли базу. Сейчас мы делаем рассылки на 10 000 контактов и конверсия выросла на 35% благодаря ИИ-ассистенту.', 'Moving to the official API saved our sales department. Used to get mapped blocked weekly, losing the database. Now we do broadcasts to 10k contacts and conversions grew 35% thanks to the AI assistant.'),
+      rating: 5,
+      avatar: 'М'
+    },
+    {
+      name: t('Елена Смирнова', 'Elena Smirnova'),
+      role: t('CEO, BeautyLab', 'CEO, BeautyLab'),
+      content: t('Очень удобное диалоговое окно! Все сообщения из Инсты, Телеграма и Ватсапа падают в одно место. Менеджеры больше не путаются, а я вижу всю аналитику. Подключение заняло реально пару часов.', 'Very convenient dialog window! All messages from Insta, TG, and WA end up in one place. Managers don\'t get confused anymore, and I see all analytics. Connection really took a couple of hours.'),
+      rating: 5,
+      avatar: 'Е'
+    },
+    {
+      name: t('Алексей Д.', 'Alexey D.'),
+      role: t('Основатель, EdTech Platform', 'Founder, EdTech Platform'),
+      content: t('Долго сомневались из-за цены за диалоги в WABA, но ребята из WaBase настроили нам правильную маршрутизацию и шаблоны. В итоге стоимость лида упала, а доходимость на вебинары выросла в 2 раза.', 'We hesitated a long time due to the WABA dialog pricing, but the WaBase team set up proper routing and templates. As a result, lead cost dropped, and webinar attendance doubled.'),
+      rating: 5,
+      avatar: 'А'
+    }
+  ];
+
   return (
     <div className="bg-[#050505] py-32 relative overflow-hidden border-t border-white/5" id="cases">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-20">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight text-white">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">Кейсы</span> клиентов
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">{t('Кейсы', 'Cases')}</span> {t('клиентов', 'of clients')}
           </h2>
           <p className="text-xl text-slate-400 font-light">
-            Компании, которые уже масштабировали свои продажи с помощью официального WhatsApp Business API.
+            {t('Компании, которые уже масштабировали свои продажи с помощью официального WhatsApp Business API.', 'Companies that have already scaled their sales using the official WhatsApp Business API.')}
           </p>
         </div>
 

@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { CheckCircle2, ShieldCheck, Zap, ArrowRight, Shield, Info, ChevronDown, ChevronUp, RefreshCw } from 'lucide-react';
 import { PRICES_USD, COUNTRY_TO_CURRENCY, CURRENCY_SYMBOLS, COUNTRY_CODE_TO_RU } from '../../lib/pricingData';
+import { useLanguage } from '../../contexts/LanguageContext';
+import { fetchGeoData } from '../../lib/geo';
 
 interface PricingData {
   country: string;
   currency: string;
   symbol: string;
-  timestamp: number;
+  timestamp: number | null;
   prices: {
     marketing: number;
     utility: number;
@@ -19,10 +21,28 @@ interface PricingData {
   availableCountries: string[];
 }
 
+const DEFAULT_COUNTRY = "Казахстан";
+const DEFAULT_PRICING: PricingData = {
+  country: DEFAULT_COUNTRY,
+  currency: COUNTRY_TO_CURRENCY[DEFAULT_COUNTRY] || "USD",
+  symbol: CURRENCY_SYMBOLS[COUNTRY_TO_CURRENCY[DEFAULT_COUNTRY] || "USD"] || (COUNTRY_TO_CURRENCY[DEFAULT_COUNTRY] || "USD"),
+  timestamp: null,
+  prices: {
+    marketing: PRICES_USD[DEFAULT_COUNTRY]?.marketing || 0,
+    utility: PRICES_USD[DEFAULT_COUNTRY]?.utility || 0,
+    authentication: PRICES_USD[DEFAULT_COUNTRY]?.auth || 0,
+    usd_marketing: PRICES_USD[DEFAULT_COUNTRY]?.marketing || 0,
+    usd_utility: PRICES_USD[DEFAULT_COUNTRY]?.utility || 0,
+    usd_authentication: PRICES_USD[DEFAULT_COUNTRY]?.auth || 0
+  },
+  availableCountries: Object.keys(PRICES_USD).sort()
+};
+
 export default function V2Pricing() {
-  const [pricingData, setPricingData] = useState<PricingData | null>(null);
-  const [selectedCountry, setSelectedCountry] = useState<string>("");
-  const [loading, setLoading] = useState(true);
+  const { t, lang } = useLanguage();
+  const [pricingData, setPricingData] = useState<PricingData>(DEFAULT_PRICING);
+  const [selectedCountry, setSelectedCountry] = useState<string>(DEFAULT_COUNTRY);
+  const [loading, setLoading] = useState(false);
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [exchangeRates, setExchangeRates] = useState<Record<string, number>>({});
   const [lastFetchTime, setLastFetchTime] = useState<number>(0);
@@ -67,6 +87,7 @@ export default function V2Pricing() {
 
   const fetchPricing = async (country?: string) => {
     try {
+      setLoading(true);
       setIsRefreshing(true);
       
       let rates = exchangeRates;
@@ -78,27 +99,25 @@ export default function V2Pricing() {
 
       let targetCountry = country;
 
-      if (!targetCountry) {
+      if (!targetCountry && !pricingData.timestamp) { // Only do IP lookup on first true load
         try {
-          const geoRes = await fetch('https://ipapi.co/json/');
-          if (geoRes.ok) {
-            const geoData = await geoRes.json();
-            const ruCountry = COUNTRY_CODE_TO_RU[geoData.country_code];
+          const countryCode = await fetchGeoData();
+          if (countryCode) {
+            const ruCountry = COUNTRY_CODE_TO_RU[countryCode];
             if (ruCountry && PRICES_USD[ruCountry]) {
               targetCountry = ruCountry;
             }
           }
         } catch (e) {
-          console.error("Geolocation failed:", e);
+          // Suppress error to avoid console pollution if all detection methods fail
         }
-        if (!targetCountry) targetCountry = "Казахстан"; // Fallback
       }
+      
+      if (!targetCountry) targetCountry = selectedCountry || "Казахстан";
 
       const data = calculatePricing(targetCountry, rates);
       setPricingData(data);
-      if (!country) {
-        setSelectedCountry(data.country);
-      }
+      setSelectedCountry(data.country);
     } catch (error) {
       console.error("Failed to calculate pricing:", error);
     } finally {
@@ -131,6 +150,29 @@ export default function V2Pricing() {
     return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
   };
 
+  const getTranslatedCountryName = useCallback((ruName: string) => {
+    if (lang === 'ru') return ruName;
+    const entry = Object.entries(COUNTRY_CODE_TO_RU).find(([, name]) => name === ruName);
+    if (entry) {
+      try {
+        const enName = new Intl.DisplayNames(['en'], { type: 'region' }).of(entry[0]);
+        if (enName) return enName;
+      } catch {
+        return ruName;
+      }
+    }
+    return ruName;
+  }, [lang]);
+
+  // Sort available countries by translated name
+  const sortedCountries = useMemo(() => {
+    if (!pricingData) return [];
+    return [...pricingData.availableCountries].sort((a, b) => {
+      const nameA = getTranslatedCountryName(a);
+      const nameB = getTranslatedCountryName(b);
+      return nameA.localeCompare(nameB);
+    });
+  }, [pricingData?.availableCountries, getTranslatedCountryName]);
 
   return (
     <div className="bg-[#050505] text-slate-300 py-32 relative overflow-hidden border-t border-white/5">
@@ -141,8 +183,8 @@ export default function V2Pricing() {
       {/* Screen 5: Pricing */}
       <div className="max-w-7xl mx-auto px-6 lg:px-8 mb-32 relative z-10" id="pricing">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-6xl font-bold mb-6 tracking-tight text-white">Тарифы <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">WABA</span></h2>
-          <p className="text-xl text-slate-400 font-light max-w-2xl mx-auto">Выберите план, который подходит вашему бизнесу. Никаких скрытых платежей.</p>
+          <h2 className="text-4xl md:text-6xl font-bold mb-6 tracking-tight text-white">{t('Тарифы', 'Pricing')} <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">WABA</span></h2>
+          <p className="text-xl text-slate-400 font-light max-w-2xl mx-auto">{t('Выберите план, который подходит вашему бизнесу. Никаких скрытых платежей.', 'Choose the plan that suits your business. No hidden fees.')}</p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
@@ -150,19 +192,19 @@ export default function V2Pricing() {
             {
               name: "WABA Pro",
               price: "39 990",
-              currency: " ₸/мес",
-              desc: "Для постоянной коммуникации с клиентами",
+              currency: t(" ₸/мес", " ₸/mo"),
+              desc: t("Для постоянной коммуникации с клиентами", "For continuous customer communication"),
               popular: true,
-              features: ["Веб-Чат", "Массовые рассылки", "Интеграция с CRM", "Приоритетная поддержка"],
-              buttonText: "Выбрать тариф"
+              features: [t("Веб-Чат", "Web Chat"), t("Массовые рассылки", "Bulk messaging"), t("Интеграция с CRM", "CRM integration"), t("Приоритетная поддержка", "Priority support")],
+              buttonText: t("Выбрать тариф", "Select plan")
             },
             {
               name: "Enterprise",
-              price: "Индивидуально",
+              price: t("Индивидуально", "Custom pricing"),
               currency: "",
-              desc: "Для крупных отделов продаж",
-              features: ["Безлимитные номера", "Безлимитные операторы", "Выделенный менеджер", "SLA 99.9%"],
-              buttonText: "Связаться с нами"
+              desc: t("Для крупных отделов продаж", "For large sales departments"),
+              features: [t("Безлимитные номера", "Unlimited numbers"), t("Безлимитные операторы", "Unlimited operators"), t("Выделенный менеджер", "Dedicated manager"), "SLA 99.9%"],
+              buttonText: t("Связаться с нами", "Contact us")
             }
           ].map((plan, i) => (
             <motion.div 
@@ -175,7 +217,7 @@ export default function V2Pricing() {
               <h3 className="text-2xl font-bold mb-2 text-white">{plan.name}</h3>
               <p className="text-slate-400 mb-8 font-light">{plan.desc}</p>
               <div className="mb-8">
-                <span className={`font-bold tracking-tight text-white ${plan.price === 'Индивидуально' ? 'text-3xl' : 'text-5xl'}`}>{plan.price}</span>
+                <span className={`font-bold tracking-tight text-white ${plan.price === t('Индивидуально', 'Custom pricing') ? 'text-3xl' : 'text-5xl'}`}>{plan.price}</span>
                 <span className="text-slate-400 ml-1">{plan.currency}</span>
               </div>
               <ul className="space-y-4 mb-10 flex-1">
@@ -203,26 +245,26 @@ export default function V2Pricing() {
                 <div className="w-10 h-10 rounded-full bg-blue-500/10 flex items-center justify-center shrink-0">
                   <Info className="w-5 h-5 text-blue-400" />
                 </div>
-                <h3 className="text-2xl font-bold text-white">Оплата за диалоги Meta</h3>
+                <h3 className="text-2xl font-bold text-white">{t('Оплата за диалоги Meta', 'Meta Conversation Pricing')}</h3>
               </div>
               <p className="text-slate-400 font-light max-w-2xl leading-relaxed">
-                Помимо абонентской платы за платформу, Meta (WhatsApp) взимает плату за каждый начатый диалог (сессию 24 часа). Стоимость зависит от страны получателя. Входящие сообщения от клиентов (Service) — бесплатны.
+                {t('Помимо абонентской платы за платформу, Meta (WhatsApp) взимает плату за каждый начатый диалог (сессию 24 часа). Стоимость зависит от страны получателя. Входящие сообщения от клиентов (Service) — бесплатны.', 'In addition to the platform subscription fee, Meta (WhatsApp) charges for each initiated conversation (24-hour session). The cost depends on the recipient\'s country. Incoming messages from customers (Service) are free.')}
               </p>
             </div>
             <div className="w-full md:w-72 shrink-0">
               <div className="flex justify-between items-end mb-2">
-                <label className="block text-sm font-medium text-slate-400">Выберите страну получателя</label>
+                <label className="block text-sm font-medium text-slate-400">{t('Выберите страну получателя', 'Select recipient country')}</label>
                 <div className="flex items-center gap-2">
                   {pricingData?.timestamp && (
                     <span className="text-xs text-slate-500">
-                      Обновлено: {formatTime(pricingData.timestamp)}
+                      {t('Обновлено:', 'Updated:')} {formatTime(pricingData.timestamp)}
                     </span>
                   )}
                   <button 
                     onClick={() => fetchPricing(selectedCountry)}
                     disabled={isRefreshing}
                     className="p-1.5 rounded-md hover:bg-white/5 text-slate-400 hover:text-white transition-colors disabled:opacity-50"
-                    title="Обновить курсы валют"
+                    title={t('Обновить курсы валют', 'Refresh exchange rates')}
                   >
                     <RefreshCw className={`w-4 h-4 ${isRefreshing ? 'animate-spin' : ''}`} />
                   </button>
@@ -235,8 +277,8 @@ export default function V2Pricing() {
                   disabled={loading}
                   className="w-full appearance-none bg-[#0a0a0a] border border-white/10 text-white py-3.5 px-4 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500/50 cursor-pointer disabled:opacity-50"
                 >
-                  {pricingData?.availableCountries?.map(country => (
-                    <option key={country} value={country}>{country}</option>
+                  {sortedCountries.map(country => (
+                    <option key={country} value={country}>{getTranslatedCountryName(country)}</option>
                   ))}
                 </select>
                 <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 pointer-events-none" />
@@ -254,7 +296,7 @@ export default function V2Pricing() {
               {pricingData && (
                 <div className="text-xs text-slate-500 mb-3">≈ ${pricingData.prices.usd_marketing} USD</div>
               )}
-              <div className="text-xs text-slate-500">Рекламные рассылки, акции, спецпредложения</div>
+              <div className="text-xs text-slate-500">{t('Рекламные рассылки, акции, спецпредложения', 'Promotional mailings, promotions, special offers')}</div>
             </div>
             <div className="bg-black/40 border border-white/5 rounded-2xl p-6 relative overflow-hidden group hover:border-blue-500/30 transition-colors">
               <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -265,7 +307,7 @@ export default function V2Pricing() {
               {pricingData && (
                 <div className="text-xs text-slate-500 mb-3">≈ ${pricingData.prices.usd_utility} USD</div>
               )}
-              <div className="text-xs text-slate-500">Уведомления о заказах, статусы доставки</div>
+              <div className="text-xs text-slate-500">{t('Уведомления о заказах, статусы доставки', 'Order notifications, delivery statuses')}</div>
             </div>
             <div className="bg-black/40 border border-white/5 rounded-2xl p-6 relative overflow-hidden group hover:border-purple-500/30 transition-colors">
               <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -276,11 +318,11 @@ export default function V2Pricing() {
               {pricingData && (
                 <div className="text-xs text-slate-500 mb-3">≈ ${pricingData.prices.usd_authentication} USD</div>
               )}
-              <div className="text-xs text-slate-500">Коды подтверждения (OTP), пароли</div>
+              <div className="text-xs text-slate-500">{t('Коды подтверждения (OTP), пароли', 'Confirmation codes (OTP), passwords')}</div>
             </div>
           </div>
           <p className="text-xs text-slate-500 mt-6 text-center">
-            * Цены указаны в локальной валюте ({pricingData?.currency || "USD"}) за один диалог (24-часовое окно).
+            {t('* Цены указаны в локальной валюте', '* Prices are shown in local currency')} ({pricingData?.currency || "USD"}) {t('за один диалог (24-часовое окно).', 'per conversation (24-hour window).')}
           </p>
         </div>
       </div>
@@ -292,13 +334,13 @@ export default function V2Pricing() {
           
           <div className="relative z-10">
             <h2 className="text-4xl md:text-6xl font-bold text-white mb-6 tracking-tight">
-              Готовы работать с <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">WABA?</span>
+              {t('Готовы работать с', 'Ready to work with')} <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">WABA?</span>
             </h2>
             <p className="text-xl text-slate-400 mb-12 max-w-2xl mx-auto font-light">
-              Оставьте заявку прямо сейчас и подключите официальный WhatsApp для вашего бизнеса.
+              {t('Оставьте заявку прямо сейчас и подключите официальный WhatsApp для вашего бизнеса.', 'Leave a request right now and connect the official WhatsApp for your business.')}
             </p>
             <button onClick={() => window.dispatchEvent(new CustomEvent('open-amo-modal'))} className="bg-emerald-500 hover:bg-emerald-400 text-white px-10 py-5 rounded-full font-bold text-xl transition-all shadow-[0_0_40px_rgba(16,185,129,0.4)] hover:shadow-[0_0_60px_rgba(16,185,129,0.6)] flex items-center gap-3 mx-auto group hover:-translate-y-1">
-              Подключить WABA
+              {t('Подключить WABA', 'Connect WABA')}
               <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
             </button>
           </div>

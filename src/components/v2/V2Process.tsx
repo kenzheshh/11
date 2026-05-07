@@ -1,40 +1,42 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ClipboardList, ShieldCheck, Plug, Rocket } from 'lucide-react';
-
-const steps = [
-  {
-    title: 'Заявка и аудит',
-    description: 'Оставляете заявку. Мы анализируем ваши текущие процессы и подбираем оптимальный тариф.',
-    icon: ClipboardList
-  },
-  {
-    title: 'Верификация Meta',
-    description: 'Помогаем пройти проверку бизнеса в Facebook Business Manager и получить зеленую галочку.',
-    icon: ShieldCheck
-  },
-  {
-    title: 'Интеграция',
-    description: 'Подключаем номер к WhatsApp Business API и настраиваем интеграцию с вашей CRM.',
-    icon: Plug
-  },
-  {
-    title: 'Обучение и запуск',
-    description: 'Проводим онбординг для вашей команды. Вы начинаете делать рассылки и общаться с клиентами без риска блокировок.',
-    icon: Rocket
-  }
-];
+import { useLanguage } from '../../contexts/LanguageContext';
 
 export default function V2Process() {
+  const { t } = useLanguage();
+
+  const steps = [
+    {
+      title: t('Заявка и аудит', 'Application and audit'),
+      description: t('Оставляете заявку. Мы анализируем ваши текущие процессы и подбираем оптимальный тариф.', 'Leave an application. We analyze your current processes and select the optimal plan.'),
+      icon: ClipboardList
+    },
+    {
+      title: t('Верификация Meta', 'Meta Verification'),
+      description: t('Помогаем пройти проверку бизнеса в Facebook Business Manager и получить зеленую галочку.', 'We help you pass business verification in Facebook Business Manager and get the green checkmark.'),
+      icon: ShieldCheck
+    },
+    {
+      title: t('Интеграция', 'Integration'),
+      description: t('Подключаем номер к WhatsApp Business API и настраиваем интеграцию с вашей CRM.', 'We connect the number to WhatsApp Business API and set up integration with your CRM.'),
+      icon: Plug
+    },
+    {
+      title: t('Обучение и запуск', 'Training and launch'),
+      description: t('Проводим онбординг для вашей команды. Вы начинаете делать рассылки и общаться с клиентами без риска блокировок.', 'We conduct onboarding for your team. You start sending campaigns and communicating with customers without the risk of blocking.'),
+      icon: Rocket
+    }
+  ];
   return (
     <div className="bg-[#050505] py-32 relative overflow-hidden border-t border-white/5">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-20">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight text-white">
-            Как подключить <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">WABA</span> через WABase
+            {t('Как подключить', 'How to connect')} <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">WABA</span> {t('через WABase', 'via WABase')}
           </h2>
           <p className="text-xl text-slate-400 font-light">
-            Прозрачный процесс от заявки до первых сообщений вашим клиентам. Мы берем всю техническую часть на себя.
+            {t('Прозрачный процесс от заявки до первых сообщений вашим клиентам. Мы берем всю техническую часть на себя.', 'A transparent process from application to the first messages to your clients. We take care of all the technical parts.')}
           </p>
         </div>
 
