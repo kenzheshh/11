@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Zap, Heart, PhoneCall, FileCheck, Code2, Users, Receipt, HeadphonesIcon, Settings, TerminalSquare, MessageSquareCode } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
+import KenzheAvatar from '../../assets/images/regenerated_image_1778136567898.jpg';
 
 export default function PartnershipPage() {
   const { t } = useLanguage();
@@ -212,7 +213,7 @@ export default function PartnershipPage() {
         <div className="bg-[#103E33] rounded-3xl p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8 border border-white/5 shadow-2xl">
           <div className="flex items-center gap-6">
             <div className="w-24 h-24 rounded-full bg-emerald-500/20 overflow-hidden shrink-0 border-2 border-emerald-500/50 flex items-center justify-center">
-              <img src="https://images.unsplash.com/photo-1543610892-0b1f7e6d8c1c?w=120&h=120&fit=crop&q=80" alt="Kenzhe avatar" className="w-full h-full object-cover" />
+              <img src={KenzheAvatar} alt="Kenzhe avatar" className="w-full h-full object-cover" />
             </div>
             <div>
               <h3 className="text-2xl font-bold text-white mb-1">Кенже</h3>

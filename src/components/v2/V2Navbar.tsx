@@ -7,7 +7,7 @@ import { useLanguage } from '../../contexts/LanguageContext';
 export default function V2Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const { t } = useLanguage();
+  const { t, lang, setLang } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -34,13 +34,25 @@ export default function V2Navbar() {
           </div>
 
           <div className="hidden md:flex items-center space-x-6">
+            <button 
+              onClick={() => setLang(lang === 'ru' ? 'en' : 'ru')}
+              className="text-sm font-medium text-slate-400 hover:text-white transition-colors uppercase"
+            >
+              {lang === 'ru' ? 'EN' : 'RU'}
+            </button>
             <button className="text-sm font-medium text-slate-300 hover:text-white transition-colors">{t('Войти', 'Log in')}</button>
             <button onClick={() => window.dispatchEvent(new CustomEvent('open-amo-modal'))} className="bg-emerald-500 hover:bg-emerald-400 text-white px-5 py-2.5 rounded-full text-sm font-bold transition-all shadow-[0_0_20px_rgba(16,185,129,0.3)] hover:shadow-[0_0_30px_rgba(16,185,129,0.5)] hover:-translate-y-0.5">
               {t('Попробовать бесплатно', 'Try for free')}
             </button>
           </div>
 
-          <div className="md:hidden flex items-center">
+          <div className="md:hidden flex items-center gap-4">
+            <button 
+              onClick={() => setLang(lang === 'ru' ? 'en' : 'ru')}
+              className="text-sm font-medium text-slate-400 hover:text-white transition-colors uppercase"
+            >
+              {lang === 'ru' ? 'EN' : 'RU'}
+            </button>
             <button onClick={() => setIsOpen(!isOpen)} className="text-slate-300 hover:text-white p-2">
               {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
