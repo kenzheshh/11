@@ -17,10 +17,10 @@ export default function PartnershipPage() {
         {/* Header Section */}
         <div className="text-center mb-24 mt-16">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-sm font-medium mb-6">
-            {t('Для технических партнёров WhatsApp, Telegram, Instagram, MAX', 'For technical partners WhatsApp, Telegram, Instagram, MAX')}
+            {t('Для технических партнёров WhatsApp', 'For technical partners WhatsApp')}
           </div>
           <h1 className="text-4xl md:text-6xl font-bold mb-8 text-white tracking-tight max-w-4xl mx-auto leading-tight">
-            {t('Самый простой способ интегрировать', 'The easiest way to integrate')} <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">WhatsApp Business API</span>, Telegram, Instagram* {t('и MAX в ваш SaaS-сервис', 'and MAX into your SaaS service')}
+            {t('Самый простой способ интегрировать', 'The easiest way to integrate')} <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">WhatsApp Business API</span> {t('в ваш SaaS-сервис', 'into your SaaS service')}
           </h1>
           <p className="text-xl text-slate-400 font-light max-w-3xl mx-auto leading-relaxed">
             {t('Готовые интерфейсы, понятный API и документация. Подключите WABase своим клиентам за несколько дней — без блокировок, с поддержкой и закрывающими документами для бухгалтерии РК.', 'Ready-made interfaces, clear API, and documentation. Connect WABase to your clients in just a few days — without blocks, with support, and with closing documents for accounting.')}
