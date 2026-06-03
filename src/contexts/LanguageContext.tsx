@@ -16,49 +16,41 @@ const LanguageContext = createContext<LanguageContextType>({
 });
 
 export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [lang, setLang] = useState<Language>('ru');
-
-  useEffect(() => {
-    const detectLanguage = async () => {
-      // Try local storage first
+  const [lang, setLang] = useState<Language>(() => {
+    // Try local storage first
+    try {
       const savedLang = localStorage.getItem('app_lang');
       if (savedLang === 'ru' || savedLang === 'en') {
-        setLang(savedLang);
-        return;
+        return savedLang;
       }
+    } catch (e) {
+      // Ignore localStorage access errors
+    }
 
-      // Synchronous fallback based on browser language
-      let initialLang: Language = 'en';
-      const navLang = navigator.language.toLowerCase();
-      if (['ru', 'be', 'uk', 'kk', 'ky', 'uz', 'tg', 'tk', 'hy', 'az', 'mo'].some(l => navLang.startsWith(l))) {
-        initialLang = 'ru';
-      }
-      setLang(initialLang);
-
-      // Async precision via IP
-      try {
-        const countryCode = await fetchGeoData();
-        if (countryCode) {
-          const cisCountries = ['RU', 'BY', 'KZ', 'KG', 'AM', 'AZ', 'MD', 'TJ', 'UZ', 'TM', 'UA'];
-          if (cisCountries.includes(countryCode)) {
-            setLang('ru');
-            localStorage.setItem('app_lang', 'ru');
-          } else {
-            setLang('en');
-            localStorage.setItem('app_lang', 'en');
-          }
+    // Synchronous fallback based on browser language
+    try {
+      const navLangs = navigator.languages || [navigator.language];
+      for (const navLang of navLangs) {
+        const lowerLang = navLang.toLowerCase();
+        if (['ru', 'be', 'uk', 'kk', 'ky', 'uz', 'tg', 'tk', 'hy', 'az', 'mo'].some(l => lowerLang.startsWith(l))) {
+          return 'ru';
         }
-      } catch (e) {
-        // Suppress error to avoid console pollution if all detection methods fail
+        if (lowerLang.startsWith('en')) {
+          return 'en';
+        }
       }
-    };
+    } catch (e) {
+      // Fallback if navigator is undefined
+    }
     
-    detectLanguage();
-  }, []);
+    return 'en';
+  });
 
   const handleSetLang = (newLang: Language) => {
     setLang(newLang);
-    localStorage.setItem('app_lang', newLang);
+    try {
+      localStorage.setItem('app_lang', newLang);
+    } catch(e) {}
   };
 
   const t = (ru: string, en: string) => lang === 'ru' ? ru : en;
