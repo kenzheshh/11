@@ -29,9 +29,9 @@ export default function V2Hero() {
           <h1 
             className="text-4xl md:text-7xl lg:text-[80px] font-bold tracking-tighter mb-4 md:mb-6 leading-[1.1]"
           >
-            {t('Массовые рассылки без блокировки', 'Bulk messaging without blocks')}<br />
+            {t('Массовые рассылки WhatsApp', 'Bulk WhatsApp messaging')}<br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-emerald-300 to-cyan-400">
-              WhatsApp Business API
+              {t('без блокировки', 'without blocks')}
             </span>
           </h1>
           
@@ -42,7 +42,7 @@ export default function V2Hero() {
             transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
             className="text-base md:text-2xl text-slate-400 mb-8 md:mb-12 leading-relaxed max-w-2xl font-light"
           >
-            {t('Подключите WABA и перестаньте терять клиентов из-за блокировок.', 'Connect WABA and stop losing clients due to blocks.')}
+            {t('Подключитесь и перестаньте терять клиентов из-за блокировок.', 'Connect and stop losing clients due to blocks.')}
           </motion.p>
           
           <motion.div
