@@ -187,8 +187,16 @@ export default function V2Pricing() {
           <p className="text-xl text-slate-400 font-light max-w-2xl mx-auto">{t('Выберите план, который подходит вашему бизнесу. Никаких скрытых платежей.', 'Choose the plan that suits your business. No hidden fees.')}</p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
           {[
+            {
+              name: "WABA Lite",
+              price: "19 990",
+              currency: t(" ₸/мес", " ₸/mo"),
+              desc: t("Базовый тариф с подписью сервиса", "Basic plan with service signature"),
+              features: [t("Веб-Чат", "Web Chat"), t("Массовые рассылки", "Bulk messaging"), t("Рекламная подпись WABase", "WABase ad signature"), t("Интеграция с CRM", "CRM integration")],
+              buttonText: t("Выбрать тариф", "Select plan")
+            },
             {
               name: "WABA Pro",
               price: "39 990",
