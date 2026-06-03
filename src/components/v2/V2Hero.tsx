@@ -26,18 +26,14 @@ export default function V2Hero() {
             <span className="text-sm font-medium text-slate-300">{t('Официальный партнер Meta', 'Official Meta Partner')}</span>
           </motion.div>
           
-          <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+          <h1 
             className="text-4xl md:text-7xl lg:text-[80px] font-bold tracking-tighter mb-4 md:mb-6 leading-[1.1]"
           >
             {t('Массовые рассылки без блокировки', 'Bulk messaging without blocks')}<br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-emerald-300 to-cyan-400">
               WhatsApp Business API
             </span>
-          </motion.h1>
+          </h1>
           
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
