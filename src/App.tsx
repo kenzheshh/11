@@ -3,33 +3,36 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense, lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import V2Hero from './components/v2/V2Hero';
-import V2Transformation from './components/v2/V2Transformation';
-import V2FeaturesCarousel from './components/v2/V2FeaturesCarousel';
-import V2Process from './components/v2/V2Process';
-import V2Coexistence from './components/v2/V2Coexistence';
-import V2Testimonials from './components/v2/V2Testimonials';
-import V2Pricing from './components/v2/V2Pricing';
 import V2Navbar from './components/v2/V2Navbar';
 import V2Footer from './components/v2/V2Footer';
 import AmoModal from './components/AmoModal';
 
-import PartnershipPage from './components/v2/PartnershipPage';
-
 import { LanguageProvider } from './contexts/LanguageContext';
+
+// Lazy load below-the-fold components
+const V2Transformation = lazy(() => import('./components/v2/V2Transformation'));
+const V2FeaturesCarousel = lazy(() => import('./components/v2/V2FeaturesCarousel'));
+const V2Process = lazy(() => import('./components/v2/V2Process'));
+const V2Coexistence = lazy(() => import('./components/v2/V2Coexistence'));
+const V2Testimonials = lazy(() => import('./components/v2/V2Testimonials'));
+const V2Pricing = lazy(() => import('./components/v2/V2Pricing'));
+const PartnershipPage = lazy(() => import('./components/v2/PartnershipPage'));
 
 function HomePage() {
   return (
     <main>
       <V2Hero />
-      <V2Transformation />
-      <V2FeaturesCarousel />
-      <V2Process />
-      <V2Coexistence />
-      <V2Testimonials />
-      <V2Pricing />
+      <Suspense fallback={<div className="min-h-screen bg-[#050505]" />}>
+        <V2Transformation />
+        <V2FeaturesCarousel />
+        <V2Process />
+        <V2Coexistence />
+        <V2Testimonials />
+        <V2Pricing />
+      </Suspense>
     </main>
   );
 }
@@ -46,10 +49,12 @@ export default function App() {
   return (
     <LanguageProvider>
       <div className="bg-[#050505] text-white min-h-screen font-sans selection:bg-emerald-500 selection:text-white">
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/partnership" element={<PartnershipPage />} />
-        </Routes>
+        <Suspense fallback={<div className="min-h-screen bg-[#050505]" />}>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/partnership" element={<PartnershipPage />} />
+          </Routes>
+        </Suspense>
         <V2Footer />
         <V2Navbar />
         
