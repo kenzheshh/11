@@ -33,7 +33,7 @@ export default function V2Coexistence() {
                   <Bot className="w-6 h-6" />
                 </div>
                 <div>
-                  <h4 className="text-white font-bold text-lg mb-1">{t('Гибридный режим', 'Hybrid mode')}</h4>
+                  <h3 className="text-white font-bold text-lg mb-1">{t('Гибридный режим', 'Hybrid mode')}</h3>
                   <p className="text-slate-400 text-sm font-light leading-relaxed">{t('Продолжайте вести личные диалоги через телефон, в то время как боты или CRM обрабатывают автоматические запросы.', 'Continue personal conversations via phone while bots or CRM process automatic requests.')}</p>
                 </div>
               </li>
@@ -42,7 +42,7 @@ export default function V2Coexistence() {
                   <RefreshCw className="w-6 h-6" />
                 </div>
                 <div>
-                  <h4 className="text-white font-bold text-lg mb-1">{t('Единая история', 'Unified history')}</h4>
+                  <h3 className="text-white font-bold text-lg mb-1">{t('Единая история', 'Unified history')}</h3>
                   <p className="text-slate-400 text-sm font-light leading-relaxed">{t('Переписки в мобильном приложении и через API полностью синхронизируются. Вы не потеряете ни одного сообщения.', 'Chats in the mobile app and via API are fully synchronized. You won\'t lose a single message.')}</p>
                 </div>
               </li>
@@ -51,7 +51,7 @@ export default function V2Coexistence() {
                   <ShieldCheck className="w-6 h-6" />
                 </div>
                 <div>
-                  <h4 className="text-white font-bold text-lg mb-1">{t('Безопасность и экономия', 'Security and savings')}</h4>
+                  <h3 className="text-white font-bold text-lg mb-1">{t('Безопасность и экономия', 'Security and savings')}</h3>
                   <p className="text-slate-400 text-sm font-light leading-relaxed">{t('Снижается риск блокировки номера при автоматизации. Идеально для компаний, которые хотят внедрять WABA, но не готовы отказываться от приложения.', 'Reduces the risk of number blocking during automation. Ideal for companies wanting to implement WABA without abandoning the app.')}</p>
                 </div>
               </li>
@@ -106,7 +106,7 @@ export default function V2Coexistence() {
                   <div className="flex-1 bg-black/40 border border-white/5 rounded-2xl p-5 text-center relative overflow-hidden">
                     <Smartphone className="w-8 h-8 text-slate-400 mx-auto mb-3" />
                     <div className="text-base font-medium text-white mb-1">WA Business App</div>
-                    <div className="text-sm text-slate-500">Ручное общение</div>
+                    <div className="text-sm text-slate-400">Ручное общение</div>
                   </div>
                   <div className="flex-1 bg-emerald-500/10 border border-emerald-500/20 rounded-2xl p-5 text-center shadow-[0_0_30px_rgba(16,185,129,0.15)] relative overflow-hidden">
                     <div className="absolute top-0 right-0 w-24 h-24 bg-emerald-500/20 blur-xl rounded-full" />

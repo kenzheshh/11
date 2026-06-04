@@ -69,8 +69,8 @@ export default function V2Testimonials() {
                   {review.avatar}
                 </div>
                 <div>
-                  <h4 className="text-white font-bold">{review.name}</h4>
-                  <p className="text-sm text-slate-500">{review.role}</p>
+                  <h3 className="text-white font-bold">{review.name}</h3>
+                  <p className="text-sm text-slate-400">{review.role}</p>
                 </div>
               </div>
             </motion.div>

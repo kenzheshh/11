@@ -53,7 +53,7 @@ export default function PartnershipPage() {
 
         {/* В цифрах */}
         <div className="mb-24">
-          <h3 className="text-sm font-bold tracking-widest uppercase text-slate-500 mb-8 border-b border-white/10 pb-4">{t('Wabase в цифрах', 'WABASE in numbers')}</h3>
+          <h3 className="text-sm font-bold tracking-widest uppercase text-slate-400 mb-8 border-b border-white/10 pb-4">{t('Wabase в цифрах', 'WABASE in numbers')}</h3>
           <div className="grid md:grid-cols-3 gap-6 bg-[#0a0a0a] border border-white/5 rounded-3xl p-8 md:p-12">
             <div className="text-center">
               <div className="text-5xl font-bold text-emerald-400 mb-4">1 300+</div>
@@ -75,7 +75,7 @@ export default function PartnershipPage() {
 
         {/* Вознаграждение */}
         <div className="mb-24">
-          <h3 className="text-sm font-bold tracking-widest uppercase text-slate-500 mb-8 border-b border-white/10 pb-4">{t('Партнёрское вознаграждение', 'Partner reward')}</h3>
+          <h3 className="text-sm font-bold tracking-widest uppercase text-slate-400 mb-8 border-b border-white/10 pb-4">{t('Партнёрское вознаграждение', 'Partner reward')}</h3>
           <div className="grid md:grid-cols-2 bg-gradient-to-r from-emerald-600 to-emerald-900 rounded-3xl overflow-hidden shadow-2xl">
             <div className="p-12 border-b md:border-b-0 md:border-r border-white/20 text-center">
               <div className="text-6xl font-bold text-white mb-4">{t('до', 'up to')} 50%</div>
@@ -92,7 +92,7 @@ export default function PartnershipPage() {
 
         {/* Условия */}
         <div className="mb-24">
-          <h3 className="text-sm font-bold tracking-widest uppercase text-slate-500 mb-8 border-b border-white/10 pb-4">{t('Условия партнёрства', 'Partnership Terms')}</h3>
+          <h3 className="text-sm font-bold tracking-widest uppercase text-slate-400 mb-8 border-b border-white/10 pb-4">{t('Условия партнёрства', 'Partnership Terms')}</h3>
           <h2 className="text-3xl font-bold text-white mb-8">{t('Что получает технический партнёр', 'What the technical partner receives')}</h2>
           <div className="grid md:grid-cols-2 gap-6">
             <div className="bg-white/5 border border-white/10 p-8 rounded-2xl">
@@ -144,7 +144,7 @@ export default function PartnershipPage() {
 
         {/* Кому */}
         <div className="mb-24">
-          <h3 className="text-sm font-bold tracking-widest uppercase text-slate-500 mb-8 border-b border-white/10 pb-4">{t('Идеально подходит партнёрам', 'Ideal for partners')}</h3>
+          <h3 className="text-sm font-bold tracking-widest uppercase text-slate-400 mb-8 border-b border-white/10 pb-4">{t('Идеально подходит партнёрам', 'Ideal for partners')}</h3>
           <h2 className="text-3xl font-bold text-white mb-8">{t('Кому WABase даёт', 'To whom WABase gives')} <span className="text-emerald-400">{t('больше всего', 'the most benefit')}</span></h2>
           <div className="grid md:grid-cols-3 gap-6">
             <div className="bg-white/5 border border-white/10 p-6 rounded-2xl">
@@ -179,7 +179,7 @@ export default function PartnershipPage() {
 
         {/* 4 Шага */}
         <div className="mb-24">
-          <h3 className="text-sm font-bold tracking-widest uppercase text-slate-500 mb-8 border-b border-white/10 pb-4">{t('Как стать партнёром', 'How to become a partner')}</h3>
+          <h3 className="text-sm font-bold tracking-widest uppercase text-slate-400 mb-8 border-b border-white/10 pb-4">{t('Как стать партнёром', 'How to become a partner')}</h3>
           <h2 className="text-3xl font-bold text-white mb-12">4 {t('шага до', 'steps to')} <span className="text-emerald-400">{t('первого клиента', 'the first client')}</span></h2>
           <div className="grid md:grid-cols-4 gap-8">
             <div className="relative">
