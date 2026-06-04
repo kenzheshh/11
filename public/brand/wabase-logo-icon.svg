@@ -1,0 +1,34 @@
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="tileStroke" x1="170" y1="118" x2="878" y2="903" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#34D399" stop-opacity="0.22"/>
+      <stop offset="0.5" stop-color="#10B981" stop-opacity="0.1"/>
+      <stop offset="1" stop-color="#22D3EE" stop-opacity="0.16"/>
+    </linearGradient>
+    <linearGradient id="backCheckIcon" x1="254" y1="506" x2="640" y2="312" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#10B981"/>
+      <stop offset="1" stop-color="#047857"/>
+    </linearGradient>
+    <linearGradient id="frontCheckIcon" x1="394" y1="498" x2="803" y2="295" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#34D399"/>
+      <stop offset="0.48" stop-color="#10B981"/>
+      <stop offset="1" stop-color="#047857"/>
+    </linearGradient>
+    <radialGradient id="iconGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(384 284) rotate(53) scale(470 380)">
+      <stop stop-color="#10B981" stop-opacity="0.32"/>
+      <stop offset="0.55" stop-color="#047857" stop-opacity="0.08"/>
+      <stop offset="1" stop-color="#050505" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="iconDepth" x="142" y="194" width="742" height="620" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="28" stdDeviation="30" flood-color="#000000" flood-opacity="0.42"/>
+      <feDropShadow dx="0" dy="0" stdDeviation="25" flood-color="#10B981" flood-opacity="0.22"/>
+    </filter>
+  </defs>
+  <rect x="64" y="64" width="896" height="896" rx="224" fill="#050505"/>
+  <rect x="64" y="64" width="896" height="896" rx="224" fill="url(#iconGlow)"/>
+  <rect x="65.5" y="65.5" width="893" height="893" rx="222.5" stroke="url(#tileStroke)" stroke-width="3"/>
+  <g filter="url(#iconDepth)">
+    <path d="M255 535L372 652L612 412" stroke="url(#backCheckIcon)" stroke-width="104" stroke-linecap="round" stroke-linejoin="round" opacity="0.82"/>
+    <path d="M407 522L527 642L777 392" stroke="url(#frontCheckIcon)" stroke-width="104" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+</svg>

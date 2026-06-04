@@ -1,0 +1,20 @@
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="backCheckTransparent" x1="240" y1="506" x2="638" y2="307" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#10B981"/>
+      <stop offset="1" stop-color="#047857"/>
+    </linearGradient>
+    <linearGradient id="frontCheckTransparent" x1="390" y1="498" x2="812" y2="288" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#34D399"/>
+      <stop offset="0.48" stop-color="#10B981"/>
+      <stop offset="1" stop-color="#047857"/>
+    </linearGradient>
+    <filter id="transparentDepth" x="136" y="198" width="752" height="640" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="16" stdDeviation="12" flood-color="#000000" flood-opacity="0.18"/>
+    </filter>
+  </defs>
+  <g filter="url(#transparentDepth)">
+    <path d="M225 535L356 666L622 400" stroke="url(#backCheckTransparent)" stroke-width="108" stroke-linecap="round" stroke-linejoin="round" opacity="0.84"/>
+    <path d="M390 522L522 654L799 377" stroke="url(#frontCheckTransparent)" stroke-width="108" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+</svg>
