@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import V2Hero from './components/v2/V2Hero';
 import V2Transformation from './components/v2/V2Transformation';
@@ -14,11 +14,12 @@ import V2Testimonials from './components/v2/V2Testimonials';
 import V2Pricing from './components/v2/V2Pricing';
 import V2Navbar from './components/v2/V2Navbar';
 import V2Footer from './components/v2/V2Footer';
-import AmoModal from './components/AmoModal';
 
 import PartnershipPage from './components/v2/PartnershipPage';
 
-import { LanguageProvider } from './contexts/LanguageContext';
+// Modal + AmoCRM form are only needed once a CTA is clicked — keep them out of
+// the initial bundle and the prerendered HTML.
+const AmoModal = lazy(() => import('./components/AmoModal'));
 
 function HomePage() {
   return (
@@ -36,25 +37,32 @@ function HomePage() {
 
 export default function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  // Mount the modal lazily only after it has been requested at least once.
+  const [modalRequested, setModalRequested] = useState(false);
 
   useEffect(() => {
-    const handleOpen = () => setIsModalOpen(true);
+    const handleOpen = () => {
+      setModalRequested(true);
+      setIsModalOpen(true);
+    };
     window.addEventListener('open-amo-modal', handleOpen);
     return () => window.removeEventListener('open-amo-modal', handleOpen);
   }, []);
 
   return (
-    <LanguageProvider>
-      <div className="bg-[#050505] text-white min-h-screen font-sans selection:bg-emerald-500 selection:text-white">
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/partnership" element={<PartnershipPage />} />
-        </Routes>
-        <V2Footer />
-        <V2Navbar />
-        
-        <AmoModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
-      </div>
-    </LanguageProvider>
+    <div className="bg-[#050505] text-white min-h-screen font-sans selection:bg-emerald-500 selection:text-white">
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/partnership" element={<PartnershipPage />} />
+      </Routes>
+      <V2Footer />
+      <V2Navbar />
+
+      {modalRequested && (
+        <Suspense fallback={null}>
+          <AmoModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+        </Suspense>
+      )}
+    </div>
   );
 }
