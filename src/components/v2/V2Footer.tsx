@@ -23,36 +23,34 @@ export default function V2Footer() {
           <div>
             <h3 className="text-white font-semibold mb-6">{t('Продукт', 'Product')}</h3>
             <ul className="space-y-4 text-sm font-light">
-              <li><a href="#features" className="hover:text-emerald-400 transition-colors">{t('Возможности', 'Features')}</a></li>
-              <li><a href="#cases" className="hover:text-emerald-400 transition-colors">{t('Кейсы', 'Cases')}</a></li>
-              <li><a href="#pricing" className="hover:text-emerald-400 transition-colors">{t('Тарифы', 'Pricing')}</a></li>
+              <li><a href="/#features" className="hover:text-emerald-400 transition-colors">{t('Возможности', 'Features')}</a></li>
+              <li><a href="/#cases" className="hover:text-emerald-400 transition-colors">{t('Кейсы', 'Cases')}</a></li>
+              <li><a href="/#pricing" className="hover:text-emerald-400 transition-colors">{t('Тарифы', 'Pricing')}</a></li>
             </ul>
           </div>
 
           <div>
             <h3 className="text-white font-semibold mb-6">{t('Ресурсы', 'Resources')}</h3>
             <ul className="space-y-4 text-sm font-light">
-              <li><a href="#" className="hover:text-emerald-400 transition-colors">{t('Блог', 'Blog')}</a></li>
-              <li><a href="#" className="hover:text-emerald-400 transition-colors">{t('Документация', 'Documentation')}</a></li>
-              <li><a href="#" className="hover:text-emerald-400 transition-colors">{t('База знаний', 'Knowledge base')}</a></li>
+              <li><a href="/blog" className="hover:text-emerald-400 transition-colors">{t('Блог', 'Blog')}</a></li>
+              <li><a href="/partnership/" className="hover:text-emerald-400 transition-colors">{t('Партнёрская программа', 'Partnership program')}</a></li>
             </ul>
           </div>
 
           <div>
             <h3 className="text-white font-semibold mb-6">{t('Контакты', 'Contacts')}</h3>
             <ul className="space-y-4 text-sm font-light">
-              <li><a href="#" className="hover:text-emerald-400 transition-colors">{t('Поддержка', 'Support')}</a></li>
-              <li><a href="#" className="hover:text-emerald-400 transition-colors">Sales</a></li>
-              <li><a href="/partnership" className="hover:text-emerald-400 transition-colors">{t('Партнерская программа', 'Partnership program')}</a></li>
+              <li><a href="https://wa.me/77052563483" target="_blank" rel="noreferrer" className="hover:text-emerald-400 transition-colors">{t('Поддержка', 'Support')} (WhatsApp)</a></li>
+              <li><a href="https://t.me/Jyxndhos" target="_blank" rel="noreferrer" className="hover:text-emerald-400 transition-colors">Sales (Telegram)</a></li>
             </ul>
           </div>
         </div>
-        
+
         <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-sm font-light">
           <p>© {new Date().getFullYear()} WaBase. {t('Все права защищены.', 'All rights reserved.')}</p>
           <div className="flex gap-6">
-            <a href="#" className="hover:text-emerald-400 transition-colors">{t('Политика конфиденциальности', 'Privacy policy')}</a>
-            <a href="#" className="hover:text-emerald-400 transition-colors">{t('Условия использования', 'Terms of use')}</a>
+            <a href="/privacy/" className="hover:text-emerald-400 transition-colors">{t('Политика конфиденциальности', 'Privacy policy')}</a>
+            <a href="/terms/" className="hover:text-emerald-400 transition-colors">{t('Условия использования', 'Terms of use')}</a>
           </div>
         </div>
       </div>

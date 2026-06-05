@@ -59,6 +59,9 @@ function applyMeta(html, meta) {
       .replace(/(<link rel="canonical" href=")[^"]*(">)/, `$1${meta.canonical}$2`)
       .replace(/(<meta property="og:url" content=")[^"]*(">)/, `$1${meta.canonical}$2`);
   }
+  if (meta.robots) {
+    html = html.replace(/(<meta name="robots" content=")[^"]*(">)/, `$1${meta.robots}$2`);
+  }
   return html;
 }
 
@@ -84,6 +87,28 @@ const routes = [
           ],
         }) +
         '</script>',
+    },
+  },
+  {
+    path: '/privacy',
+    out: 'privacy/index.html',
+    meta: {
+      title: 'Политика конфиденциальности — WABase',
+      description: 'Как WABase обрабатывает и защищает персональные данные пользователей сайта wabase.ai и сервиса WhatsApp Business API.',
+      canonical: 'https://wabase.ai/privacy/',
+      robots: 'noindex, follow', // draft until reviewed by a lawyer
+      dropFaqLd: true,
+    },
+  },
+  {
+    path: '/terms',
+    out: 'terms/index.html',
+    meta: {
+      title: 'Условия использования — WABase',
+      description: 'Условия использования сайта wabase.ai и сервиса подключения WhatsApp Business API WABase.',
+      canonical: 'https://wabase.ai/terms/',
+      robots: 'noindex, follow', // draft until reviewed by a lawyer
+      dropFaqLd: true,
     },
   },
 ];
