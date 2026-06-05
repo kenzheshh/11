@@ -1,6 +1,8 @@
 import React, { useRef, useEffect } from 'react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 export default function AmoCrmForm() {
+  const { t } = useLanguage();
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
   useEffect(() => {
@@ -37,8 +39,8 @@ export default function AmoCrmForm() {
   return (
     <div className="w-full min-h-[600px] flex flex-col items-center justify-center relative pointer-events-auto">
       <div className="text-center mb-6">
-        <h3 className="text-2xl font-bold text-white mb-2">Оставьте заявку</h3>
-        <p className="text-slate-400 text-sm">Заполните форму, и мы свяжемся с вами в ближайшее время</p>
+        <h3 className="text-2xl font-bold text-white mb-2">{t('Оставьте заявку', 'Leave a request', 'Deja tu solicitud')}</h3>
+        <p className="text-slate-400 text-sm">{t('Заполните форму, и мы свяжемся с вами в ближайшее время', 'Fill out the form and we will contact you shortly', 'Completa el formulario y te contactaremos pronto')}</p>
       </div>
       <iframe
         ref={iframeRef}
@@ -47,7 +49,7 @@ export default function AmoCrmForm() {
         scrolling="no"
       />
       <div className="mt-4 text-xs text-slate-400">
-        Если форма не загрузилась, пожалуйста, обновите страницу.
+        {t('Если форма не загрузилась, пожалуйста, обновите страницу.', 'If the form did not load, please refresh the page.', 'Si el formulario no cargó, actualiza la página.')}
       </div>
     </div>
   );

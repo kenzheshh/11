@@ -77,7 +77,7 @@ export default function V2Coexistence() {
                   </div>
                   <div>
                     <div className="text-white font-bold text-xl">+7 (999) 123-45-67</div>
-                    <div className="text-sm text-slate-400">Единый номер компании</div>
+                    <div className="text-sm text-slate-400">{t('Единый номер компании', 'One company number', 'Un solo número de empresa')}</div>
                   </div>
                 </div>
 
@@ -106,20 +106,20 @@ export default function V2Coexistence() {
                   <div className="flex-1 bg-black/40 border border-white/5 rounded-2xl p-5 text-center relative overflow-hidden">
                     <Smartphone className="w-8 h-8 text-slate-400 mx-auto mb-3" />
                     <div className="text-base font-medium text-white mb-1">WA Business App</div>
-                    <div className="text-sm text-slate-400">Ручное общение</div>
+                    <div className="text-sm text-slate-400">{t('Ручное общение', 'Manual chat', 'Chat manual')}</div>
                   </div>
                   <div className="flex-1 bg-emerald-500/10 border border-emerald-500/20 rounded-2xl p-5 text-center shadow-[0_0_30px_rgba(16,185,129,0.15)] relative overflow-hidden">
                     <div className="absolute top-0 right-0 w-24 h-24 bg-emerald-500/20 blur-xl rounded-full" />
                     <Server className="w-8 h-8 text-emerald-400 mx-auto mb-3 relative z-10" />
                     <div className="text-base font-medium text-white mb-1 relative z-10">Cloud API (WABA)</div>
-                    <div className="text-sm text-emerald-400/80 relative z-10">Боты и CRM</div>
+                    <div className="text-sm text-emerald-400/80 relative z-10">{t('Боты и CRM', 'Bots & CRM', 'Bots y CRM')}</div>
                   </div>
                 </div>
 
                 <div className="w-full text-center mt-2">
                   <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs text-slate-400">
                     <RefreshCw className="w-3 h-3" />
-                    Мгновенная синхронизация истории
+                    {t('Мгновенная синхронизация истории', 'Instant history sync', 'Sincronización instantánea del historial')}
                   </span>
                 </div>
 

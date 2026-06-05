@@ -175,18 +175,18 @@ export default function V2FeaturesCarousel() {
                         animate={{ opacity: 1, scale: 1 }}
                         className="absolute top-14 right-4 bg-slate-800 border border-white/10 rounded-xl p-2 shadow-xl z-20 w-48"
                       >
-                        <div className="text-xs text-slate-400 mb-2 px-2">Передать диалог:</div>
+                        <div className="text-xs text-slate-400 mb-2 px-2">{t('Передать диалог:', 'Transfer chat:', 'Transferir chat:')}</div>
                         <button className="w-full text-left px-2 py-1.5 hover:bg-white/5 rounded text-sm text-white flex items-center gap-2">
-                          <div className="w-2 h-2 rounded-full bg-emerald-400" /> Отдел продаж
+                          <div className="w-2 h-2 rounded-full bg-emerald-400" /> {t('Отдел продаж', 'Sales team', 'Equipo de ventas')}
                         </button>
                         <button className="w-full text-left px-2 py-1.5 hover:bg-white/5 rounded text-sm text-white flex items-center gap-2">
-                          <div className="w-2 h-2 rounded-full bg-blue-400" /> Поддержка
+                          <div className="w-2 h-2 rounded-full bg-blue-400" /> {t('Поддержка', 'Support', 'Soporte')}
                         </button>
                       </motion.div>
                     )}
                     <button className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm transition-colors ${activeFeature === 'routing' ? 'bg-emerald-500 text-white' : 'bg-white/5 text-slate-300 hover:bg-white/10'}`}>
                       <Users className="w-4 h-4" />
-                      <span className="hidden sm:inline">Передать</span>
+                      <span className="hidden sm:inline">{t('Передать', 'Transfer', 'Transferir')}</span>
                     </button>
                     <button className="md:hidden p-1.5 text-slate-400 hover:text-white rounded-lg hover:bg-white/5" onClick={() => setMobileView('crm')}>
                       <Info className="w-5 h-5" />
@@ -202,16 +202,16 @@ export default function V2FeaturesCarousel() {
                   <div className="flex gap-3">
                     <div className="w-8 h-8 rounded-full bg-gradient-to-br from-emerald-400 to-cyan-400 flex-shrink-0" />
                     <div className="bg-white/5 border border-white/10 rounded-2xl rounded-tl-none p-3 max-w-[80%] text-sm text-slate-200">
-                      Здравствуйте! Подскажите, сколько стоит внедрение вашей платформы для команды из 5 человек? И есть ли интеграция с amoCRM?
+                      {t('Здравствуйте! Подскажите, сколько стоит внедрение вашей платформы для команды из 5 человек? И есть ли интеграция с amoCRM?', 'Hello! How much does it cost to set up your platform for a team of 5? And is there an amoCRM integration?', '¡Hola! ¿Cuánto cuesta implementar su plataforma para un equipo de 5 personas? ¿Y hay integración con amoCRM?')}
                       <div className="text-[10px] text-slate-400 mt-1 text-right">12:42</div>
                     </div>
                   </div>
                   <div className="flex gap-3 flex-row-reverse">
                     <div className="w-8 h-8 rounded-full bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center flex-shrink-0">
-                      <span className="text-xs text-emerald-400 font-bold">Вы</span>
+                      <span className="text-xs text-emerald-400 font-bold">{t('Вы', 'You', 'Tú')}</span>
                     </div>
                     <div className="bg-emerald-500/10 border border-emerald-500/20 rounded-2xl rounded-tr-none p-3 max-w-[80%] text-sm text-emerald-50">
-                      Здравствуйте, Александр! Да, у нас есть полная интеграция с amoCRM. Для команды из 5 человек подойдет тариф "Бизнес". Стоимость составит 4990 руб/мес. Хотите, я пришлю вам подробную презентацию?
+                      {t('Здравствуйте, Александр! Да, у нас есть полная интеграция с amoCRM. Для команды из 5 человек подойдет тариф "Бизнес". Стоимость составит 4990 руб/мес. Хотите, я пришлю вам подробную презентацию?', 'Hello, Alexander! Yes, we have full amoCRM integration. The "Business" plan suits a team of 5. Would you like me to send a detailed presentation?', '¡Hola, Alexander! Sí, tenemos integración completa con amoCRM. El plan "Business" es ideal para un equipo de 5. ¿Quieres que te envíe una presentación detallada?')}
                       <div className="text-[10px] text-emerald-500/70 mt-1 flex justify-end items-center gap-1">
                         12:44 <CheckCheck className="w-3 h-3" />
                       </div>
@@ -220,7 +220,7 @@ export default function V2FeaturesCarousel() {
                   <div className="flex gap-3">
                     <div className="w-8 h-8 rounded-full bg-gradient-to-br from-emerald-400 to-cyan-400 flex-shrink-0" />
                     <div className="bg-white/5 border border-white/10 rounded-2xl rounded-tl-none p-3 max-w-[80%] text-sm text-slate-200">
-                      Отлично, давайте презентацию!
+                      {t('Отлично, давайте презентацию!', 'Great, let’s see the presentation!')}
                       <div className="text-[10px] text-slate-400 mt-1 text-right">12:45</div>
                     </div>
                   </div>
@@ -233,10 +233,10 @@ export default function V2FeaturesCarousel() {
                       <Paperclip className="w-5 h-5" />
                     </button>
                     <textarea 
-                      placeholder="Введите сообщение..." 
+                      placeholder={t('Введите сообщение...', 'Type a message...', 'Escribe un mensaje...')}
                       className="flex-1 bg-transparent border-none outline-none text-sm text-white resize-none max-h-24 min-h-[40px] py-2 custom-scrollbar"
                       rows={1}
-                      defaultValue="Отправляю презентацию! Файл прикреплен."
+                      defaultValue={t('Отправляю презентацию! Файл прикреплен.', 'Sending the presentation! File attached.', '¡Envío la presentación! Archivo adjunto.')}
                     />
                     <button className="p-2 bg-emerald-500 text-white rounded-lg hover:bg-emerald-400 transition-colors">
                       <Send className="w-4 h-4" />
@@ -250,43 +250,43 @@ export default function V2FeaturesCarousel() {
                 <div className="p-4 border-b border-white/10 flex items-center md:hidden bg-black/40">
                   <button className="p-1 -ml-2 text-slate-400 hover:text-white flex items-center gap-1" onClick={() => setMobileView('chat')}>
                     <ChevronLeft className="w-6 h-6" />
-                    <span className="text-sm font-medium">Назад к чату</span>
+                    <span className="text-sm font-medium">{t('Назад к чату', 'Back to chat', 'Volver al chat')}</span>
                   </button>
                 </div>
                 <div className="p-6 border-b border-white/10 flex flex-col items-center text-center">
                   <div className="w-20 h-20 rounded-full bg-gradient-to-br from-emerald-400 to-cyan-400 flex items-center justify-center text-slate-900 font-bold text-2xl mb-4 shadow-lg">
                     А
                   </div>
-                  <h3 className="text-lg font-bold text-white">Александр Иванов</h3>
+                  <h3 className="text-lg font-bold text-white">{t('Александр Иванов', 'Alexander Ivanov', 'Alexander Ivanov')}</h3>
                   <p className="text-sm text-slate-400 mb-4">+7 (999) 123-45-67</p>
                   <div className="flex flex-wrap gap-2 justify-center">
                     <span className="px-2.5 py-1 rounded-full bg-blue-500/20 text-blue-400 border border-blue-500/30 text-xs">B2B</span>
-                    <span className="px-2.5 py-1 rounded-full bg-purple-500/20 text-purple-400 border border-purple-500/30 text-xs">Горячий</span>
+                    <span className="px-2.5 py-1 rounded-full bg-purple-500/20 text-purple-400 border border-purple-500/30 text-xs">{t('Горячий', 'Hot', 'Caliente')}</span>
                   </div>
                 </div>
                 <div className="p-6 space-y-6 flex-1 overflow-y-auto custom-scrollbar">
                   <div>
-                    <h4 className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3">Сделка в CRM</h4>
+                    <h4 className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3">{t('Сделка в CRM', 'CRM deal', 'Trato en el CRM')}</h4>
                     <div className="bg-white/5 border border-white/10 rounded-xl p-3">
                       <div className="flex justify-between items-center mb-2">
-                        <span className="text-sm text-white font-medium">Внедрение WABA</span>
+                        <span className="text-sm text-white font-medium">{t('Внедрение WABA', 'WABA implementation', 'Implementación de WABA')}</span>
                         <span className="text-sm text-emerald-400 font-bold">4 990 ₽</span>
                       </div>
                       <div className="w-full bg-white/10 rounded-full h-1.5 mb-2">
                         <div className="bg-emerald-500 h-1.5 rounded-full w-2/3"></div>
                       </div>
-                      <span className="text-xs text-slate-400">Этап: Отправка КП</span>
+                      <span className="text-xs text-slate-400">{t('Этап: Отправка КП', 'Stage: Proposal sent', 'Etapa: Propuesta enviada')}</span>
                     </div>
                   </div>
                   <div>
-                    <h4 className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3">Ответственный</h4>
+                    <h4 className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3">{t('Ответственный', 'Assignee', 'Responsable')}</h4>
                     <div className="flex items-center gap-3">
                       <div className="w-8 h-8 rounded-full bg-slate-700 flex items-center justify-center text-white text-xs font-bold">
                         М
                       </div>
                       <div>
-                        <div className="text-sm text-white font-medium">Михаил С.</div>
-                        <div className="text-xs text-slate-400">Отдел продаж</div>
+                        <div className="text-sm text-white font-medium">{t('Михаил С.', 'Mikhail S.', 'Mikhail S.')}</div>
+                        <div className="text-xs text-slate-400">{t('Отдел продаж', 'Sales team', 'Equipo de ventas')}</div>
                       </div>
                     </div>
                   </div>

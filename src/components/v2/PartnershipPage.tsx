@@ -150,7 +150,7 @@ export default function PartnershipPage() {
             <div className="bg-white/5 border border-white/10 p-6 rounded-2xl">
               <div className="flex items-center gap-3 mb-4 text-emerald-400">
                 <Settings className="w-6 h-6" />
-                <h4 className="font-bold text-lg text-white">CRM-системы</h4>
+                <h4 className="font-bold text-lg text-white">{t('CRM-системы', 'CRM systems', 'Sistemas CRM')}</h4>
               </div>
               <p className="text-slate-400 text-sm font-light">
                 {t('amoCRM, Bitrix24, Мегаплан, Planfix и собственные CRM. Клиенты получают встроенный канал в карточках сделок.', 'amoCRM, Bitrix24, Megaplan, Planfix, and custom CRMs. Clients get a built-in channel directly in deal cards.')}
@@ -216,7 +216,7 @@ export default function PartnershipPage() {
               <img src={KenzheAvatar} alt="Kenzhe avatar" className="w-full h-full object-cover" />
             </div>
             <div>
-              <h3 className="text-2xl font-bold text-white mb-1">Кенже</h3>
+              <h3 className="text-2xl font-bold text-white mb-1">{t('Кенже', 'Kenzhe', 'Kenzhe')}</h3>
               <p className="text-emerald-300 text-sm mb-4">{t('Партнёрский менеджер', 'Partnership Manager')} · WABase</p>
               <p className="text-emerald-50 max-w-md font-light leading-relaxed">
                 {t('Расскажу, как интегрироваться и запустить первых клиентов. Подготовлю договор и дам доступ к sandbox в день обращения.', 'I will tell you how to integrate and launch your first clients. I will prepare the contract and provide access to the sandbox on the day of the request.')}
