@@ -17,4 +17,4 @@ export default async (request) => {
   })
 }
 
-export const config = { path: ['/blog/*', '/_vibeseo/*'] }
+export const config = { path: ['/blog', '/blog/*', '/_vibeseo/*'] }
