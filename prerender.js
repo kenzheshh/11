@@ -246,6 +246,77 @@ const routes = [
       en: ['Home', 'WaBase vs Radist'],
     },
   },
+  // Global competitors — EN title targets the "<brand> alternative" query.
+  {
+    base: '/compare/wati',
+    out: 'compare/wati/index.html',
+    dropFaqLd: true,
+    titles: {
+      ru: 'WaBase или Wati — сравнение WhatsApp Business API | WaBase',
+      en: 'Wati alternative — WaBase WhatsApp Business API | WaBase',
+    },
+    descriptions: {
+      ru: 'Сравнение Wati и WaBase: официальный WhatsApp Business API, интеграции с CRM, личный онбординг и партнёрская программа.',
+      en: 'Looking for a Wati alternative? Compare WaBase and Wati: official WhatsApp Business API, CRM integrations, hands-on onboarding and a partner program.',
+    },
+    breadcrumb: { ru: ['Главная', 'WaBase или Wati'], en: ['Home', 'WaBase vs Wati'] },
+  },
+  {
+    base: '/compare/gupshup',
+    out: 'compare/gupshup/index.html',
+    dropFaqLd: true,
+    titles: {
+      ru: 'WaBase или Gupshup — сравнение WhatsApp Business API | WaBase',
+      en: 'Gupshup alternative — WaBase WhatsApp Business API | WaBase',
+    },
+    descriptions: {
+      ru: 'Сравнение Gupshup и WaBase: официальный WhatsApp Business API, интеграции с CRM, личный онбординг и партнёрская программа.',
+      en: 'Looking for a Gupshup alternative? Compare WaBase and Gupshup: official WhatsApp Business API, CRM integrations, hands-on onboarding and support.',
+    },
+    breadcrumb: { ru: ['Главная', 'WaBase или Gupshup'], en: ['Home', 'WaBase vs Gupshup'] },
+  },
+  {
+    base: '/compare/interakt',
+    out: 'compare/interakt/index.html',
+    dropFaqLd: true,
+    titles: {
+      ru: 'WaBase или Interakt — сравнение WhatsApp Business API | WaBase',
+      en: 'Interakt alternative — WaBase WhatsApp Business API | WaBase',
+    },
+    descriptions: {
+      ru: 'Сравнение Interakt и WaBase: официальный WhatsApp Business API, интеграции с CRM, личный онбординг и партнёрская программа.',
+      en: 'Looking for an Interakt alternative? Compare WaBase and Interakt: official WhatsApp Business API, CRM integrations, onboarding and support.',
+    },
+    breadcrumb: { ru: ['Главная', 'WaBase или Interakt'], en: ['Home', 'WaBase vs Interakt'] },
+  },
+  {
+    base: '/compare/360dialog',
+    out: 'compare/360dialog/index.html',
+    dropFaqLd: true,
+    titles: {
+      ru: 'WaBase или 360dialog — сравнение WhatsApp Business API | WaBase',
+      en: '360dialog alternative — WaBase WhatsApp Business API | WaBase',
+    },
+    descriptions: {
+      ru: 'Сравнение 360dialog и WaBase: официальный WhatsApp Business API, управляемое подключение, интеграции с CRM и поддержка.',
+      en: 'Looking for a 360dialog alternative? Compare WaBase and 360dialog: official WhatsApp Business API, managed setup, CRM integrations and support.',
+    },
+    breadcrumb: { ru: ['Главная', 'WaBase или 360dialog'], en: ['Home', 'WaBase vs 360dialog'] },
+  },
+  {
+    base: '/compare/aisensy',
+    out: 'compare/aisensy/index.html',
+    dropFaqLd: true,
+    titles: {
+      ru: 'WaBase или AiSensy — сравнение WhatsApp Business API | WaBase',
+      en: 'AiSensy alternative — WaBase WhatsApp Business API | WaBase',
+    },
+    descriptions: {
+      ru: 'Сравнение AiSensy и WaBase: официальный WhatsApp Business API, интеграции с CRM, личный онбординг и партнёрская программа.',
+      en: 'Looking for an AiSensy alternative? Compare WaBase and AiSensy: official WhatsApp Business API, CRM integrations, onboarding and support.',
+    },
+    breadcrumb: { ru: ['Главная', 'WaBase или AiSensy'], en: ['Home', 'WaBase vs AiSensy'] },
+  },
   {
     base: '/privacy',
     out: 'privacy/index.html',

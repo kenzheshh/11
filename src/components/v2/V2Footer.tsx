@@ -39,10 +39,15 @@ export default function V2Footer() {
           <div>
             <h3 className="text-white font-semibold mb-6">{t('Сравнения', 'Compare')}</h3>
             <ul className="space-y-4 text-sm font-light">
-              <li><a href={localePath('/compare/wazzup')} className="hover:text-emerald-400 transition-colors">WaBase {t('или', 'vs')} Wazzup</a></li>
-              <li><a href={localePath('/compare/green-api')} className="hover:text-emerald-400 transition-colors">WaBase {t('или', 'vs')} Green API</a></li>
-              <li><a href={localePath('/compare/wappi')} className="hover:text-emerald-400 transition-colors">WaBase {t('или', 'vs')} Wappi</a></li>
-              <li><a href={localePath('/compare/radist')} className="hover:text-emerald-400 transition-colors">WaBase {t('или', 'vs')} Radist</a></li>
+              <li><a href={localePath('/compare/wazzup')} className="hover:text-emerald-400 transition-colors">vs Wazzup</a></li>
+              <li><a href={localePath('/compare/green-api')} className="hover:text-emerald-400 transition-colors">vs Green API</a></li>
+              <li><a href={localePath('/compare/wappi')} className="hover:text-emerald-400 transition-colors">vs Wappi</a></li>
+              <li><a href={localePath('/compare/radist')} className="hover:text-emerald-400 transition-colors">vs Radist</a></li>
+              <li><a href={localePath('/compare/wati')} className="hover:text-emerald-400 transition-colors">vs Wati</a></li>
+              <li><a href={localePath('/compare/gupshup')} className="hover:text-emerald-400 transition-colors">vs Gupshup</a></li>
+              <li><a href={localePath('/compare/interakt')} className="hover:text-emerald-400 transition-colors">vs Interakt</a></li>
+              <li><a href={localePath('/compare/360dialog')} className="hover:text-emerald-400 transition-colors">vs 360dialog</a></li>
+              <li><a href={localePath('/compare/aisensy')} className="hover:text-emerald-400 transition-colors">vs AiSensy</a></li>
             </ul>
           </div>
 
