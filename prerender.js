@@ -341,3 +341,31 @@ for (const route of routes) {
     console.log('pre-rendered:', path.join(L.dir, route.out));
   }
 }
+
+// sitemap.xml — generated from the indexable routes (noindex excluded), each
+// language version listed with reciprocal hreflang alternates. Overwrites the
+// copy Vite placed in dist/ so it never drifts from the actual routes.
+const indexable = routes.filter((r) => !r.robots || !r.robots.includes('noindex'));
+const urls = [];
+for (const route of indexable) {
+  const alternates = [
+    ...LANGS.map((l) => `    <xhtml:link rel="alternate" hreflang="${l.code}" href="${absUrl(l.prefix, route.base)}"/>`),
+    `    <xhtml:link rel="alternate" hreflang="x-default" href="${absUrl('', route.base)}"/>`,
+  ].join('\n');
+  const priority = route.base === '/' ? '1.0' : '0.7';
+  const changefreq = route.base === '/' ? 'weekly' : 'monthly';
+  for (const L of LANGS) {
+    urls.push(
+      `  <url>\n    <loc>${absUrl(L.prefix, route.base)}</loc>\n${alternates}\n` +
+        `    <changefreq>${changefreq}</changefreq>\n    <priority>${priority}</priority>\n  </url>`,
+    );
+  }
+}
+const sitemap =
+  '<?xml version="1.0" encoding="UTF-8"?>\n' +
+  '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"\n' +
+  '        xmlns:xhtml="http://www.w3.org/1999/xhtml">\n' +
+  urls.join('\n') +
+  '\n</urlset>\n';
+fs.writeFileSync(path.join(DIST, 'sitemap.xml'), sitemap);
+console.log(`generated: sitemap.xml (${urls.length} urls)`);
