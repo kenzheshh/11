@@ -77,7 +77,7 @@ export default function V2Process() {
 
         <div className="mt-20 text-center">
           <button onClick={() => window.dispatchEvent(new CustomEvent('open-amo-modal'))} className="px-8 py-4 bg-white/5 hover:bg-white/10 border border-white/10 text-white rounded-full font-bold text-lg transition-all backdrop-blur-md">
-            Оставить заявку на подключение
+            {t('Оставить заявку на подключение', 'Submit a connection request')}
           </button>
         </div>
       </div>

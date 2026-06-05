@@ -27,35 +27,51 @@ export default function V2Navbar() {
           </div>
           
           <div className="hidden md:flex items-center space-x-8 bg-white/5 px-6 py-2 rounded-full border border-white/10 backdrop-blur-md">
-            <a href={localePath('/#features')} className="text-sm font-medium text-slate-300 hover:text-emerald-400 transition-colors">{t('Возможности', 'Features')}</a>
-            <a href={localePath('/#cases')} className="text-sm font-medium text-slate-300 hover:text-emerald-400 transition-colors">{t('Кейсы', 'Cases')}</a>
-            <a href={localePath('/#pricing')} className="text-sm font-medium text-slate-300 hover:text-emerald-400 transition-colors">{t('Тарифы', 'Pricing')}</a>
-            <a href={localePath('/partnership')} className="text-sm font-medium text-slate-300 hover:text-emerald-400 transition-colors">{t('Партнерская программа', 'Partners')}</a>
+            <a href={localePath('/#features')} className="text-sm font-medium text-slate-300 hover:text-emerald-400 transition-colors">{t('Возможности', 'Features', 'Funciones')}</a>
+            <a href={localePath('/#cases')} className="text-sm font-medium text-slate-300 hover:text-emerald-400 transition-colors">{t('Кейсы', 'Cases', 'Casos')}</a>
+            <a href={localePath('/#pricing')} className="text-sm font-medium text-slate-300 hover:text-emerald-400 transition-colors">{t('Тарифы', 'Pricing', 'Precios')}</a>
+            <a href={localePath('/partnership')} className="text-sm font-medium text-slate-300 hover:text-emerald-400 transition-colors">{t('Партнерская программа', 'Partners', 'Socios')}</a>
           </div>
 
           <div className="hidden md:flex items-center space-x-6">
-            <button 
-              onClick={() => setLang(lang === 'ru' ? 'en' : 'ru')}
-              className="text-sm font-medium text-slate-400 hover:text-white transition-colors uppercase"
-            >
-              {lang === 'ru' ? 'EN' : 'RU'}
-            </button>
-            <button className="text-sm font-medium text-slate-300 hover:text-white transition-colors">{t('Войти', 'Log in')}</button>
+            <div className="flex items-center text-sm font-medium uppercase">
+              {(['ru', 'en', 'es'] as const).map((l, i) => (
+                <span key={l} className="flex items-center">
+                  {i > 0 && <span className="text-slate-600 mx-1.5">·</span>}
+                  <button
+                    onClick={() => setLang(l)}
+                    aria-current={lang === l}
+                    className={`transition-colors ${lang === l ? 'text-emerald-400' : 'text-slate-400 hover:text-white'}`}
+                  >
+                    {l}
+                  </button>
+                </span>
+              ))}
+            </div>
+            <button className="text-sm font-medium text-slate-300 hover:text-white transition-colors">{t('Войти', 'Log in', 'Entrar')}</button>
             <button onClick={() => window.dispatchEvent(new CustomEvent('open-amo-modal'))} className="bg-emerald-500 hover:bg-emerald-400 text-white px-5 py-2.5 rounded-full text-sm font-bold transition-all shadow-[0_0_20px_rgba(16,185,129,0.3)] hover:shadow-[0_0_30px_rgba(16,185,129,0.5)] hover:-translate-y-0.5">
-              {t('Попробовать бесплатно', 'Try for free')}
+              {t('Попробовать бесплатно', 'Try for free', 'Prueba gratis')}
             </button>
           </div>
 
           <div className="md:hidden flex items-center gap-4">
-            <button 
-              onClick={() => setLang(lang === 'ru' ? 'en' : 'ru')}
-              className="text-sm font-medium text-slate-400 hover:text-white transition-colors uppercase"
-            >
-              {lang === 'ru' ? 'EN' : 'RU'}
-            </button>
+            <div className="flex items-center text-sm font-medium uppercase">
+              {(['ru', 'en', 'es'] as const).map((l, i) => (
+                <span key={l} className="flex items-center">
+                  {i > 0 && <span className="text-slate-600 mx-1.5">·</span>}
+                  <button
+                    onClick={() => setLang(l)}
+                    aria-current={lang === l}
+                    className={`transition-colors ${lang === l ? 'text-emerald-400' : 'text-slate-400 hover:text-white'}`}
+                  >
+                    {l}
+                  </button>
+                </span>
+              ))}
+            </div>
             <button
               onClick={() => setIsOpen(!isOpen)}
-              aria-label={t('Меню', 'Menu')}
+              aria-label={t('Меню', 'Menu', 'Menú')}
               aria-expanded={isOpen}
               className="text-slate-300 hover:text-white p-2"
             >
@@ -75,13 +91,13 @@ export default function V2Navbar() {
             className="md:hidden bg-[#050505]/95 backdrop-blur-xl border-b border-white/5 overflow-hidden"
           >
             <div className="px-6 pt-4 pb-8 space-y-4">
-              <a href={localePath('/#features')} className="block text-lg font-medium text-slate-300 hover:text-emerald-400 transition-colors">{t('Возможности', 'Features')}</a>
-              <a href={localePath('/#cases')} className="block text-lg font-medium text-slate-300 hover:text-emerald-400 transition-colors">{t('Кейсы', 'Cases')}</a>
-              <a href={localePath('/#pricing')} className="block text-lg font-medium text-slate-300 hover:text-emerald-400 transition-colors">{t('Тарифы', 'Pricing')}</a>
-              <a href={localePath('/partnership')} className="block text-lg font-medium text-slate-300 hover:text-emerald-400 transition-colors">{t('Партнерская программа', 'Partners')}</a>
+              <a href={localePath('/#features')} className="block text-lg font-medium text-slate-300 hover:text-emerald-400 transition-colors">{t('Возможности', 'Features', 'Funciones')}</a>
+              <a href={localePath('/#cases')} className="block text-lg font-medium text-slate-300 hover:text-emerald-400 transition-colors">{t('Кейсы', 'Cases', 'Casos')}</a>
+              <a href={localePath('/#pricing')} className="block text-lg font-medium text-slate-300 hover:text-emerald-400 transition-colors">{t('Тарифы', 'Pricing', 'Precios')}</a>
+              <a href={localePath('/partnership')} className="block text-lg font-medium text-slate-300 hover:text-emerald-400 transition-colors">{t('Партнерская программа', 'Partners', 'Socios')}</a>
               <div className="pt-6 flex flex-col gap-4 border-t border-white/10">
-                <button className="w-full text-center py-3 border border-white/10 rounded-xl text-base font-medium text-white hover:bg-white/5 transition-colors">{t('Войти', 'Log in')}</button>
-                <button onClick={() => window.dispatchEvent(new CustomEvent('open-amo-modal'))} className="w-full text-center bg-emerald-500 text-white py-3 rounded-xl text-base font-bold shadow-[0_0_20px_rgba(16,185,129,0.3)]">{t('Попробовать бесплатно', 'Try for free')}</button>
+                <button className="w-full text-center py-3 border border-white/10 rounded-xl text-base font-medium text-white hover:bg-white/5 transition-colors">{t('Войти', 'Log in', 'Entrar')}</button>
+                <button onClick={() => window.dispatchEvent(new CustomEvent('open-amo-modal'))} className="w-full text-center bg-emerald-500 text-white py-3 rounded-xl text-base font-bold shadow-[0_0_20px_rgba(16,185,129,0.3)]">{t('Попробовать бесплатно', 'Try for free', 'Prueba gratis')}</button>
               </div>
             </div>
           </motion.div>

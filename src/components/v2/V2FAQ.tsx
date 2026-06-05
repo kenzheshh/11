@@ -7,45 +7,51 @@ export default function V2FAQ() {
 
   const items = [
     {
-      q: t('Что такое WhatsApp Business API (WABA)?', 'What is WhatsApp Business API (WABA)?'),
+      q: t('Что такое WhatsApp Business API (WABA)?', 'What is WhatsApp Business API (WABA)?', '¿Qué es la API de WhatsApp Business (WABA)?'),
       a: t(
         'Официальный интерфейс Meta для массовых рассылок, чат-ботов и интеграции WhatsApp с CRM. В отличие от обычного приложения, WABA не блокируется за рассылки и поддерживает несколько операторов одновременно.',
         'Meta’s official interface for bulk messaging, chatbots and CRM integration. Unlike the regular app, WABA isn’t blocked for broadcasts and supports multiple agents at once.',
+        'La interfaz oficial de Meta para envíos masivos, chatbots e integración de WhatsApp con tu CRM. A diferencia de la app normal, WABA no se bloquea por difusiones y admite varios agentes a la vez.',
       ),
     },
     {
-      q: t('Могут ли заблокировать номер при рассылках?', 'Can the number get blocked when sending broadcasts?'),
+      q: t('Могут ли заблокировать номер при рассылках?', 'Can the number get blocked when sending broadcasts?', '¿Pueden bloquear el número al hacer difusiones?'),
       a: t(
         'Нет. WABA — официальный канал Meta: рассылки по согласованным шаблонам не приводят к блокировкам, в отличие от обычного WhatsApp и «серых» решений.',
         'No. WABA is Meta’s official channel: broadcasts using approved templates don’t cause blocks, unlike the regular WhatsApp app and grey solutions.',
+        'No. WABA es el canal oficial de Meta: las difusiones con plantillas aprobadas no provocan bloqueos, a diferencia de la app de WhatsApp y las soluciones no oficiales.',
       ),
     },
     {
-      q: t('Сколько стоит подключение и сообщения?', 'How much do onboarding and messages cost?'),
+      q: t('Сколько стоит подключение и сообщения?', 'How much do onboarding and messages cost?', '¿Cuánto cuestan la conexión y los mensajes?'),
       a: t(
         'Платформа — по выбранному тарифу. Дополнительно Meta берёт плату за каждый начатый 24-часовой диалог; входящие сообщения от клиентов бесплатны.',
         'The platform is billed by your chosen plan. Additionally, Meta charges per initiated 24-hour conversation; incoming messages from customers are free.',
+        'La plataforma se cobra según el plan elegido. Además, Meta cobra por cada conversación de 24 horas iniciada; los mensajes entrantes de los clientes son gratis.',
       ),
     },
     {
-      q: t('Сколько занимает подключение?', 'How long does connection take?'),
+      q: t('Сколько занимает подключение?', 'How long does connection take?', '¿Cuánto tarda la conexión?'),
       a: t(
         'Под ключ — от 5 минут до пары часов. Помогаем с верификацией бизнеса, шаблонами и интеграцией с вашей CRM.',
         'Turnkey — from 5 minutes to a couple of hours. We help with business verification, templates and CRM integration.',
+        'Llave en mano: de 5 minutos a un par de horas. Ayudamos con la verificación del negocio, las plantillas y la integración con tu CRM.',
       ),
     },
     {
-      q: t('Есть ли интеграция с CRM?', 'Is there CRM integration?'),
+      q: t('Есть ли интеграция с CRM?', 'Is there CRM integration?', '¿Hay integración con CRM?'),
       a: t(
         'Да: amoCRM, Bitrix24 и другие через API или виджет. Диалоги, история переписки и теги доступны прямо в карточке сделки.',
         'Yes: amoCRM, Bitrix24 and others via API or widget. Conversations, chat history and tags are available right in the deal card.',
+        'Sí: amoCRM, Bitrix24 y otros mediante API o widget. Las conversaciones, el historial y las etiquetas están disponibles en la tarjeta del trato.',
       ),
     },
     {
-      q: t('Чем WABA отличается от приложения WhatsApp Business?', 'How is WABA different from the WhatsApp Business app?'),
+      q: t('Чем WABA отличается от приложения WhatsApp Business?', 'How is WABA different from the WhatsApp Business app?', '¿En qué se diferencia WABA de la app de WhatsApp Business?'),
       a: t(
         'Приложение — для ручного общения с одного телефона. WABA (Cloud API) — для автоматизации: массовые рассылки, чат-боты, несколько операторов и CRM. Оба варианта можно использовать на одном номере (Coexistence).',
         'The app is for manual chats from one phone. WABA (Cloud API) is for automation: bulk messaging, chatbots, multiple agents and CRM. Both can run on the same number (Coexistence).',
+        'La app es para chats manuales desde un teléfono. WABA (Cloud API) es para automatización: envíos masivos, chatbots, varios agentes y CRM. Ambas pueden funcionar en el mismo número (Coexistence).',
       ),
     },
   ];
@@ -57,10 +63,10 @@ export default function V2FAQ() {
       <div className="max-w-3xl mx-auto px-6 lg:px-8">
         <div className="text-center mb-12 md:mb-16">
           <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-white mb-4">
-            {t('Частые вопросы', 'Frequently asked questions')}
+            {t('Частые вопросы', 'Frequently asked questions', 'Preguntas frecuentes')}
           </h2>
           <p className="text-lg text-slate-400 font-light">
-            {t('Коротко о WhatsApp Business API и подключении.', 'Quick answers about WhatsApp Business API and onboarding.')}
+            {t('Коротко о WhatsApp Business API и подключении.', 'Quick answers about WhatsApp Business API and onboarding.', 'Respuestas rápidas sobre la API de WhatsApp Business y la conexión.')}
           </p>
         </div>
 

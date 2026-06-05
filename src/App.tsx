@@ -73,6 +73,12 @@ export default function App() {
         <Route path="/en/terms" element={<LegalPage kind="terms" />} />
         <Route path="/en/integrations/:slug" element={<IntegrationPage />} />
         <Route path="/en/compare/:slug" element={<ComparisonPage />} />
+        <Route path="/es" element={<HomePage />} />
+        <Route path="/es/partnership" element={<PartnershipPage />} />
+        <Route path="/es/privacy" element={<LegalPage kind="privacy" />} />
+        <Route path="/es/terms" element={<LegalPage kind="terms" />} />
+        <Route path="/es/integrations/:slug" element={<IntegrationPage />} />
+        <Route path="/es/compare/:slug" element={<ComparisonPage />} />
       </Routes>
       <V2Footer />
       <V2Navbar />

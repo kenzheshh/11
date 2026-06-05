@@ -16,23 +16,23 @@ export default function V2Hero() {
         <div className="max-w-4xl flex flex-col items-center">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-md mb-4 md:mb-8">
             <span className="flex h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>
-            <span className="text-sm font-medium text-slate-300">{t('Официальный партнер Meta', 'Official Meta Partner')}</span>
+            <span className="text-sm font-medium text-slate-300">{t('Официальный партнер Meta', 'Official Meta Partner', 'Partner oficial de Meta')}</span>
           </div>
 
           <h1 className="text-4xl md:text-7xl lg:text-[80px] font-bold tracking-tighter mb-4 md:mb-6 leading-[1.1]">
-            {t('Массовые рассылки WhatsApp', 'Bulk WhatsApp messaging')}<br />
+            {t('Массовые рассылки WhatsApp', 'Bulk WhatsApp messaging', 'Envíos masivos por WhatsApp')}<br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-emerald-300 to-cyan-400">
-              {t('без блокировки', 'without blocks')}
+              {t('без блокировки', 'without blocks', 'sin bloqueos')}
             </span>
           </h1>
 
           <p className="text-base md:text-2xl text-slate-400 mb-8 md:mb-12 leading-relaxed max-w-2xl font-light">
-            {t('Подключитесь и перестаньте терять клиентов из-за блокировок.', 'Connect and stop losing clients due to blocks.')}
+            {t('Подключитесь и перестаньте терять клиентов из-за блокировок.', 'Connect and stop losing clients due to blocks.', 'Conéctate y deja de perder clientes por bloqueos.')}
           </p>
 
           <div>
             <button onClick={() => window.dispatchEvent(new CustomEvent('open-amo-modal'))} className="px-8 py-4 bg-emerald-500 hover:bg-emerald-400 text-white rounded-full font-bold text-lg transition-all shadow-[0_0_30px_rgba(16,185,129,0.3)] hover:shadow-[0_0_50px_rgba(16,185,129,0.5)] hover:-translate-y-1">
-              {t('Начать бесплатно', 'Start for free')}
+              {t('Начать бесплатно', 'Start for free', 'Empieza gratis')}
             </button>
           </div>
         </div>

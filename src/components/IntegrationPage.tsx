@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { MessageSquareCode, CheckCircle2, ArrowRight, ChevronDown } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 
-type L = { ru: string; en: string };
+type L = { ru: string; en: string; es?: string };
 
 interface Integration {
   slug: string;
@@ -247,7 +247,7 @@ export default function IntegrationPage() {
     );
   }
 
-  const pick = (l: L) => (lang === 'ru' ? l.ru : l.en);
+  const pick = (l: L) => (lang === 'ru' ? l.ru : lang === 'es' ? l.es ?? l.en : l.en);
   const openModal = () => window.dispatchEvent(new CustomEvent('open-amo-modal'));
 
   return (

@@ -43,7 +43,13 @@ if (preloadFonts) {
 const LANGS = [
   { code: 'ru', prefix: '', dir: '', htmlLang: 'ru', ogLocale: 'ru_RU' },
   { code: 'en', prefix: '/en', dir: 'en', htmlLang: 'en', ogLocale: 'en_US' },
+  { code: 'es', prefix: '/es', dir: 'es', htmlLang: 'es', ogLocale: 'es_ES' },
 ];
+
+// Resolve a per-language meta value, falling back to English when a language
+// (e.g. es) has no explicit string yet. Returns undefined → applyMeta keeps the
+// template default (used by the RU home, which has title/description = null).
+const pickMeta = (obj, code) => (obj[code] !== undefined ? obj[code] : obj.en);
 
 // Absolute, trailing-slashed canonical URL for a route in a given language.
 const absUrl = (prefix, base) => `${SITE}${prefix}${base === '/' ? '/' : base + '/'}`;
@@ -64,6 +70,24 @@ const EN_FAQ_LD =
       { '@type': 'Question', name: 'How long does connection take?', acceptedAnswer: { '@type': 'Answer', text: 'Turnkey — from 5 minutes to a couple of hours. We help with business verification, templates and CRM integration.' } },
       { '@type': 'Question', name: 'Is there CRM integration?', acceptedAnswer: { '@type': 'Answer', text: 'Yes: amoCRM, Bitrix24 and others via API or widget. Conversations, chat history and tags are available right in the deal card.' } },
       { '@type': 'Question', name: 'How is WABA different from the WhatsApp Business app?', acceptedAnswer: { '@type': 'Answer', text: 'The app is for manual chats from one phone. WABA (Cloud API) is for automation: bulk messaging, chatbots, multiple agents and CRM. Both can run on the same number (Coexistence).' } },
+    ],
+  }) +
+  '</script>';
+
+// Spanish FAQ JSON-LD — mirrors the visible Spanish V2FAQ. Machine-translated;
+// have a native speaker review before relying on it.
+const ES_FAQ_LD =
+  '<script type="application/ld+json">' +
+  JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      { '@type': 'Question', name: '¿Qué es la API de WhatsApp Business (WABA)?', acceptedAnswer: { '@type': 'Answer', text: 'La interfaz oficial de Meta para envíos masivos, chatbots e integración de WhatsApp con tu CRM. A diferencia de la app normal, WABA no se bloquea por difusiones y admite varios agentes a la vez.' } },
+      { '@type': 'Question', name: '¿Pueden bloquear el número al hacer difusiones?', acceptedAnswer: { '@type': 'Answer', text: 'No. WABA es el canal oficial de Meta: las difusiones con plantillas aprobadas no provocan bloqueos, a diferencia de la app de WhatsApp y las soluciones no oficiales.' } },
+      { '@type': 'Question', name: '¿Cuánto cuestan la conexión y los mensajes?', acceptedAnswer: { '@type': 'Answer', text: 'La plataforma se cobra según el plan elegido. Además, Meta cobra por cada conversación de 24 horas iniciada; los mensajes entrantes de los clientes son gratis.' } },
+      { '@type': 'Question', name: '¿Cuánto tarda la conexión?', acceptedAnswer: { '@type': 'Answer', text: 'Llave en mano: de 5 minutos a un par de horas. Ayudamos con la verificación del negocio, las plantillas y la integración con tu CRM.' } },
+      { '@type': 'Question', name: '¿Hay integración con CRM?', acceptedAnswer: { '@type': 'Answer', text: 'Sí: amoCRM, Bitrix24 y otros mediante API o widget. Las conversaciones, el historial y las etiquetas quedan disponibles en la tarjeta del trato.' } },
+      { '@type': 'Question', name: '¿En qué se diferencia WABA de la app de WhatsApp Business?', acceptedAnswer: { '@type': 'Answer', text: 'La app es para chats manuales desde un teléfono. WABA (Cloud API) es para automatización: envíos masivos, chatbots, varios agentes y CRM. Ambas pueden funcionar en el mismo número (Coexistence).' } },
     ],
   }) +
   '</script>';
@@ -102,10 +126,12 @@ const routes = [
     titles: {
       ru: null, // keep the template's hand-tuned RU title / OG copy
       en: 'WABase — WhatsApp Business API for business in Kazakhstan',
+      es: 'WhatsApp Business API para empresas — WaBase',
     },
     descriptions: {
       ru: null,
       en: 'Connect WhatsApp Business API (WABA) for broadcasts, chatbots and sales automation. CRM integration in 5 minutes. No bans. Official provider.',
+      es: 'Conecta la API de WhatsApp Business (WABA) para envíos masivos, chatbots y automatización de ventas. Integración con CRM en 5 minutos. Sin bloqueos. Proveedor oficial.',
     },
   },
   {
@@ -370,8 +396,8 @@ for (const route of routes) {
       .replace(/(<meta property="og:locale" content=")[^"]*(">)/, `$1${L.ogLocale}$2`);
 
     html = applyMeta(html, {
-      title: route.titles[L.code],
-      description: route.descriptions[L.code],
+      title: pickMeta(route.titles, L.code),
+      description: pickMeta(route.descriptions, L.code),
       canonical: absUrl(L.prefix, route.base),
       robots: route.robots,
     });
@@ -385,13 +411,15 @@ for (const route of routes) {
       html = html.replace(/<!--faq-ld:start-->[\s\S]*?<!--faq-ld:end-->\s*/, '');
     } else if (L.code === 'en') {
       html = html.replace(/<!--faq-ld:start-->[\s\S]*?<!--faq-ld:end-->/, EN_FAQ_LD);
+    } else if (L.code === 'es') {
+      html = html.replace(/<!--faq-ld:start-->[\s\S]*?<!--faq-ld:end-->/, ES_FAQ_LD);
     } else {
       html = html.replace('<!--faq-ld:start-->', '').replace('<!--faq-ld:end-->', '');
     }
 
     // BreadcrumbList (localized) for routes that declare one.
     if (route.breadcrumb) {
-      const [home, leaf] = route.breadcrumb[L.code];
+      const [home, leaf] = route.breadcrumb[L.code] ?? route.breadcrumb.en;
       const ld = {
         '@context': 'https://schema.org',
         '@type': 'BreadcrumbList',
