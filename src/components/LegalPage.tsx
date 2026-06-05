@@ -28,7 +28,7 @@ const TERMS: Section[] = [
 ];
 
 export default function LegalPage({ kind }: { kind: 'privacy' | 'terms' }) {
-  const { t } = useLanguage();
+  const { t, localePath } = useLanguage();
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -42,7 +42,7 @@ export default function LegalPage({ kind }: { kind: 'privacy' | 'terms' }) {
   return (
     <div className="bg-[#050505] text-slate-300 min-h-screen pt-28 pb-24">
       <div className="max-w-3xl mx-auto px-6 lg:px-8">
-        <a href="/" className="inline-flex items-center gap-2 text-sm text-emerald-400 hover:text-emerald-300 transition-colors mb-8">
+        <a href={localePath('/')} className="inline-flex items-center gap-2 text-sm text-emerald-400 hover:text-emerald-300 transition-colors mb-8">
           ← {t('На главную', 'Home')}
         </a>
         <h1 className="text-4xl md:text-5xl font-bold text-white tracking-tight mb-4">{title}</h1>

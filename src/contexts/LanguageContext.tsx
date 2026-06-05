@@ -1,82 +1,76 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useEffect, useRef } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 type Language = 'ru' | 'en';
 
 interface LanguageContextType {
   lang: Language;
   setLang: (lang: Language) => void;
+  /** Prefixes an internal path with the active language (/en…) so links stay in-language. */
+  localePath: (path: string) => string;
   t: (ru: string, en: string) => string;
 }
 
 const LanguageContext = createContext<LanguageContextType>({
   lang: 'ru',
   setLang: () => {},
-  t: (ru: string, en: string) => ru,
+  localePath: (p) => p,
+  t: (ru: string) => ru,
 });
 
-// The site is prerendered (SSG) in its canonical Russian version so the static
-// HTML matches <html lang="ru"> and the Russian SEO meta. The client must hydrate
-// with this same value to avoid a mismatch, then switch after hydration.
-const CANONICAL_LANG: Language = 'ru';
+const isEnPath = (pathname: string) => pathname === '/en' || pathname.startsWith('/en/');
 
-// Real client-side language detection. Only safe to call in the browser, so it is
-// run from an effect (post-hydration), never during render on the server.
-const detectClientLang = (): Language => {
-  try {
-    const savedLang = localStorage.getItem('app_lang');
-    if (savedLang === 'ru' || savedLang === 'en') {
-      return savedLang;
-    }
-  } catch (e) {
-    // Ignore localStorage access errors
-  }
+// Map a path between languages by adding/removing the /en prefix.
+const toLangPath = (target: Language, unprefixed: string) =>
+  target === 'en' ? (unprefixed === '/' ? '/en' : '/en' + unprefixed) : unprefixed;
 
-  try {
-    const navLangs = navigator.languages || [navigator.language];
-    for (const navLang of navLangs) {
-      const lowerLang = navLang.toLowerCase();
-      if (['ru', 'be', 'uk', 'kk', 'ky', 'uz', 'tg', 'tk', 'hy', 'az', 'mo'].some(l => lowerLang.startsWith(l))) {
-        return 'ru';
-      }
-      if (lowerLang.startsWith('en')) {
-        return 'en';
-      }
-    }
-  } catch (e) {
-    // Fallback if navigator is undefined
-  }
+/**
+ * The active language is derived from the URL prefix (/en) — the single source of
+ * truth. Each language has its own crawlable URL, so the server prerender and the
+ * client hydrate to the same value from the same path: no hydration mismatch and
+ * no post-hydration language flip. Switching language is a navigation, which keeps
+ * the URL and the rendered content in sync (required for correct hreflang/SEO).
+ */
+export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const location = useLocation();
+  const navigate = useNavigate();
 
-  return 'en';
-};
+  const lang: Language = isEnPath(location.pathname) ? 'en' : 'ru';
+  const unprefixed = location.pathname.replace(/^\/en(?=\/|$)/, '') || '/';
 
-export const LanguageProvider: React.FC<{
-  children: React.ReactNode;
-  /** Forces the initial language during prerender (SSR). Omit on the client. */
-  initialLang?: Language;
-}> = ({ children, initialLang }) => {
-  // Deterministic seed: explicit prerender language, otherwise the canonical RU
-  // so the first client render matches the prerendered HTML.
-  const [lang, setLang] = useState<Language>(() => initialLang ?? CANONICAL_LANG);
-
-  // After hydration, detect the visitor's real language and switch if it differs.
-  // Skipped when an explicit initialLang is provided (prerender path).
-  useEffect(() => {
-    if (initialLang) return;
-    const detected = detectClientLang();
-    setLang(prev => (prev === detected ? prev : detected));
-  }, [initialLang]);
-
-  const handleSetLang = (newLang: Language) => {
-    setLang(newLang);
+  const setLang = (newLang: Language) => {
     try {
       localStorage.setItem('app_lang', newLang);
-    } catch(e) {}
+    } catch {
+      // ignore storage errors (private mode etc.)
+    }
+    if (newLang === lang) return;
+    navigate(toLangPath(newLang, unprefixed) + location.hash);
   };
 
-  const t = (ru: string, en: string) => lang === 'ru' ? ru : en;
+  const localePath = (path: string) => toLangPath(lang, path);
+
+  // Returning visitors who previously chose English get sent to /en when they land
+  // on the bare root. Runs once, browser-only — bots have no localStorage, so they
+  // never redirect and each URL is crawled as requested (SEO-safe).
+  const redirected = useRef(false);
+  useEffect(() => {
+    if (redirected.current) return;
+    redirected.current = true;
+    if (location.pathname !== '/') return;
+    let saved: string | null = null;
+    try {
+      saved = localStorage.getItem('app_lang');
+    } catch {
+      // ignore
+    }
+    if (saved === 'en') navigate('/en' + location.hash, { replace: true });
+  }, [location.pathname, location.hash, navigate]);
+
+  const t = (ru: string, en: string) => (lang === 'ru' ? ru : en);
 
   return (
-    <LanguageContext.Provider value={{ lang, setLang: handleSetLang, t }}>
+    <LanguageContext.Provider value={{ lang, setLang, localePath, t }}>
       {children}
     </LanguageContext.Provider>
   );

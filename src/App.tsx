@@ -38,6 +38,7 @@ function HomePage() {
   );
 }
 
+
 export default function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   // Mount the modal lazily only after it has been requested at least once.
@@ -54,11 +55,18 @@ export default function App() {
 
   return (
     <div className="bg-[#050505] text-white min-h-screen font-sans selection:bg-emerald-500 selection:text-white">
+      {/* Each page is served at its Russian path and an /en-prefixed English twin.
+          LanguageContext reads the /en prefix to choose the language, so the same
+          component renders RU on `/partnership` and EN on `/en/partnership`. */}
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/partnership" element={<PartnershipPage />} />
         <Route path="/privacy" element={<LegalPage kind="privacy" />} />
         <Route path="/terms" element={<LegalPage kind="terms" />} />
+        <Route path="/en" element={<HomePage />} />
+        <Route path="/en/partnership" element={<PartnershipPage />} />
+        <Route path="/en/privacy" element={<LegalPage kind="privacy" />} />
+        <Route path="/en/terms" element={<LegalPage kind="terms" />} />
       </Routes>
       <V2Footer />
       <V2Navbar />

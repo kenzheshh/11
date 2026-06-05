@@ -7,7 +7,7 @@ import { useLanguage } from '../../contexts/LanguageContext';
 export default function V2Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const { t, lang, setLang } = useLanguage();
+  const { t, lang, setLang, localePath } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,10 +27,10 @@ export default function V2Navbar() {
           </div>
           
           <div className="hidden md:flex items-center space-x-8 bg-white/5 px-6 py-2 rounded-full border border-white/10 backdrop-blur-md">
-            <a href="/#features" className="text-sm font-medium text-slate-300 hover:text-emerald-400 transition-colors">{t('Возможности', 'Features')}</a>
-            <a href="/#cases" className="text-sm font-medium text-slate-300 hover:text-emerald-400 transition-colors">{t('Кейсы', 'Cases')}</a>
-            <a href="/#pricing" className="text-sm font-medium text-slate-300 hover:text-emerald-400 transition-colors">{t('Тарифы', 'Pricing')}</a>
-            <a href="/partnership" className="text-sm font-medium text-slate-300 hover:text-emerald-400 transition-colors">{t('Партнерская программа', 'Partners')}</a>
+            <a href={localePath('/#features')} className="text-sm font-medium text-slate-300 hover:text-emerald-400 transition-colors">{t('Возможности', 'Features')}</a>
+            <a href={localePath('/#cases')} className="text-sm font-medium text-slate-300 hover:text-emerald-400 transition-colors">{t('Кейсы', 'Cases')}</a>
+            <a href={localePath('/#pricing')} className="text-sm font-medium text-slate-300 hover:text-emerald-400 transition-colors">{t('Тарифы', 'Pricing')}</a>
+            <a href={localePath('/partnership')} className="text-sm font-medium text-slate-300 hover:text-emerald-400 transition-colors">{t('Партнерская программа', 'Partners')}</a>
           </div>
 
           <div className="hidden md:flex items-center space-x-6">
@@ -75,10 +75,10 @@ export default function V2Navbar() {
             className="md:hidden bg-[#050505]/95 backdrop-blur-xl border-b border-white/5 overflow-hidden"
           >
             <div className="px-6 pt-4 pb-8 space-y-4">
-              <a href="/#features" className="block text-lg font-medium text-slate-300 hover:text-emerald-400 transition-colors">{t('Возможности', 'Features')}</a>
-              <a href="/#cases" className="block text-lg font-medium text-slate-300 hover:text-emerald-400 transition-colors">{t('Кейсы', 'Cases')}</a>
-              <a href="/#pricing" className="block text-lg font-medium text-slate-300 hover:text-emerald-400 transition-colors">{t('Тарифы', 'Pricing')}</a>
-              <a href="/partnership" className="block text-lg font-medium text-slate-300 hover:text-emerald-400 transition-colors">{t('Партнерская программа', 'Partners')}</a>
+              <a href={localePath('/#features')} className="block text-lg font-medium text-slate-300 hover:text-emerald-400 transition-colors">{t('Возможности', 'Features')}</a>
+              <a href={localePath('/#cases')} className="block text-lg font-medium text-slate-300 hover:text-emerald-400 transition-colors">{t('Кейсы', 'Cases')}</a>
+              <a href={localePath('/#pricing')} className="block text-lg font-medium text-slate-300 hover:text-emerald-400 transition-colors">{t('Тарифы', 'Pricing')}</a>
+              <a href={localePath('/partnership')} className="block text-lg font-medium text-slate-300 hover:text-emerald-400 transition-colors">{t('Партнерская программа', 'Partners')}</a>
               <div className="pt-6 flex flex-col gap-4 border-t border-white/10">
                 <button className="w-full text-center py-3 border border-white/10 rounded-xl text-base font-medium text-white hover:bg-white/5 transition-colors">{t('Войти', 'Log in')}</button>
                 <button onClick={() => window.dispatchEvent(new CustomEvent('open-amo-modal'))} className="w-full text-center bg-emerald-500 text-white py-3 rounded-xl text-base font-bold shadow-[0_0_20px_rgba(16,185,129,0.3)]">{t('Попробовать бесплатно', 'Try for free')}</button>

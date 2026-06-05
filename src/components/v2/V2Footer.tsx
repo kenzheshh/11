@@ -3,7 +3,7 @@ import Logo from '../Logo';
 import { useLanguage } from '../../contexts/LanguageContext';
 
 export default function V2Footer() {
-  const { t } = useLanguage();
+  const { t, localePath } = useLanguage();
   return (
     <footer className="bg-[#050505] text-slate-400 py-16 border-t border-white/5 relative overflow-hidden">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-[200px] bg-emerald-900/5 blur-[50px] md:blur-[100px] rounded-full pointer-events-none" />
@@ -23,9 +23,9 @@ export default function V2Footer() {
           <div>
             <h3 className="text-white font-semibold mb-6">{t('Продукт', 'Product')}</h3>
             <ul className="space-y-4 text-sm font-light">
-              <li><a href="/#features" className="hover:text-emerald-400 transition-colors">{t('Возможности', 'Features')}</a></li>
-              <li><a href="/#cases" className="hover:text-emerald-400 transition-colors">{t('Кейсы', 'Cases')}</a></li>
-              <li><a href="/#pricing" className="hover:text-emerald-400 transition-colors">{t('Тарифы', 'Pricing')}</a></li>
+              <li><a href={localePath('/#features')} className="hover:text-emerald-400 transition-colors">{t('Возможности', 'Features')}</a></li>
+              <li><a href={localePath('/#cases')} className="hover:text-emerald-400 transition-colors">{t('Кейсы', 'Cases')}</a></li>
+              <li><a href={localePath('/#pricing')} className="hover:text-emerald-400 transition-colors">{t('Тарифы', 'Pricing')}</a></li>
             </ul>
           </div>
 
@@ -33,7 +33,7 @@ export default function V2Footer() {
             <h3 className="text-white font-semibold mb-6">{t('Ресурсы', 'Resources')}</h3>
             <ul className="space-y-4 text-sm font-light">
               <li><a href="/blog" className="hover:text-emerald-400 transition-colors">{t('Блог', 'Blog')}</a></li>
-              <li><a href="/partnership/" className="hover:text-emerald-400 transition-colors">{t('Партнёрская программа', 'Partnership program')}</a></li>
+              <li><a href={localePath('/partnership/')} className="hover:text-emerald-400 transition-colors">{t('Партнёрская программа', 'Partnership program')}</a></li>
             </ul>
           </div>
 
@@ -49,8 +49,8 @@ export default function V2Footer() {
         <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-sm font-light">
           <p>© {new Date().getFullYear()} WaBase. {t('Все права защищены.', 'All rights reserved.')}</p>
           <div className="flex gap-6">
-            <a href="/privacy/" className="hover:text-emerald-400 transition-colors">{t('Политика конфиденциальности', 'Privacy policy')}</a>
-            <a href="/terms/" className="hover:text-emerald-400 transition-colors">{t('Условия использования', 'Terms of use')}</a>
+            <a href={localePath('/privacy/')} className="hover:text-emerald-400 transition-colors">{t('Политика конфиденциальности', 'Privacy policy')}</a>
+            <a href={localePath('/terms/')} className="hover:text-emerald-400 transition-colors">{t('Условия использования', 'Terms of use')}</a>
           </div>
         </div>
       </div>

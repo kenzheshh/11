@@ -1,5 +1,5 @@
 // Build-time prerender (SSG).
-// Renders each route to static HTML and writes per-route files into dist/.
+// Renders each route × language to static HTML and writes per-route files into dist/.
 // Run after `vite build` (client) and `vite build --ssr` (server). See package.json.
 import fs from 'node:fs';
 import path from 'node:path';
@@ -10,6 +10,7 @@ const toAbsolute = (p) => path.resolve(__dirname, p);
 
 const DIST = toAbsolute('dist');
 const SSR_DIR = toAbsolute('dist-ssr');
+const SITE = 'https://wabase.ai';
 
 // Locate the compiled server entry (filename may carry a hash depending on config).
 const ssrEntryName =
@@ -37,11 +38,40 @@ if (preloadFonts) {
   template = template.replace('</head>', `    ${preloadFonts}\n  </head>`);
 }
 
-// Per-route <head> overrides so each route gets its own title / description /
-// canonical / OG instead of inheriting the home page's (otherwise /partnership
-// canonicalises to "/" and reads as a duplicate of the home page).
+// Languages we prerender. Each gets its own crawlable URL: RU at the root, EN under
+// /en/. `prefix` is the URL/router prefix, `dir` the output subdirectory.
+const LANGS = [
+  { code: 'ru', prefix: '', dir: '', htmlLang: 'ru', ogLocale: 'ru_RU' },
+  { code: 'en', prefix: '/en', dir: 'en', htmlLang: 'en', ogLocale: 'en_US' },
+];
+
+// Absolute, trailing-slashed canonical URL for a route in a given language.
+const absUrl = (prefix, base) => `${SITE}${prefix}${base === '/' ? '/' : base + '/'}`;
+// Path the router matches for a route in a given language.
+const routerPath = (prefix, base) => prefix + (base === '/' ? '' : base) || '/';
+
+// English FAQ JSON-LD — mirrors the visible English V2FAQ so the structured data
+// matches what an English visitor sees. (The Russian block lives in index.html.)
+const EN_FAQ_LD =
+  '<script type="application/ld+json">' +
+  JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      { '@type': 'Question', name: 'What is WhatsApp Business API (WABA)?', acceptedAnswer: { '@type': 'Answer', text: 'Meta’s official interface for bulk messaging, chatbots and CRM integration. Unlike the regular app, WABA isn’t blocked for broadcasts and supports multiple agents at once.' } },
+      { '@type': 'Question', name: 'Can the number get blocked when sending broadcasts?', acceptedAnswer: { '@type': 'Answer', text: 'No. WABA is Meta’s official channel: broadcasts using approved templates don’t cause blocks, unlike the regular WhatsApp app and grey solutions.' } },
+      { '@type': 'Question', name: 'How much do onboarding and messages cost?', acceptedAnswer: { '@type': 'Answer', text: 'The platform is billed by your chosen plan. Additionally, Meta charges per initiated 24-hour conversation; incoming messages from customers are free.' } },
+      { '@type': 'Question', name: 'How long does connection take?', acceptedAnswer: { '@type': 'Answer', text: 'Turnkey — from 5 minutes to a couple of hours. We help with business verification, templates and CRM integration.' } },
+      { '@type': 'Question', name: 'Is there CRM integration?', acceptedAnswer: { '@type': 'Answer', text: 'Yes: amoCRM, Bitrix24 and others via API or widget. Conversations, chat history and tags are available right in the deal card.' } },
+      { '@type': 'Question', name: 'How is WABA different from the WhatsApp Business app?', acceptedAnswer: { '@type': 'Answer', text: 'The app is for manual chats from one phone. WABA (Cloud API) is for automation: bulk messaging, chatbots, multiple agents and CRM. Both can run on the same number (Coexistence).' } },
+    ],
+  }) +
+  '</script>';
+
+// Per-route <head> overrides so each route/language gets its own title /
+// description / canonical instead of inheriting the home page's. `title`/
+// `description` may be null to keep the template's (hand-tuned RU home) values.
 function applyMeta(html, meta) {
-  if (!meta) return html;
   if (meta.title) {
     html = html
       .replace(/<title>[\s\S]*?<\/title>/, `<title>${meta.title}</title>`)
@@ -54,11 +84,10 @@ function applyMeta(html, meta) {
       .replace(/(<meta property="og:description" content=")[^"]*(">)/, `$1${meta.description}$2`)
       .replace(/(<meta name="twitter:description" content=")[^"]*(">)/, `$1${meta.description}$2`);
   }
-  if (meta.canonical) {
-    html = html
-      .replace(/(<link rel="canonical" href=")[^"]*(">)/, `$1${meta.canonical}$2`)
-      .replace(/(<meta property="og:url" content=")[^"]*(">)/, `$1${meta.canonical}$2`);
-  }
+  // Self-canonical + matching og:url for every page.
+  html = html
+    .replace(/(<link rel="canonical" href=")[^"]*(">)/, `$1${meta.canonical}$2`)
+    .replace(/(<meta property="og:url" content=")[^"]*(">)/, `$1${meta.canonical}$2`);
   if (meta.robots) {
     html = html.replace(/(<meta name="robots" content=")[^"]*(">)/, `$1${meta.robots}$2`);
   }
@@ -66,72 +95,128 @@ function applyMeta(html, meta) {
 }
 
 const routes = [
-  { path: '/', out: 'index.html', meta: null }, // home keeps the template defaults
   {
-    path: '/partnership',
+    base: '/',
+    out: 'index.html',
+    // home keeps the visible FAQ → localized FAQ JSON-LD per language
+    titles: {
+      ru: null, // keep the template's hand-tuned RU title / OG copy
+      en: 'WABase — WhatsApp Business API for business in Kazakhstan',
+    },
+    descriptions: {
+      ru: null,
+      en: 'Connect WhatsApp Business API (WABA) for broadcasts, chatbots and sales automation. CRM integration in 5 minutes. No bans. Official provider.',
+    },
+  },
+  {
+    base: '/partnership',
     out: 'partnership/index.html',
-    meta: {
-      title: 'Партнёрская программа WABase — WhatsApp Business API для SaaS и CRM',
-      description:
-        'Технологическое партнёрство WABase: готовый API и интерфейсы WhatsApp Business API для вашего SaaS, персональный менеджер, поддержка 24/7, закрывающие документы для РК и до 50% вознаграждения.',
-      canonical: 'https://wabase.ai/partnership/',
-      dropFaqLd: true, // no visible FAQ on this route
-      extraJsonLd:
-        '<script type="application/ld+json">' +
-        JSON.stringify({
-          '@context': 'https://schema.org',
-          '@type': 'BreadcrumbList',
-          itemListElement: [
-            {'@type': 'ListItem', position: 1, name: 'Главная', item: 'https://wabase.ai/'},
-            {'@type': 'ListItem', position: 2, name: 'Партнёрская программа', item: 'https://wabase.ai/partnership/'},
-          ],
-        }) +
-        '</script>',
+    dropFaqLd: true, // no visible FAQ on this route
+    titles: {
+      ru: 'Партнёрская программа WABase — WhatsApp Business API для SaaS и CRM',
+      en: 'WABase Partner Program — WhatsApp Business API for SaaS and CRM',
+    },
+    descriptions: {
+      ru: 'Технологическое партнёрство WABase: готовый API и интерфейсы WhatsApp Business API для вашего SaaS, персональный менеджер, поддержка 24/7, закрывающие документы для РК и до 50% вознаграждения.',
+      en: 'WABase technology partnership: ready-made WhatsApp Business API and interfaces for your SaaS, a dedicated manager, 24/7 support, closing documents and up to 50% revenue share.',
+    },
+    breadcrumb: {
+      ru: ['Главная', 'Партнёрская программа'],
+      en: ['Home', 'Partner Program'],
     },
   },
   {
-    path: '/privacy',
+    base: '/privacy',
     out: 'privacy/index.html',
-    meta: {
-      title: 'Политика конфиденциальности — WABase',
-      description: 'Как WABase обрабатывает и защищает персональные данные пользователей сайта wabase.ai и сервиса WhatsApp Business API.',
-      canonical: 'https://wabase.ai/privacy/',
-      robots: 'noindex, follow', // draft until reviewed by a lawyer
-      dropFaqLd: true,
+    robots: 'noindex, follow', // draft until reviewed by a lawyer
+    dropFaqLd: true,
+    titles: {
+      ru: 'Политика конфиденциальности — WABase',
+      en: 'Privacy Policy — WABase',
+    },
+    descriptions: {
+      ru: 'Как WABase обрабатывает и защищает персональные данные пользователей сайта wabase.ai и сервиса WhatsApp Business API.',
+      en: 'How WABase processes and protects personal data of wabase.ai users and the WhatsApp Business API service.',
     },
   },
   {
-    path: '/terms',
+    base: '/terms',
     out: 'terms/index.html',
-    meta: {
-      title: 'Условия использования — WABase',
-      description: 'Условия использования сайта wabase.ai и сервиса подключения WhatsApp Business API WABase.',
-      canonical: 'https://wabase.ai/terms/',
-      robots: 'noindex, follow', // draft until reviewed by a lawyer
-      dropFaqLd: true,
+    robots: 'noindex, follow', // draft until reviewed by a lawyer
+    dropFaqLd: true,
+    titles: {
+      ru: 'Условия использования — WABase',
+      en: 'Terms of Use — WABase',
+    },
+    descriptions: {
+      ru: 'Условия использования сайта wabase.ai и сервиса подключения WhatsApp Business API WABase.',
+      en: 'Terms of use for the wabase.ai website and the WABase WhatsApp Business API service.',
     },
   },
 ];
 
+// hreflang block (same for every language version of a route): lists each language
+// version + x-default → the Russian default. Lets Google serve the right language.
+function hreflangFor(route) {
+  return [
+    ...LANGS.map(
+      (l) => `<link rel="alternate" hreflang="${l.code}" href="${absUrl(l.prefix, route.base)}">`,
+    ),
+    `<link rel="alternate" hreflang="x-default" href="${absUrl('', route.base)}">`,
+  ].join('\n    ');
+}
+
 for (const route of routes) {
-  const appHtml = render(route.path);
-  let html = template.replace('<!--app-html-->', appHtml);
-  html = applyMeta(html, route.meta);
+  for (const L of LANGS) {
+    const appHtml = render(routerPath(L.prefix, route.base));
+    let html = template.replace('<!--app-html-->', appHtml);
 
-  // FAQ JSON-LD is wrapped in <!--faq-ld:start/end--> in the template; keep it
-  // only where a visible FAQ exists (home), strip it on other routes.
-  if (route.meta?.dropFaqLd) {
-    html = html.replace(/<!--faq-ld:start-->[\s\S]*?<!--faq-ld:end-->\s*/, '');
-  } else {
-    html = html.replace('<!--faq-ld:start-->', '').replace('<!--faq-ld:end-->', '');
+    // Per-language <html lang>, content-language and og:locale.
+    html = html
+      .replace('<html lang="ru">', `<html lang="${L.htmlLang}">`)
+      .replace(/(<meta http-equiv="content-language" content=")[^"]*(">)/, `$1${L.htmlLang}$2`)
+      .replace(/(<meta property="og:locale" content=")[^"]*(">)/, `$1${L.ogLocale}$2`);
+
+    html = applyMeta(html, {
+      title: route.titles[L.code],
+      description: route.descriptions[L.code],
+      canonical: absUrl(L.prefix, route.base),
+      robots: route.robots,
+    });
+
+    // hreflang alternates for this route.
+    html = html.replace('</head>', `    ${hreflangFor(route)}\n  </head>`);
+
+    // FAQ JSON-LD is wrapped in <!--faq-ld:start/end--> in the template (RU). Keep it
+    // only where a visible FAQ exists (home); swap in the English block on /en.
+    if (route.dropFaqLd) {
+      html = html.replace(/<!--faq-ld:start-->[\s\S]*?<!--faq-ld:end-->\s*/, '');
+    } else if (L.code === 'en') {
+      html = html.replace(/<!--faq-ld:start-->[\s\S]*?<!--faq-ld:end-->/, EN_FAQ_LD);
+    } else {
+      html = html.replace('<!--faq-ld:start-->', '').replace('<!--faq-ld:end-->', '');
+    }
+
+    // BreadcrumbList (localized) for routes that declare one.
+    if (route.breadcrumb) {
+      const [home, leaf] = route.breadcrumb[L.code];
+      const ld = {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: home, item: absUrl(L.prefix, '/') },
+          { '@type': 'ListItem', position: 2, name: leaf, item: absUrl(L.prefix, route.base) },
+        ],
+      };
+      html = html.replace(
+        '</head>',
+        `  <script type="application/ld+json">${JSON.stringify(ld)}</script>\n  </head>`,
+      );
+    }
+
+    const outFile = path.join(DIST, L.dir, route.out);
+    fs.mkdirSync(path.dirname(outFile), { recursive: true });
+    fs.writeFileSync(outFile, html);
+    console.log('pre-rendered:', path.join(L.dir, route.out));
   }
-
-  if (route.meta?.extraJsonLd) {
-    html = html.replace('</head>', `  ${route.meta.extraJsonLd}\n  </head>`);
-  }
-
-  const outFile = path.join(DIST, route.out);
-  fs.mkdirSync(path.dirname(outFile), { recursive: true });
-  fs.writeFileSync(outFile, html);
-  console.log('pre-rendered:', route.out);
 }
