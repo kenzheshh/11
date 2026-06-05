@@ -231,7 +231,7 @@ export default function V2Pricing() {
               <ul className="space-y-4 mb-10 flex-1">
                 {plan.features.map((feat, j) => (
                   <li key={j} className="flex items-start gap-3 text-slate-300 font-light">
-                    <CheckCircle2 className={`w-5 h-5 shrink-0 ${plan.popular ? 'text-emerald-400' : 'text-slate-400'}`} />
+                    <CheckCircle2 className={`w-5 h-5 shrink-0 ${plan.popular ? 'text-emerald-400' : 'text-slate-500'}`} />
                     {feat}
                   </li>
                 ))}
@@ -264,7 +264,7 @@ export default function V2Pricing() {
                 <label className="block text-sm font-medium text-slate-400">{t('Выберите страну получателя', 'Select recipient country')}</label>
                 <div className="flex items-center gap-2">
                   {pricingData?.timestamp && (
-                    <span className="text-xs text-slate-400">
+                    <span className="text-xs text-slate-500">
                       {t('Обновлено:', 'Updated:')} {formatTime(pricingData.timestamp)}
                     </span>
                   )}
@@ -279,11 +279,10 @@ export default function V2Pricing() {
                 </div>
               </div>
               <div className="relative">
-                <select
+                <select 
                   value={selectedCountry}
                   onChange={handleCountryChange}
                   disabled={loading}
-                  aria-label={t('Выберите страну получателя', 'Select recipient country')}
                   className="w-full appearance-none bg-[#0a0a0a] border border-white/10 text-white py-3.5 px-4 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500/50 cursor-pointer disabled:opacity-50"
                 >
                   {sortedCountries.map(country => (
@@ -303,9 +302,9 @@ export default function V2Pricing() {
                 {pricingData ? formatPrice(pricingData.prices.marketing, pricingData.symbol) : "..."}
               </div>
               {pricingData && (
-                <div className="text-xs text-slate-400 mb-3">≈ ${pricingData.prices.usd_marketing} USD</div>
+                <div className="text-xs text-slate-500 mb-3">≈ ${pricingData.prices.usd_marketing} USD</div>
               )}
-              <div className="text-xs text-slate-400">{t('Рекламные рассылки, акции, спецпредложения', 'Promotional mailings, promotions, special offers')}</div>
+              <div className="text-xs text-slate-500">{t('Рекламные рассылки, акции, спецпредложения', 'Promotional mailings, promotions, special offers')}</div>
             </div>
             <div className="bg-black/40 border border-white/5 rounded-2xl p-6 relative overflow-hidden group hover:border-blue-500/30 transition-colors">
               <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -314,9 +313,9 @@ export default function V2Pricing() {
                 {pricingData ? formatPrice(pricingData.prices.utility, pricingData.symbol) : "..."}
               </div>
               {pricingData && (
-                <div className="text-xs text-slate-400 mb-3">≈ ${pricingData.prices.usd_utility} USD</div>
+                <div className="text-xs text-slate-500 mb-3">≈ ${pricingData.prices.usd_utility} USD</div>
               )}
-              <div className="text-xs text-slate-400">{t('Уведомления о заказах, статусы доставки', 'Order notifications, delivery statuses')}</div>
+              <div className="text-xs text-slate-500">{t('Уведомления о заказах, статусы доставки', 'Order notifications, delivery statuses')}</div>
             </div>
             <div className="bg-black/40 border border-white/5 rounded-2xl p-6 relative overflow-hidden group hover:border-purple-500/30 transition-colors">
               <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -325,12 +324,12 @@ export default function V2Pricing() {
                 {pricingData ? formatPrice(pricingData.prices.authentication, pricingData.symbol) : "..."}
               </div>
               {pricingData && (
-                <div className="text-xs text-slate-400 mb-3">≈ ${pricingData.prices.usd_authentication} USD</div>
+                <div className="text-xs text-slate-500 mb-3">≈ ${pricingData.prices.usd_authentication} USD</div>
               )}
-              <div className="text-xs text-slate-400">{t('Коды подтверждения (OTP), пароли', 'Confirmation codes (OTP), passwords')}</div>
+              <div className="text-xs text-slate-500">{t('Коды подтверждения (OTP), пароли', 'Confirmation codes (OTP), passwords')}</div>
             </div>
           </div>
-          <p className="text-xs text-slate-400 mt-6 text-center">
+          <p className="text-xs text-slate-500 mt-6 text-center">
             {t('* Цены указаны в локальной валюте', '* Prices are shown in local currency')} ({pricingData?.currency || "USD"}) {t('за один диалог (24-часовое окно).', 'per conversation (24-hour window).')}
           </p>
         </div>

@@ -16,7 +16,7 @@ export default function V2Hero() {
       <div className="relative z-10 flex flex-col justify-center items-center text-center px-6 md:px-16 max-w-7xl mx-auto w-full py-20">
         <div className="max-w-4xl flex flex-col items-center">
           <motion.div 
-            initial={false}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
@@ -36,7 +36,7 @@ export default function V2Hero() {
           </h1>
           
           <motion.p 
-            initial={false}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
@@ -46,7 +46,7 @@ export default function V2Hero() {
           </motion.p>
           
           <motion.div
-            initial={false}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}

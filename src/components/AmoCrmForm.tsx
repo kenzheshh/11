@@ -46,7 +46,7 @@ export default function AmoCrmForm() {
         className="w-full h-[600px] border-none overflow-hidden"
         scrolling="no"
       />
-      <div className="mt-4 text-xs text-slate-400">
+      <div className="mt-4 text-xs text-slate-500">
         Если форма не загрузилась, пожалуйста, обновите страницу.
       </div>
     </div>

@@ -21,7 +21,7 @@ export default function V2Footer() {
           </div>
           
           <div>
-            <h3 className="text-white font-semibold mb-6">{t('Продукт', 'Product')}</h3>
+            <h4 className="text-white font-semibold mb-6">{t('Продукт', 'Product')}</h4>
             <ul className="space-y-4 text-sm font-light">
               <li><a href="#features" className="hover:text-emerald-400 transition-colors">{t('Возможности', 'Features')}</a></li>
               <li><a href="#cases" className="hover:text-emerald-400 transition-colors">{t('Кейсы', 'Cases')}</a></li>
@@ -30,7 +30,7 @@ export default function V2Footer() {
           </div>
 
           <div>
-            <h3 className="text-white font-semibold mb-6">{t('Ресурсы', 'Resources')}</h3>
+            <h4 className="text-white font-semibold mb-6">{t('Ресурсы', 'Resources')}</h4>
             <ul className="space-y-4 text-sm font-light">
               <li><a href="#" className="hover:text-emerald-400 transition-colors">{t('Блог', 'Blog')}</a></li>
               <li><a href="#" className="hover:text-emerald-400 transition-colors">{t('Документация', 'Documentation')}</a></li>
@@ -39,7 +39,7 @@ export default function V2Footer() {
           </div>
 
           <div>
-            <h3 className="text-white font-semibold mb-6">{t('Контакты', 'Contacts')}</h3>
+            <h4 className="text-white font-semibold mb-6">{t('Контакты', 'Contacts')}</h4>
             <ul className="space-y-4 text-sm font-light">
               <li><a href="#" className="hover:text-emerald-400 transition-colors">{t('Поддержка', 'Support')}</a></li>
               <li><a href="#" className="hover:text-emerald-400 transition-colors">Sales</a></li>

@@ -53,12 +53,7 @@ export default function V2Navbar() {
             >
               {lang === 'ru' ? 'EN' : 'RU'}
             </button>
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              aria-label={t('Меню', 'Menu')}
-              aria-expanded={isOpen}
-              className="text-slate-300 hover:text-white p-2"
-            >
+            <button onClick={() => setIsOpen(!isOpen)} className="text-slate-300 hover:text-white p-2">
               {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>

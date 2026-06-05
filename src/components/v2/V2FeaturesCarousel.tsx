@@ -75,7 +75,7 @@ export default function V2FeaturesCarousel() {
                     {feature.title}
                   </h3>
                 </div>
-                <p className={`text-sm leading-relaxed ${activeFeature === feature.id ? 'text-slate-300' : 'text-slate-400'}`}>
+                <p className={`text-sm leading-relaxed ${activeFeature === feature.id ? 'text-slate-300' : 'text-slate-500'}`}>
                   {feature.description}
                 </p>
               </button>
@@ -114,7 +114,7 @@ export default function V2FeaturesCarousel() {
                     </div>
                   </div>
                   {/* Chat Item 2 */}
-                  <div className="p-4 border-b border-white/5 flex items-start gap-3 cursor-pointer opacity-80 hover:opacity-100 transition-opacity">
+                  <div className="p-4 border-b border-white/5 flex items-start gap-3 cursor-pointer opacity-60 hover:opacity-100 transition-opacity">
                     <div className="relative">
                       <div className="w-10 h-10 rounded-full bg-slate-700 flex items-center justify-center text-white font-bold">
                         М
@@ -126,13 +126,13 @@ export default function V2FeaturesCarousel() {
                     <div className="flex-1 min-w-0">
                       <div className="flex justify-between items-baseline mb-1">
                         <h4 className="text-white font-medium text-sm truncate">{t('Мария (Telegram)', 'Maria (Telegram)')}</h4>
-                        <span className="text-xs text-slate-400">{t('Вчера', 'Yesterday')}</span>
+                        <span className="text-xs text-slate-500">{t('Вчера', 'Yesterday')}</span>
                       </div>
                       <p className="text-xs text-slate-400 truncate">{t('Подскажите статус заказа?', 'Could you tell me the order status?')}</p>
                     </div>
                   </div>
                   {/* Chat Item 3 */}
-                  <div className="p-4 border-b border-white/5 flex items-start gap-3 cursor-pointer opacity-80 hover:opacity-100 transition-opacity">
+                  <div className="p-4 border-b border-white/5 flex items-start gap-3 cursor-pointer opacity-60 hover:opacity-100 transition-opacity">
                     <div className="relative">
                       <div className="w-10 h-10 rounded-full bg-pink-600 flex items-center justify-center text-white font-bold">
                         E
@@ -144,7 +144,7 @@ export default function V2FeaturesCarousel() {
                     <div className="flex-1 min-w-0">
                       <div className="flex justify-between items-baseline mb-1">
                         <h4 className="text-white font-medium text-sm truncate">{t('Елена (Instagram)', 'Elena (Instagram)')}</h4>
-                        <span className="text-xs text-slate-400">{t('Вчера', 'Yesterday')}</span>
+                        <span className="text-xs text-slate-500">{t('Вчера', 'Yesterday')}</span>
                       </div>
                       <p className="text-xs text-slate-400 truncate">{t('Сколько стоит доставка?', 'How much is shipping?')}</p>
                     </div>
@@ -203,7 +203,7 @@ export default function V2FeaturesCarousel() {
                     <div className="w-8 h-8 rounded-full bg-gradient-to-br from-emerald-400 to-cyan-400 flex-shrink-0" />
                     <div className="bg-white/5 border border-white/10 rounded-2xl rounded-tl-none p-3 max-w-[80%] text-sm text-slate-200">
                       Здравствуйте! Подскажите, сколько стоит внедрение вашей платформы для команды из 5 человек? И есть ли интеграция с amoCRM?
-                      <div className="text-[10px] text-slate-400 mt-1 text-right">12:42</div>
+                      <div className="text-[10px] text-slate-500 mt-1 text-right">12:42</div>
                     </div>
                   </div>
                   <div className="flex gap-3 flex-row-reverse">
@@ -221,7 +221,7 @@ export default function V2FeaturesCarousel() {
                     <div className="w-8 h-8 rounded-full bg-gradient-to-br from-emerald-400 to-cyan-400 flex-shrink-0" />
                     <div className="bg-white/5 border border-white/10 rounded-2xl rounded-tl-none p-3 max-w-[80%] text-sm text-slate-200">
                       Отлично, давайте презентацию!
-                      <div className="text-[10px] text-slate-400 mt-1 text-right">12:45</div>
+                      <div className="text-[10px] text-slate-500 mt-1 text-right">12:45</div>
                     </div>
                   </div>
                 </div>
@@ -266,7 +266,7 @@ export default function V2FeaturesCarousel() {
                 </div>
                 <div className="p-6 space-y-6 flex-1 overflow-y-auto custom-scrollbar">
                   <div>
-                    <h4 className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3">Сделка в CRM</h4>
+                    <h4 className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-3">Сделка в CRM</h4>
                     <div className="bg-white/5 border border-white/10 rounded-xl p-3">
                       <div className="flex justify-between items-center mb-2">
                         <span className="text-sm text-white font-medium">Внедрение WABA</span>
@@ -279,7 +279,7 @@ export default function V2FeaturesCarousel() {
                     </div>
                   </div>
                   <div>
-                    <h4 className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3">Ответственный</h4>
+                    <h4 className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-3">Ответственный</h4>
                     <div className="flex items-center gap-3">
                       <div className="w-8 h-8 rounded-full bg-slate-700 flex items-center justify-center text-white text-xs font-bold">
                         М

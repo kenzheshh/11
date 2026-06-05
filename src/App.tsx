@@ -3,8 +3,9 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { useState, useEffect, lazy, Suspense } from 'react';
+import { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
+import { MotionConfig } from 'framer-motion';
 import V2Hero from './components/v2/V2Hero';
 import V2Transformation from './components/v2/V2Transformation';
 import V2FeaturesCarousel from './components/v2/V2FeaturesCarousel';
@@ -14,12 +15,11 @@ import V2Testimonials from './components/v2/V2Testimonials';
 import V2Pricing from './components/v2/V2Pricing';
 import V2Navbar from './components/v2/V2Navbar';
 import V2Footer from './components/v2/V2Footer';
+import AmoModal from './components/AmoModal';
 
 import PartnershipPage from './components/v2/PartnershipPage';
 
-// Modal + AmoCRM form are only needed once a CTA is clicked — keep them out of
-// the initial bundle and the prerendered HTML.
-const AmoModal = lazy(() => import('./components/AmoModal'));
+import { LanguageProvider } from './contexts/LanguageContext';
 
 function HomePage() {
   return (
@@ -37,32 +37,37 @@ function HomePage() {
 
 export default function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  // Mount the modal lazily only after it has been requested at least once.
-  const [modalRequested, setModalRequested] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    const handleOpen = () => {
-      setModalRequested(true);
-      setIsModalOpen(true);
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
     };
+    checkMobile(); // Check on mount
+    window.addEventListener('resize', checkMobile);
+    
+    const handleOpen = () => setIsModalOpen(true);
     window.addEventListener('open-amo-modal', handleOpen);
-    return () => window.removeEventListener('open-amo-modal', handleOpen);
+    return () => {
+      window.removeEventListener('resize', checkMobile);
+      window.removeEventListener('open-amo-modal', handleOpen);
+    };
   }, []);
 
   return (
-    <div className="bg-[#050505] text-white min-h-screen font-sans selection:bg-emerald-500 selection:text-white">
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/partnership" element={<PartnershipPage />} />
-      </Routes>
-      <V2Footer />
-      <V2Navbar />
-
-      {modalRequested && (
-        <Suspense fallback={null}>
+    <MotionConfig reducedMotion={isMobile ? "always" : "user"}>
+      <LanguageProvider>
+        <div className="bg-[#050505] text-white min-h-screen font-sans selection:bg-emerald-500 selection:text-white">
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/partnership" element={<PartnershipPage />} />
+          </Routes>
+          <V2Footer />
+          <V2Navbar />
+          
           <AmoModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
-        </Suspense>
-      )}
-    </div>
+        </div>
+      </LanguageProvider>
+    </MotionConfig>
   );
 }

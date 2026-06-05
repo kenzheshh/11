@@ -2,17 +2,6 @@
   command = "npm run build"
   publish = "dist"
 
-# Content-hashed assets (JS/CSS/fonts) are immutable — cache them for a year.
-[[headers]]
-  for = "/assets/*"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-
-# /blog/* and /_vibeseo/* are handled by the edge function
-# netlify/edge-functions/vibeseo-blog.js — it runs before redirects and
-# forwards X-Forwarded-Host so VibeSEO can resolve the tenant.
-
-# SPA fallback.
 [[redirects]]
   from = "/*"
   to = "/index.html"
