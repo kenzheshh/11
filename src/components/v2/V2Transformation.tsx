@@ -10,7 +10,7 @@ export default function V2Transformation() {
       {/* Mesh Gradient Background */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_rgba(6,78,59,0.1)_0%,_rgba(2,44,34,0.05)_50%,_#050505_100%)]" />
-        <div className="absolute top-[-20%] right-[-10%] w-[60%] h-[60%] rounded-full bg-emerald-600/5 blur-[120px]" />
+        <div className="absolute top-[-20%] right-[-10%] w-[60%] h-[60%] rounded-full bg-emerald-600/5 blur-[60px] md:blur-[120px]" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-16 w-full">

@@ -177,7 +177,7 @@ export default function V2Pricing() {
   return (
     <div className="bg-[#050505] text-slate-300 py-32 relative overflow-hidden border-t border-white/5">
       {/* Background Elements */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-[400px] bg-emerald-900/10 blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-[400px] bg-emerald-900/10 blur-[60px] md:blur-[120px] rounded-full pointer-events-none" />
       <div className="absolute inset-0 bg-grid-pattern opacity-50 pointer-events-none" />
 
       {/* Screen 5: Pricing */}
