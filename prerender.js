@@ -37,14 +37,49 @@ if (preloadFonts) {
   template = template.replace('</head>', `    ${preloadFonts}\n  </head>`);
 }
 
+// Per-route <head> overrides so each route gets its own title / description /
+// canonical / OG instead of inheriting the home page's (otherwise /partnership
+// canonicalises to "/" and reads as a duplicate of the home page).
+function applyMeta(html, meta) {
+  if (!meta) return html;
+  if (meta.title) {
+    html = html
+      .replace(/<title>[\s\S]*?<\/title>/, `<title>${meta.title}</title>`)
+      .replace(/(<meta property="og:title" content=")[^"]*(">)/, `$1${meta.title}$2`)
+      .replace(/(<meta name="twitter:title" content=")[^"]*(">)/, `$1${meta.title}$2`);
+  }
+  if (meta.description) {
+    html = html
+      .replace(/(<meta name="description" content=")[^"]*(">)/, `$1${meta.description}$2`)
+      .replace(/(<meta property="og:description" content=")[^"]*(">)/, `$1${meta.description}$2`)
+      .replace(/(<meta name="twitter:description" content=")[^"]*(">)/, `$1${meta.description}$2`);
+  }
+  if (meta.canonical) {
+    html = html
+      .replace(/(<link rel="canonical" href=")[^"]*(">)/, `$1${meta.canonical}$2`)
+      .replace(/(<meta property="og:url" content=")[^"]*(">)/, `$1${meta.canonical}$2`);
+  }
+  return html;
+}
+
 const routes = [
-  { path: '/', out: 'index.html' },
-  { path: '/partnership', out: 'partnership/index.html' },
+  { path: '/', out: 'index.html', meta: null }, // home keeps the template defaults
+  {
+    path: '/partnership',
+    out: 'partnership/index.html',
+    meta: {
+      title: 'Партнёрская программа WABase — WhatsApp Business API для SaaS и CRM',
+      description:
+        'Технологическое партнёрство WABase: готовый API и интерфейсы WhatsApp Business API для вашего SaaS, персональный менеджер, поддержка 24/7, закрывающие документы для РК и до 50% вознаграждения.',
+      canonical: 'https://wabase.ai/partnership/',
+    },
+  },
 ];
 
 for (const route of routes) {
   const appHtml = render(route.path);
-  const html = template.replace('<!--app-html-->', appHtml);
+  let html = template.replace('<!--app-html-->', appHtml);
+  html = applyMeta(html, route.meta);
   const outFile = path.join(DIST, route.out);
   fs.mkdirSync(path.dirname(outFile), { recursive: true });
   fs.writeFileSync(outFile, html);
