@@ -126,6 +126,25 @@ const routes = [
     },
   },
   {
+    // Programmatic SEO pilot: WhatsApp + amoCRM integration landing page.
+    // New integrations are one more entry here + one in INTEGRATIONS (component).
+    base: '/integrations/amocrm',
+    out: 'integrations/amocrm/index.html',
+    dropFaqLd: true,
+    titles: {
+      ru: 'Интеграция WhatsApp с amoCRM — официальный WABA | WaBase',
+      en: 'WhatsApp integration with amoCRM — official WABA | WaBase',
+    },
+    descriptions: {
+      ru: 'Подключите WhatsApp Business API к amoCRM: диалоги в карточке сделки, рассылки по шаблонам, чат-боты. Без блокировок, официальный канал Meta. Казахстан.',
+      en: 'Connect WhatsApp Business API to amoCRM: chats in the deal card, template broadcasts, chatbots. No bans, official Meta channel. Kazakhstan.',
+    },
+    breadcrumb: {
+      ru: ['Главная', 'Интеграция WhatsApp + amoCRM'],
+      en: ['Home', 'WhatsApp + amoCRM integration'],
+    },
+  },
+  {
     base: '/privacy',
     out: 'privacy/index.html',
     robots: 'noindex, follow', // draft until reviewed by a lawyer

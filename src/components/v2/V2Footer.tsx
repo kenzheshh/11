@@ -33,6 +33,7 @@ export default function V2Footer() {
             <h3 className="text-white font-semibold mb-6">{t('Ресурсы', 'Resources')}</h3>
             <ul className="space-y-4 text-sm font-light">
               <li><a href="/blog" className="hover:text-emerald-400 transition-colors">{t('Блог', 'Blog')}</a></li>
+              <li><a href={localePath('/integrations/amocrm')} className="hover:text-emerald-400 transition-colors">{t('WhatsApp + amoCRM', 'WhatsApp + amoCRM')}</a></li>
               <li><a href={localePath('/partnership/')} className="hover:text-emerald-400 transition-colors">{t('Партнёрская программа', 'Partnership program')}</a></li>
             </ul>
           </div>
