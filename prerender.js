@@ -145,6 +145,108 @@ const routes = [
     },
   },
   {
+    base: '/integrations/bitrix24',
+    out: 'integrations/bitrix24/index.html',
+    dropFaqLd: true,
+    titles: {
+      ru: 'Интеграция WhatsApp с Битрикс24 — официальный WABA | WaBase',
+      en: 'WhatsApp integration with Bitrix24 — official WABA | WaBase',
+    },
+    descriptions: {
+      ru: 'Подключите WhatsApp Business API к Битрикс24: открытые линии, диалоги в карточках лидов и сделок, рассылки по шаблонам. Без блокировок. Казахстан.',
+      en: 'Connect WhatsApp Business API to Bitrix24: Open Channels, chats in lead and deal cards, template broadcasts. No bans. Kazakhstan.',
+    },
+    breadcrumb: {
+      ru: ['Главная', 'Интеграция WhatsApp + Битрикс24'],
+      en: ['Home', 'WhatsApp + Bitrix24 integration'],
+    },
+  },
+  {
+    base: '/integrations/1c',
+    out: 'integrations/1c/index.html',
+    dropFaqLd: true,
+    titles: {
+      ru: 'Интеграция WhatsApp с 1С — уведомления через WABA | WaBase',
+      en: 'WhatsApp integration with 1C — notifications via WABA | WaBase',
+    },
+    descriptions: {
+      ru: 'Отправляйте уведомления из 1С в WhatsApp через официальный API: статусы заказов, оплаты, напоминания. Без блокировок номера. Казахстан.',
+      en: 'Send notifications from 1C to WhatsApp via the official API: order statuses, payments, reminders. No number bans. Kazakhstan.',
+    },
+    breadcrumb: {
+      ru: ['Главная', 'Интеграция WhatsApp + 1С'],
+      en: ['Home', 'WhatsApp + 1C integration'],
+    },
+  },
+  {
+    base: '/compare/wazzup',
+    out: 'compare/wazzup/index.html',
+    dropFaqLd: true,
+    titles: {
+      ru: 'WaBase или Wazzup — сравнение WABA-провайдеров | WaBase',
+      en: 'WaBase or Wazzup — WABA provider comparison | WaBase',
+    },
+    descriptions: {
+      ru: 'Чем WaBase отличается от Wazzup: официальный WhatsApp Business API, закрывающие документы для РК в тенге, локальная поддержка, партнёрская программа.',
+      en: 'How WaBase differs from Wazzup: official WhatsApp Business API, accounting documents for Kazakhstan in KZT, local support, partner program.',
+    },
+    breadcrumb: {
+      ru: ['Главная', 'WaBase или Wazzup'],
+      en: ['Home', 'WaBase vs Wazzup'],
+    },
+  },
+  {
+    base: '/compare/green-api',
+    out: 'compare/green-api/index.html',
+    dropFaqLd: true,
+    titles: {
+      ru: 'WaBase или Green API — официальный WABA или шлюз | WaBase',
+      en: 'WaBase or Green API — official WABA vs gateway | WaBase',
+    },
+    descriptions: {
+      ru: 'WaBase — официальный WhatsApp Business API, Green API подключает обычный WhatsApp через шлюз. Сравнение по риску блокировок, рассылкам и поддержке.',
+      en: 'WaBase is the official WhatsApp Business API; Green API connects regular WhatsApp via a gateway. Comparison by ban risk, broadcasts and support.',
+    },
+    breadcrumb: {
+      ru: ['Главная', 'WaBase или Green API'],
+      en: ['Home', 'WaBase vs Green API'],
+    },
+  },
+  {
+    base: '/compare/wappi',
+    out: 'compare/wappi/index.html',
+    dropFaqLd: true,
+    titles: {
+      ru: 'WaBase или Wappi — сравнение провайдеров WhatsApp | WaBase',
+      en: 'WaBase or Wappi — WhatsApp provider comparison | WaBase',
+    },
+    descriptions: {
+      ru: 'Сравнение WaBase и Wappi: официальный WhatsApp Business API, рассылки без блокировок, интеграции с CRM, документы и поддержка в Казахстане.',
+      en: 'WaBase vs Wappi: official WhatsApp Business API, broadcasts without bans, CRM integrations, documents and support in Kazakhstan.',
+    },
+    breadcrumb: {
+      ru: ['Главная', 'WaBase или Wappi'],
+      en: ['Home', 'WaBase vs Wappi'],
+    },
+  },
+  {
+    base: '/compare/radist',
+    out: 'compare/radist/index.html',
+    dropFaqLd: true,
+    titles: {
+      ru: 'WaBase или Radist — сравнение WABA-провайдеров | WaBase',
+      en: 'WaBase or Radist — WABA provider comparison | WaBase',
+    },
+    descriptions: {
+      ru: 'Чем WaBase отличается от Radist: официальный WhatsApp Business API, закрывающие документы для РК, локальная поддержка, партнёрская программа.',
+      en: 'How WaBase differs from Radist: official WhatsApp Business API, accounting documents for Kazakhstan, local support, partner program.',
+    },
+    breadcrumb: {
+      ru: ['Главная', 'WaBase или Radist'],
+      en: ['Home', 'WaBase vs Radist'],
+    },
+  },
+  {
     base: '/privacy',
     out: 'privacy/index.html',
     robots: 'noindex, follow', // draft until reviewed by a lawyer

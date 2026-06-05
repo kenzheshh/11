@@ -19,6 +19,7 @@ import V2Footer from './components/v2/V2Footer';
 import PartnershipPage from './components/v2/PartnershipPage';
 import LegalPage from './components/LegalPage';
 import IntegrationPage from './components/IntegrationPage';
+import ComparisonPage from './components/ComparisonPage';
 
 // Modal + AmoCRM form are only needed once a CTA is clicked — keep them out of
 // the initial bundle and the prerendered HTML.
@@ -65,11 +66,13 @@ export default function App() {
         <Route path="/privacy" element={<LegalPage kind="privacy" />} />
         <Route path="/terms" element={<LegalPage kind="terms" />} />
         <Route path="/integrations/:slug" element={<IntegrationPage />} />
+        <Route path="/compare/:slug" element={<ComparisonPage />} />
         <Route path="/en" element={<HomePage />} />
         <Route path="/en/partnership" element={<PartnershipPage />} />
         <Route path="/en/privacy" element={<LegalPage kind="privacy" />} />
         <Route path="/en/terms" element={<LegalPage kind="terms" />} />
         <Route path="/en/integrations/:slug" element={<IntegrationPage />} />
+        <Route path="/en/compare/:slug" element={<ComparisonPage />} />
       </Routes>
       <V2Footer />
       <V2Navbar />

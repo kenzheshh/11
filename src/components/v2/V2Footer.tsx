@@ -9,17 +9,15 @@ export default function V2Footer() {
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-[200px] bg-emerald-900/5 blur-[50px] md:blur-[100px] rounded-full pointer-events-none" />
       
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
-          <div className="col-span-1 md:col-span-1">
-            <div className="flex items-center gap-3 mb-6">
-              <Logo className="w-8 h-8 text-emerald-400" />
-              <span className="font-display font-bold text-2xl tracking-tight text-white">Wa<span className="text-emerald-400">Base</span></span>
-            </div>
-            <p className="text-sm font-light leading-relaxed">
-              {t('Официальный WhatsApp Business API для вашего бизнеса.', 'Official WhatsApp Business API for your business.')}
-            </p>
-          </div>
-          
+        <div className="flex items-center gap-3 mb-4">
+          <Logo className="w-8 h-8 text-emerald-400" />
+          <span className="font-display font-bold text-2xl tracking-tight text-white">Wa<span className="text-emerald-400">Base</span></span>
+        </div>
+        <p className="text-sm font-light leading-relaxed max-w-xs mb-12">
+          {t('Официальный WhatsApp Business API для вашего бизнеса.', 'Official WhatsApp Business API for your business.')}
+        </p>
+
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-8 gap-y-10 mb-16">
           <div>
             <h3 className="text-white font-semibold mb-6">{t('Продукт', 'Product')}</h3>
             <ul className="space-y-4 text-sm font-light">
@@ -30,10 +28,28 @@ export default function V2Footer() {
           </div>
 
           <div>
+            <h3 className="text-white font-semibold mb-6">{t('Интеграции', 'Integrations')}</h3>
+            <ul className="space-y-4 text-sm font-light">
+              <li><a href={localePath('/integrations/amocrm')} className="hover:text-emerald-400 transition-colors">amoCRM</a></li>
+              <li><a href={localePath('/integrations/bitrix24')} className="hover:text-emerald-400 transition-colors">Битрикс24</a></li>
+              <li><a href={localePath('/integrations/1c')} className="hover:text-emerald-400 transition-colors">1С</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="text-white font-semibold mb-6">{t('Сравнения', 'Compare')}</h3>
+            <ul className="space-y-4 text-sm font-light">
+              <li><a href={localePath('/compare/wazzup')} className="hover:text-emerald-400 transition-colors">WaBase {t('или', 'vs')} Wazzup</a></li>
+              <li><a href={localePath('/compare/green-api')} className="hover:text-emerald-400 transition-colors">WaBase {t('или', 'vs')} Green API</a></li>
+              <li><a href={localePath('/compare/wappi')} className="hover:text-emerald-400 transition-colors">WaBase {t('или', 'vs')} Wappi</a></li>
+              <li><a href={localePath('/compare/radist')} className="hover:text-emerald-400 transition-colors">WaBase {t('или', 'vs')} Radist</a></li>
+            </ul>
+          </div>
+
+          <div>
             <h3 className="text-white font-semibold mb-6">{t('Ресурсы', 'Resources')}</h3>
             <ul className="space-y-4 text-sm font-light">
               <li><a href="/blog" className="hover:text-emerald-400 transition-colors">{t('Блог', 'Blog')}</a></li>
-              <li><a href={localePath('/integrations/amocrm')} className="hover:text-emerald-400 transition-colors">{t('WhatsApp + amoCRM', 'WhatsApp + amoCRM')}</a></li>
               <li><a href={localePath('/partnership/')} className="hover:text-emerald-400 transition-colors">{t('Партнёрская программа', 'Partnership program')}</a></li>
             </ul>
           </div>
