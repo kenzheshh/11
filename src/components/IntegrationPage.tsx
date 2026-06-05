@@ -1,6 +1,6 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { MessageSquareCode, CheckCircle2, ArrowRight } from 'lucide-react';
+import { MessageSquareCode, CheckCircle2, ArrowRight, ChevronDown } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 
 type L = { ru: string; en: string };
@@ -13,6 +13,7 @@ interface Integration {
   benefits: L[];
   steps: L[];
   cta: L;
+  faq?: { q: L; a: L }[];
 }
 
 // Data-driven so new integration landing pages are one config entry + one
@@ -60,6 +61,36 @@ const INTEGRATIONS: Record<string, Integration> = {
       },
     ],
     cta: { ru: 'Подключить WhatsApp к amoCRM', en: 'Connect WhatsApp to amoCRM' },
+    faq: [
+      {
+        q: { ru: 'Можно ли отправлять рассылки из amoCRM?', en: 'Can I send broadcasts from amoCRM?' },
+        a: {
+          ru: 'Да — массовые рассылки по согласованным шаблонам Meta прямо из amoCRM, без риска блокировки номера.',
+          en: 'Yes — bulk broadcasts using approved Meta templates straight from amoCRM, without risking a number ban.',
+        },
+      },
+      {
+        q: { ru: 'Заблокируют ли номер при рассылке через amoCRM?', en: 'Will the number get blocked when broadcasting via amoCRM?' },
+        a: {
+          ru: 'Нет. WaBase работает через официальный WhatsApp Business API: рассылки по шаблонам не приводят к блокировкам, в отличие от «серых» решений.',
+          en: 'No. WaBase runs on the official WhatsApp Business API: template broadcasts don’t cause blocks, unlike grey solutions.',
+        },
+      },
+      {
+        q: { ru: 'Сколько занимает подключение к amoCRM?', en: 'How long does the amoCRM connection take?' },
+        a: {
+          ru: 'Обычно от 5 минут до пары часов: подключаем номер к WABA, ставим виджет и привязываем воронки.',
+          en: 'Usually from 5 minutes to a couple of hours: we connect the number to WABA, install the widget and link your pipelines.',
+        },
+      },
+      {
+        q: { ru: 'Сохраняется ли история переписки в карточке сделки?', en: 'Is chat history saved in the deal card?' },
+        a: {
+          ru: 'Да, вся переписка, теги и история диалога привязаны к карточке клиента в amoCRM.',
+          en: 'Yes, all chats, tags and conversation history are tied to the customer’s card in amoCRM.',
+        },
+      },
+    ],
   },
 };
 
@@ -67,6 +98,7 @@ export default function IntegrationPage() {
   const { lang, t, localePath } = useLanguage();
   const { slug } = useParams();
   const cfg = slug ? INTEGRATIONS[slug] : undefined;
+  const [openFaq, setOpenFaq] = useState<number | null>(0);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -119,6 +151,51 @@ export default function IntegrationPage() {
             </div>
           ))}
         </div>
+
+        {cfg.faq && cfg.faq.length > 0 && (
+          <div className="mb-16">
+            <h2 className="text-2xl font-bold text-white mb-8">{t('Частые вопросы', 'Frequently asked questions')}</h2>
+            <div className="space-y-4">
+              {cfg.faq.map((f, i) => {
+                const isOpen = openFaq === i;
+                return (
+                  <div key={i} className="bg-white/5 border border-white/10 rounded-2xl overflow-hidden">
+                    <button
+                      onClick={() => setOpenFaq(isOpen ? null : i)}
+                      aria-expanded={isOpen}
+                      className="w-full flex items-center justify-between gap-4 text-left p-5"
+                    >
+                      <span className="text-base font-semibold text-white">{pick(f.q)}</span>
+                      <ChevronDown className={`w-5 h-5 shrink-0 text-emerald-400 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
+                    </button>
+                    {/* grid-rows trick keeps the answer in the DOM for crawlers while collapsing height */}
+                    <div className={`grid transition-all duration-300 ${isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}>
+                      <div className="overflow-hidden">
+                        <p className="px-5 pb-5 text-slate-400 font-light leading-relaxed">{pick(f.a)}</p>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+            {/* FAQPage JSON-LD — rendered here so it lands in the prerendered HTML,
+                localized, and always matches the visible Q&A above. */}
+            <script
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{
+                __html: JSON.stringify({
+                  '@context': 'https://schema.org',
+                  '@type': 'FAQPage',
+                  mainEntity: cfg.faq.map((f) => ({
+                    '@type': 'Question',
+                    name: pick(f.q),
+                    acceptedAnswer: { '@type': 'Answer', text: pick(f.a) },
+                  })),
+                }),
+              }}
+            />
+          </div>
+        )}
 
         <div className="bg-[#103E33] rounded-3xl p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-6 border border-white/5">
           <p className="text-xl font-bold text-white text-center md:text-left">
