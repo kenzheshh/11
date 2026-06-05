@@ -12,8 +12,6 @@
 # netlify/edge-functions/vibeseo-blog.js — it runs before redirects and
 # forwards X-Forwarded-Host so VibeSEO can resolve the tenant.
 
-# SPA fallback.
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+# No SPA catch-all: the app is prerendered to real files (/, /partnership/),
+# so unknown paths fall through to dist/404.html with a real 404 status
+# (avoids soft-404s) instead of serving the home page with 200.

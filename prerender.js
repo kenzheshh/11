@@ -72,6 +72,18 @@ const routes = [
       description:
         'Технологическое партнёрство WABase: готовый API и интерфейсы WhatsApp Business API для вашего SaaS, персональный менеджер, поддержка 24/7, закрывающие документы для РК и до 50% вознаграждения.',
       canonical: 'https://wabase.ai/partnership/',
+      dropFaqLd: true, // no visible FAQ on this route
+      extraJsonLd:
+        '<script type="application/ld+json">' +
+        JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            {'@type': 'ListItem', position: 1, name: 'Главная', item: 'https://wabase.ai/'},
+            {'@type': 'ListItem', position: 2, name: 'Партнёрская программа', item: 'https://wabase.ai/partnership/'},
+          ],
+        }) +
+        '</script>',
     },
   },
 ];
@@ -80,6 +92,19 @@ for (const route of routes) {
   const appHtml = render(route.path);
   let html = template.replace('<!--app-html-->', appHtml);
   html = applyMeta(html, route.meta);
+
+  // FAQ JSON-LD is wrapped in <!--faq-ld:start/end--> in the template; keep it
+  // only where a visible FAQ exists (home), strip it on other routes.
+  if (route.meta?.dropFaqLd) {
+    html = html.replace(/<!--faq-ld:start-->[\s\S]*?<!--faq-ld:end-->\s*/, '');
+  } else {
+    html = html.replace('<!--faq-ld:start-->', '').replace('<!--faq-ld:end-->', '');
+  }
+
+  if (route.meta?.extraJsonLd) {
+    html = html.replace('</head>', `  ${route.meta.extraJsonLd}\n  </head>`);
+  }
+
   const outFile = path.join(DIST, route.out);
   fs.mkdirSync(path.dirname(outFile), { recursive: true });
   fs.writeFileSync(outFile, html);

@@ -57,31 +57,28 @@
     }
     </script>
 
-    <!-- Schema.org FAQ -->
+    <!-- Schema.org WebSite -->
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"WebSite","name":"WABase","url":"https://wabase.ai/","inLanguage":"ru"}
+    </script>
+
+    <!-- Schema.org FAQ (home only; stripped from other routes by prerender) -->
+    <!--faq-ld:start-->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "FAQPage",
       "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "Что такое WhatsApp Business API?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "WhatsApp Business API (WABA) — это официальный интерфейс Meta для массовых рассылок, чат-ботов и интеграции с CRM."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Сколько стоит подключение WABA?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Подключение бесплатное. Вы платите только за отправленные сообщения по тарифам Meta."
-          }
-        }
+        {"@type":"Question","name":"Что такое WhatsApp Business API (WABA)?","acceptedAnswer":{"@type":"Answer","text":"Официальный интерфейс Meta для массовых рассылок, чат-ботов и интеграции WhatsApp с CRM. В отличие от обычного приложения, WABA не блокируется за рассылки и поддерживает несколько операторов одновременно."}},
+        {"@type":"Question","name":"Могут ли заблокировать номер при рассылках?","acceptedAnswer":{"@type":"Answer","text":"Нет. WABA — официальный канал Meta: рассылки по согласованным шаблонам не приводят к блокировкам, в отличие от обычного WhatsApp и «серых» решений."}},
+        {"@type":"Question","name":"Сколько стоит подключение и сообщения?","acceptedAnswer":{"@type":"Answer","text":"Платформа — по выбранному тарифу. Дополнительно Meta берёт плату за каждый начатый 24-часовой диалог; входящие сообщения от клиентов бесплатны."}},
+        {"@type":"Question","name":"Сколько занимает подключение?","acceptedAnswer":{"@type":"Answer","text":"Под ключ — от 5 минут до пары часов. Помогаем с верификацией бизнеса, шаблонами и интеграцией с вашей CRM."}},
+        {"@type":"Question","name":"Есть ли интеграция с CRM?","acceptedAnswer":{"@type":"Answer","text":"Да: amoCRM, Bitrix24 и другие через API или виджет. Диалоги, история переписки и теги доступны прямо в карточке сделки."}},
+        {"@type":"Question","name":"Чем WABA отличается от приложения WhatsApp Business?","acceptedAnswer":{"@type":"Answer","text":"Приложение — для ручного общения с одного телефона. WABA (Cloud API) — для автоматизации: массовые рассылки, чат-боты, несколько операторов и CRM. Оба варианта можно использовать на одном номере (Coexistence)."}}
       ]
     }
     </script>
+    <!--faq-ld:end-->
     <!-- Delayed Analytics Scripts -->
     <script>
       function loadAnalytics() {

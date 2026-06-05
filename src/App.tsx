@@ -12,6 +12,7 @@ import V2Process from './components/v2/V2Process';
 import V2Coexistence from './components/v2/V2Coexistence';
 import V2Testimonials from './components/v2/V2Testimonials';
 import V2Pricing from './components/v2/V2Pricing';
+import V2FAQ from './components/v2/V2FAQ';
 import V2Navbar from './components/v2/V2Navbar';
 import V2Footer from './components/v2/V2Footer';
 
@@ -30,6 +31,7 @@ function HomePage() {
       <V2Process />
       <V2Coexistence />
       <V2Testimonials />
+      <V2FAQ />
       <V2Pricing />
     </main>
   );
