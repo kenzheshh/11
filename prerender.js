@@ -344,6 +344,24 @@ const routes = [
     breadcrumb: { ru: ['Главная', 'WaBase или AiSensy'], en: ['Home', 'WaBase vs AiSensy'] },
   },
   {
+    // Post-submit confirmation page. noindex; the amoCRM form redirects here
+    // (URL contains "thanks" → Meta Ads custom conversion fires).
+    base: '/thanks',
+    out: 'thanks/index.html',
+    robots: 'noindex, follow',
+    dropFaqLd: true,
+    titles: {
+      ru: 'Спасибо! Заявка принята — WaBase',
+      en: 'Thank you! Request received — WaBase',
+      es: '¡Gracias! Solicitud recibida — WaBase',
+    },
+    descriptions: {
+      ru: 'Ваша заявка принята. Наш менеджер свяжется с вами в ближайшее время.',
+      en: 'Your request has been received. Our manager will contact you shortly.',
+      es: 'Hemos recibido tu solicitud. Nuestro gerente se pondrá en contacto pronto.',
+    },
+  },
+  {
     base: '/privacy',
     out: 'privacy/index.html',
     robots: 'noindex, follow', // draft until reviewed by a lawyer
