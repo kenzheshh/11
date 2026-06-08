@@ -31,8 +31,8 @@ export default function V2Footer() {
             <h3 className="text-white font-semibold mb-6">{t('Интеграции', 'Integrations', 'Integraciones')}</h3>
             <ul className="space-y-4 text-sm font-light">
               <li><a href={localePath('/integrations/amocrm')} className="hover:text-emerald-400 transition-colors">amoCRM</a></li>
-              <li><a href={localePath('/integrations/bitrix24')} className="hover:text-emerald-400 transition-colors">Битрикс24</a></li>
-              <li><a href={localePath('/integrations/1c')} className="hover:text-emerald-400 transition-colors">1С</a></li>
+              <li><a href={localePath('/integrations/bitrix24')} className="hover:text-emerald-400 transition-colors">{t('Битрикс24', 'Bitrix24', 'Bitrix24')}</a></li>
+              <li><a href={localePath('/integrations/1c')} className="hover:text-emerald-400 transition-colors">{t('1С', '1C', '1C')}</a></li>
             </ul>
           </div>
 

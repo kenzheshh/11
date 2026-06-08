@@ -7,7 +7,7 @@ type L = { ru: string; en: string; es?: string };
 
 interface Integration {
   slug: string;
-  name: string; // brand label, kept untranslated (e.g. "amoCRM")
+  name: L; // brand label, per-language (e.g. "Битрикс24" / "Bitrix24")
   h1: L;
   intro: L;
   benefits: L[];
@@ -22,7 +22,7 @@ interface Integration {
 const INTEGRATIONS: Record<string, Integration> = {
   amocrm: {
     slug: 'amocrm',
-    name: 'amoCRM',
+    name: { ru: 'amoCRM', en: 'amoCRM' },
     h1: { ru: 'Интеграция WhatsApp с amoCRM', en: 'WhatsApp integration with amoCRM' },
     intro: {
       ru: 'Подключите официальный WhatsApp Business API прямо в amoCRM. Все диалоги — в карточках сделок, без блокировок и «серых» решений.',
@@ -95,7 +95,7 @@ const INTEGRATIONS: Record<string, Integration> = {
 
   bitrix24: {
     slug: 'bitrix24',
-    name: 'Битрикс24',
+    name: { ru: 'Битрикс24', en: 'Bitrix24' },
     h1: { ru: 'Интеграция WhatsApp с Битрикс24', en: 'WhatsApp integration with Bitrix24' },
     intro: {
       ru: 'Подключите официальный WhatsApp Business API к Битрикс24. Диалоги — в карточках лидов и сделок, через открытые линии, без блокировок.',
@@ -161,7 +161,7 @@ const INTEGRATIONS: Record<string, Integration> = {
 
   '1c': {
     slug: '1c',
-    name: '1С',
+    name: { ru: '1С', en: '1C' },
     h1: { ru: 'Интеграция WhatsApp с 1С', en: 'WhatsApp integration with 1C' },
     intro: {
       ru: 'Отправляйте клиентам уведомления из 1С в WhatsApp через официальный API: статусы заказов, оплаты, напоминания — автоматически.',
@@ -258,7 +258,7 @@ export default function IntegrationPage() {
         </a>
 
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-sm font-medium mb-6">
-          {t('Интеграция', 'Integration')} · {cfg.name}
+          {t('Интеграция', 'Integration')} · {pick(cfg.name)}
         </div>
         <h1 className="text-4xl md:text-5xl font-bold text-white tracking-tight mb-6">{pick(cfg.h1)}</h1>
         <p className="text-lg text-slate-400 font-light leading-relaxed max-w-2xl mb-12">{pick(cfg.intro)}</p>
@@ -331,7 +331,7 @@ export default function IntegrationPage() {
 
         <div className="bg-[#103E33] rounded-3xl p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-6 border border-white/5">
           <p className="text-xl font-bold text-white text-center md:text-left">
-            {t('Подключим WhatsApp к', 'Connect WhatsApp to')} {cfg.name} {t('за 5 минут', 'in 5 minutes')}
+            {t('Подключим WhatsApp к', 'Connect WhatsApp to')} {pick(cfg.name)} {t('за 5 минут', 'in 5 minutes')}
           </p>
           <div className="flex flex-col sm:flex-row gap-3 shrink-0">
             <button onClick={openModal} className="bg-emerald-500 hover:bg-emerald-400 text-white font-bold py-3 px-7 rounded-full flex items-center justify-center gap-2 transition-colors">
