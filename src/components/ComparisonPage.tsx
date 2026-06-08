@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { MessageSquareCode, ChevronDown, ArrowRight } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
+import { ES } from '../contexts/es';
 
 type L = { ru: string; en: string; es?: string };
 
@@ -28,6 +29,7 @@ const globalComparison = (brand: string, intro: L): Comparison => ({
   h1: {
     ru: `WaBase или ${brand} — сравнение WhatsApp Business API`,
     en: `WaBase vs ${brand} — WhatsApp Business API comparison`,
+    es: `WaBase o ${brand} — comparación de WhatsApp Business API`,
   },
   intro,
   rows: [
@@ -39,14 +41,14 @@ const globalComparison = (brand: string, intro: L): Comparison => ({
   cta: { ru: 'Перейти на WaBase', en: 'Get started with WaBase' },
   faq: [
     {
-      q: { ru: `Чем WaBase отличается от ${brand}?`, en: `What is the difference between WaBase and ${brand}?` },
+      q: { ru: `Чем WaBase отличается от ${brand}?`, en: `What is the difference between WaBase and ${brand}?`, es: `¿En qué se diferencia WaBase de ${brand}?` },
       a: {
         ru: `Оба используют официальный WhatsApp Business API. WaBase добавляет личный онбординг, интеграции с amoCRM и Битрикс24 и партнёрскую программу.`,
         en: `Both use the official WhatsApp Business API. WaBase adds hands-on onboarding, amoCRM and Bitrix24 integrations and a partner program.`,
       },
     },
     {
-      q: { ru: `Можно ли перейти с ${brand} на WaBase?`, en: `Can I migrate from ${brand} to WaBase?` },
+      q: { ru: `Можно ли перейти с ${brand} на WaBase?`, en: `Can I migrate from ${brand} to WaBase?`, es: `¿Puedo migrar de ${brand} a WaBase?` },
       a: {
         ru: 'Да. Поможем перенести номер WABA и заново подключить ваши интеграции.',
         en: 'Yes. We help migrate your WABA number and reconnect your integrations.',
@@ -178,22 +180,27 @@ const COMPARISONS: Record<string, Comparison> = {
   wati: globalComparison('Wati', {
     ru: 'Wati — популярная платформа WhatsApp Business API для малого и среднего бизнеса. Если выбираете между Wati и WaBase — честное сравнение по ключевым параметрам.',
     en: 'Wati is a popular WhatsApp Business API platform for small and mid-sized teams. If you are weighing it against WaBase, here is a fair side-by-side.',
+    es: 'Wati es una popular plataforma de WhatsApp Business API para pequeñas y medianas empresas. Si dudas entre Wati y WaBase, aquí tienes una comparación honesta de las características clave.',
   }),
   gupshup: globalComparison('Gupshup', {
     ru: 'Gupshup — корпоративная платформа диалоговых коммуникаций. WaBase делает упор на официальный WhatsApp Business API с личным онбордингом и интеграциями CRM.',
     en: 'Gupshup is an enterprise conversational messaging platform. WaBase focuses on the official WhatsApp Business API with hands-on onboarding and CRM integrations.',
+    es: 'Gupshup es una plataforma corporativa de mensajería conversacional. WaBase se centra en la WhatsApp Business API oficial, con onboarding personalizado e integraciones con CRM.',
   }),
   interakt: globalComparison('Interakt', {
     ru: 'Interakt — инструмент для работы с WhatsApp для малого бизнеса и e-commerce. Сравните с WaBase по официальному API, интеграциям и поддержке.',
     en: 'Interakt is a WhatsApp engagement tool aimed at SMBs and e-commerce. Compare it with WaBase on the official API, integrations and support.',
+    es: 'Interakt es una herramienta de WhatsApp para pequeñas empresas y e-commerce. Compárala con WaBase en API oficial, integraciones y soporte.',
   }),
   '360dialog': globalComparison('360dialog', {
     ru: '360dialog — официальный BSP с упором на API. WaBase даёт управляемое подключение с интеграциями CRM и поддержкой поверх официального API.',
     en: '360dialog is an API-first official WhatsApp BSP. WaBase offers a managed setup with CRM integrations and support on top of the official API.',
+    es: '360dialog es un BSP oficial centrado en la API. WaBase ofrece una conexión gestionada con integraciones de CRM y soporte sobre la API oficial.',
   }),
   aisensy: globalComparison('AiSensy', {
     ru: 'AiSensy — доступная платформа WhatsApp-маркетинга и рассылок. Сравните с WaBase по официальному API, интеграциям и поддержке.',
     en: 'AiSensy is an affordable WhatsApp marketing and broadcast platform. Compare it with WaBase on the official API, integrations and support.',
+    es: 'AiSensy es una plataforma asequible de marketing y envíos masivos por WhatsApp. Compárala con WaBase en API oficial, integraciones y soporte.',
   }),
 };
 
@@ -218,7 +225,7 @@ export default function ComparisonPage() {
     );
   }
 
-  const pick = (l: L) => (lang === 'ru' ? l.ru : lang === 'es' ? l.es ?? l.en : l.en);
+  const pick = (l: L) => (lang === 'ru' ? l.ru : lang === 'es' ? l.es ?? ES[l.ru] ?? l.en : l.en);
   const openModal = () => window.dispatchEvent(new CustomEvent('open-amo-modal'));
 
   return (

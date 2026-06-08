@@ -141,10 +141,12 @@ const routes = [
     titles: {
       ru: 'Партнёрская программа WABase — WhatsApp Business API для SaaS и CRM',
       en: 'WABase Partner Program — WhatsApp Business API for SaaS and CRM',
+      es: 'Programa de socios de WaBase — WhatsApp Business API para SaaS y CRM',
     },
     descriptions: {
       ru: 'Технологическое партнёрство WABase: готовый API и интерфейсы WhatsApp Business API для вашего SaaS, персональный менеджер, поддержка 24/7, закрывающие документы для РК и до 50% вознаграждения.',
       en: 'WABase technology partnership: ready-made WhatsApp Business API and interfaces for your SaaS, a dedicated manager, 24/7 support, closing documents and up to 50% revenue share.',
+      es: 'Colaboración tecnológica con WaBase: API e interfaces listas de WhatsApp Business API para tu SaaS, gerente personal, soporte 24/7, documentos contables y hasta el 50 % de comisión.',
     },
     breadcrumb: {
       ru: ['Главная', 'Партнёрская программа'],
@@ -160,10 +162,12 @@ const routes = [
     titles: {
       ru: 'Интеграция WhatsApp с amoCRM — официальный WABA | WaBase',
       en: 'WhatsApp integration with amoCRM — official WABA | WaBase',
+      es: 'Integración de WhatsApp con amoCRM — WABA oficial | WaBase',
     },
     descriptions: {
       ru: 'Подключите WhatsApp Business API к amoCRM: диалоги в карточке сделки, рассылки по шаблонам, чат-боты. Без блокировок, официальный канал Meta. Казахстан.',
       en: 'Connect WhatsApp Business API to amoCRM: chats in the deal card, template broadcasts, chatbots. No bans, official Meta channel. Kazakhstan.',
+      es: 'Conecta WhatsApp Business API a amoCRM: conversaciones en la tarjeta del trato, envíos con plantillas, chatbots. Sin bloqueos, canal oficial de Meta. Kazajistán.',
     },
     breadcrumb: {
       ru: ['Главная', 'Интеграция WhatsApp + amoCRM'],
@@ -177,10 +181,12 @@ const routes = [
     titles: {
       ru: 'Интеграция WhatsApp с Битрикс24 — официальный WABA | WaBase',
       en: 'WhatsApp integration with Bitrix24 — official WABA | WaBase',
+      es: 'Integración de WhatsApp con Bitrix24 — WABA oficial | WaBase',
     },
     descriptions: {
       ru: 'Подключите WhatsApp Business API к Битрикс24: открытые линии, диалоги в карточках лидов и сделок, рассылки по шаблонам. Без блокировок. Казахстан.',
       en: 'Connect WhatsApp Business API to Bitrix24: Open Channels, chats in lead and deal cards, template broadcasts. No bans. Kazakhstan.',
+      es: 'Conecta WhatsApp Business API a Bitrix24: canales abiertos, conversaciones en las tarjetas de leads y tratos, envíos con plantillas. Sin bloqueos. Kazajistán.',
     },
     breadcrumb: {
       ru: ['Главная', 'Интеграция WhatsApp + Битрикс24'],
@@ -194,10 +200,12 @@ const routes = [
     titles: {
       ru: 'Интеграция WhatsApp с 1С — уведомления через WABA | WaBase',
       en: 'WhatsApp integration with 1C — notifications via WABA | WaBase',
+      es: 'Integración de WhatsApp con 1C — notificaciones vía WABA | WaBase',
     },
     descriptions: {
       ru: 'Отправляйте уведомления из 1С в WhatsApp через официальный API: статусы заказов, оплаты, напоминания. Без блокировок номера. Казахстан.',
       en: 'Send notifications from 1C to WhatsApp via the official API: order statuses, payments, reminders. No number bans. Kazakhstan.',
+      es: 'Envía notificaciones desde 1C a WhatsApp mediante la API oficial: estados de pedidos, pagos y recordatorios. Sin bloqueos del número. Kazajistán.',
     },
     breadcrumb: {
       ru: ['Главная', 'Интеграция WhatsApp + 1С'],
@@ -211,10 +219,12 @@ const routes = [
     titles: {
       ru: 'WaBase или Wazzup — сравнение WABA-провайдеров | WaBase',
       en: 'WaBase or Wazzup — WABA provider comparison | WaBase',
+      es: 'WaBase o Wazzup — comparación de proveedores WABA | WaBase',
     },
     descriptions: {
       ru: 'Чем WaBase отличается от Wazzup: официальный WhatsApp Business API, закрывающие документы для РК в тенге, локальная поддержка, партнёрская программа.',
       en: 'How WaBase differs from Wazzup: official WhatsApp Business API, accounting documents for Kazakhstan in KZT, local support, partner program.',
+      es: 'En qué se diferencia WaBase de Wazzup: WhatsApp Business API oficial, documentos contables para Kazajistán en tenge, soporte local y programa de socios.',
     },
     breadcrumb: {
       ru: ['Главная', 'WaBase или Wazzup'],
@@ -228,10 +238,12 @@ const routes = [
     titles: {
       ru: 'WaBase или Green API — официальный WABA или шлюз | WaBase',
       en: 'WaBase or Green API — official WABA vs gateway | WaBase',
+      es: 'WaBase o Green API — WABA oficial frente a pasarela | WaBase',
     },
     descriptions: {
       ru: 'WaBase — официальный WhatsApp Business API, Green API подключает обычный WhatsApp через шлюз. Сравнение по риску блокировок, рассылкам и поддержке.',
       en: 'WaBase is the official WhatsApp Business API; Green API connects regular WhatsApp via a gateway. Comparison by ban risk, broadcasts and support.',
+      es: 'WaBase es la WhatsApp Business API oficial; Green API conecta un WhatsApp normal a través de una pasarela. Comparación por riesgo de bloqueos, envíos y soporte.',
     },
     breadcrumb: {
       ru: ['Главная', 'WaBase или Green API'],
@@ -245,10 +257,12 @@ const routes = [
     titles: {
       ru: 'WaBase или Wappi — сравнение провайдеров WhatsApp | WaBase',
       en: 'WaBase or Wappi — WhatsApp provider comparison | WaBase',
+      es: 'WaBase o Wappi — comparación de proveedores de WhatsApp | WaBase',
     },
     descriptions: {
       ru: 'Сравнение WaBase и Wappi: официальный WhatsApp Business API, рассылки без блокировок, интеграции с CRM, документы и поддержка в Казахстане.',
       en: 'WaBase vs Wappi: official WhatsApp Business API, broadcasts without bans, CRM integrations, documents and support in Kazakhstan.',
+      es: 'Comparación de WaBase y Wappi: WhatsApp Business API oficial, envíos sin bloqueos, integraciones con CRM, documentos y soporte en Kazajistán.',
     },
     breadcrumb: {
       ru: ['Главная', 'WaBase или Wappi'],
@@ -262,10 +276,12 @@ const routes = [
     titles: {
       ru: 'WaBase или Radist — сравнение WABA-провайдеров | WaBase',
       en: 'WaBase or Radist — WABA provider comparison | WaBase',
+      es: 'WaBase o Radist — comparación de proveedores WABA | WaBase',
     },
     descriptions: {
       ru: 'Чем WaBase отличается от Radist: официальный WhatsApp Business API, закрывающие документы для РК, локальная поддержка, партнёрская программа.',
       en: 'How WaBase differs from Radist: official WhatsApp Business API, accounting documents for Kazakhstan, local support, partner program.',
+      es: 'En qué se diferencia WaBase de Radist: WhatsApp Business API oficial, documentos contables para Kazajistán, soporte local y programa de socios.',
     },
     breadcrumb: {
       ru: ['Главная', 'WaBase или Radist'],
@@ -280,10 +296,12 @@ const routes = [
     titles: {
       ru: 'WaBase или Wati — сравнение WhatsApp Business API | WaBase',
       en: 'Wati alternative — WaBase WhatsApp Business API | WaBase',
+      es: 'Alternativa a Wati — WaBase WhatsApp Business API | WaBase',
     },
     descriptions: {
       ru: 'Сравнение Wati и WaBase: официальный WhatsApp Business API, интеграции с CRM, личный онбординг и партнёрская программа.',
       en: 'Looking for a Wati alternative? Compare WaBase and Wati: official WhatsApp Business API, CRM integrations, hands-on onboarding and a partner program.',
+      es: '¿Buscas una alternativa a Wati? Compara WaBase y Wati: WhatsApp Business API oficial, integraciones con CRM, onboarding personalizado y programa de socios.',
     },
     breadcrumb: { ru: ['Главная', 'WaBase или Wati'], en: ['Home', 'WaBase vs Wati'] },
   },
@@ -294,10 +312,12 @@ const routes = [
     titles: {
       ru: 'WaBase или Gupshup — сравнение WhatsApp Business API | WaBase',
       en: 'Gupshup alternative — WaBase WhatsApp Business API | WaBase',
+      es: 'Alternativa a Gupshup — WaBase WhatsApp Business API | WaBase',
     },
     descriptions: {
       ru: 'Сравнение Gupshup и WaBase: официальный WhatsApp Business API, интеграции с CRM, личный онбординг и партнёрская программа.',
       en: 'Looking for a Gupshup alternative? Compare WaBase and Gupshup: official WhatsApp Business API, CRM integrations, hands-on onboarding and support.',
+      es: '¿Buscas una alternativa a Gupshup? Compara WaBase y Gupshup: WhatsApp Business API oficial, integraciones con CRM, onboarding personalizado y soporte.',
     },
     breadcrumb: { ru: ['Главная', 'WaBase или Gupshup'], en: ['Home', 'WaBase vs Gupshup'] },
   },
@@ -308,10 +328,12 @@ const routes = [
     titles: {
       ru: 'WaBase или Interakt — сравнение WhatsApp Business API | WaBase',
       en: 'Interakt alternative — WaBase WhatsApp Business API | WaBase',
+      es: 'Alternativa a Interakt — WaBase WhatsApp Business API | WaBase',
     },
     descriptions: {
       ru: 'Сравнение Interakt и WaBase: официальный WhatsApp Business API, интеграции с CRM, личный онбординг и партнёрская программа.',
       en: 'Looking for an Interakt alternative? Compare WaBase and Interakt: official WhatsApp Business API, CRM integrations, onboarding and support.',
+      es: '¿Buscas una alternativa a Interakt? Compara WaBase e Interakt: WhatsApp Business API oficial, integraciones con CRM, onboarding y soporte.',
     },
     breadcrumb: { ru: ['Главная', 'WaBase или Interakt'], en: ['Home', 'WaBase vs Interakt'] },
   },
@@ -322,10 +344,12 @@ const routes = [
     titles: {
       ru: 'WaBase или 360dialog — сравнение WhatsApp Business API | WaBase',
       en: '360dialog alternative — WaBase WhatsApp Business API | WaBase',
+      es: 'Alternativa a 360dialog — WaBase WhatsApp Business API | WaBase',
     },
     descriptions: {
       ru: 'Сравнение 360dialog и WaBase: официальный WhatsApp Business API, управляемое подключение, интеграции с CRM и поддержка.',
       en: 'Looking for a 360dialog alternative? Compare WaBase and 360dialog: official WhatsApp Business API, managed setup, CRM integrations and support.',
+      es: '¿Buscas una alternativa a 360dialog? Compara WaBase y 360dialog: WhatsApp Business API oficial, conexión gestionada, integraciones con CRM y soporte.',
     },
     breadcrumb: { ru: ['Главная', 'WaBase или 360dialog'], en: ['Home', 'WaBase vs 360dialog'] },
   },
@@ -336,10 +360,12 @@ const routes = [
     titles: {
       ru: 'WaBase или AiSensy — сравнение WhatsApp Business API | WaBase',
       en: 'AiSensy alternative — WaBase WhatsApp Business API | WaBase',
+      es: 'Alternativa a AiSensy — WaBase WhatsApp Business API | WaBase',
     },
     descriptions: {
       ru: 'Сравнение AiSensy и WaBase: официальный WhatsApp Business API, интеграции с CRM, личный онбординг и партнёрская программа.',
       en: 'Looking for an AiSensy alternative? Compare WaBase and AiSensy: official WhatsApp Business API, CRM integrations, onboarding and support.',
+      es: '¿Buscas una alternativa a AiSensy? Compara WaBase y AiSensy: WhatsApp Business API oficial, integraciones con CRM, onboarding y soporte.',
     },
     breadcrumb: { ru: ['Главная', 'WaBase или AiSensy'], en: ['Home', 'WaBase vs AiSensy'] },
   },
