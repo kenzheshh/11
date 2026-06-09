@@ -53,6 +53,12 @@ export default defineConfig(({mode}) => {
     },
     build: {
       target: 'es2020',
+      // We inline ALL CSS into <head> (inlineCssPlugin) and delete the .css
+      // assets. With CSS code-splitting on, Vite still emits a __vitePreload for
+      // a lazy chunk's CSS (e.g. AmoModal → vendor-*.css) which we just deleted →
+      // 404 → the dynamic import rejects → the modal never opens. Bundling CSS
+      // into one file removes those per-chunk CSS preloads.
+      cssCodeSplit: false,
       rollupOptions: {
         output: {
           manualChunks(id) {
