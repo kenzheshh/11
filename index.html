@@ -3,7 +3,19 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
+
+    <!-- amoCRM redirects to /thanks INSIDE the form iframe. /thanks is same-origin
+         as the top window, so break out to the full page (runs before React →
+         no flash; the pixel Lead then fires in the main window). -->
+    <script>
+      try {
+        var p = location.pathname.replace(/^\/(en|es)(?=\/|$)/, '');
+        if (window.top !== window.self && p.indexOf('/thanks') === 0) {
+          window.top.location.href = location.href;
+        }
+      } catch (e) {}
+    </script>
+
     <!-- SEO Meta Tags -->
     <title>Рассылки WhatsApp и WhatsApp Business API в Казахстане — WABase</title>
     <meta name="description" content="Официальная рассылка WhatsApp (ватсап) через WhatsApp Business API: массовые рассылки, чат-боты и интеграция с CRM за 5 минут. Без блокировок. Казахстан.">

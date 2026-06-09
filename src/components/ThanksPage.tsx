@@ -9,6 +9,18 @@ export default function ThanksPage() {
   const { t, localePath } = useLanguage();
 
   useEffect(() => {
+    // If amoCRM redirected here inside its form iframe, break out to the full
+    // top-level page (also handled instantly by the inline script in index.html).
+    // The pixel/UI then run in the main window. Same-origin → allowed.
+    if (window.top && window.top !== window.self) {
+      try {
+        window.top.location.href = window.location.href;
+      } catch {
+        /* foreign cross-origin top — can't break out */
+      }
+      return;
+    }
+
     window.scrollTo(0, 0);
 
     // Fire the Meta Pixel "Lead" conversion for the submitted amoCRM form.
