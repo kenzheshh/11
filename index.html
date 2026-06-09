@@ -117,6 +117,10 @@
         fbq('track', 'PageView');
       }
 
+      // Expose so the /thanks page can load analytics immediately and fire the
+      // Meta Pixel "Lead" conversion right after the amoCRM form redirect.
+      window.loadAnalytics = loadAnalytics;
+
       // Load analytics after 3 seconds or on user interaction
       setTimeout(loadAnalytics, 3000);
       ['scroll', 'mousemove', 'touchstart'].forEach(function(event) {

@@ -10,6 +10,48 @@ export default function ThanksPage() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+
+    // Fire the Meta Pixel "Lead" conversion for the submitted amoCRM form.
+    // The form is a cross-origin iframe we can't hook directly, so amoCRM
+    // redirects here on success and we track the lead from this page.
+    const w = window as unknown as {
+      loadAnalytics?: () => void;
+      fbq?: (...args: unknown[]) => void;
+    };
+
+    try {
+      if (sessionStorage.getItem('lead_tracked')) return; // avoid refresh double-count
+    } catch {
+      /* ignore */
+    }
+
+    // Load analytics now instead of waiting for the 3s landing-page delay.
+    try {
+      w.loadAnalytics?.();
+    } catch {
+      /* ignore */
+    }
+
+    let done = false;
+    const fire = () => {
+      if (done || typeof w.fbq !== 'function') return;
+      w.fbq('track', 'Lead');
+      done = true;
+      try {
+        sessionStorage.setItem('lead_tracked', '1');
+      } catch {
+        /* ignore */
+      }
+    };
+    fire();
+    if (done) return;
+    // fbq stub may not be ready yet — poll briefly until it is.
+    const id = window.setInterval(fire, 150);
+    const stop = window.setTimeout(() => window.clearInterval(id), 6000);
+    return () => {
+      window.clearInterval(id);
+      window.clearTimeout(stop);
+    };
   }, []);
 
   return (
