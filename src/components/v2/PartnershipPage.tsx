@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Zap, Heart, PhoneCall, FileCheck, Code2, Users, Receipt, HeadphonesIcon, Settings, TerminalSquare, MessageSquareCode } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
-import KenzheAvatar from '../../assets/images/regenerated_image_1778136567898.jpg';
+import NargizaAvatar from '../../assets/images/nargiza_avatar.jpg';
 
 export default function PartnershipPage() {
   const { t } = useLanguage();
@@ -213,10 +213,10 @@ export default function PartnershipPage() {
         <div className="bg-[#103E33] rounded-3xl p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8 border border-white/5 shadow-2xl">
           <div className="flex items-center gap-6">
             <div className="w-24 h-24 rounded-full bg-emerald-500/20 overflow-hidden shrink-0 border-2 border-emerald-500/50 flex items-center justify-center">
-              <img src={KenzheAvatar} alt="Kenzhe avatar" className="w-full h-full object-cover" />
+              <img src={NargizaAvatar} alt="Nargiza avatar" className="w-full h-full object-cover" />
             </div>
             <div>
-              <h3 className="text-2xl font-bold text-white mb-1">{t('Кенже', 'Kenzhe', 'Kenzhe')}</h3>
+              <h3 className="text-2xl font-bold text-white mb-1">{t('Наргиза', 'Nargiza', 'Nargiza')}</h3>
               <p className="text-emerald-300 text-sm mb-4">{t('Партнёрский менеджер', 'Partnership Manager')} · WABase</p>
               <p className="text-emerald-50 max-w-md font-light leading-relaxed">
                 {t('Расскажу, как интегрироваться и запустить первых клиентов. Подготовлю договор и дам доступ к sandbox в день обращения.', 'I will tell you how to integrate and launch your first clients. I will prepare the contract and provide access to the sandbox on the day of the request.')}
@@ -224,14 +224,14 @@ export default function PartnershipPage() {
             </div>
           </div>
           <div className="flex flex-col gap-3 w-full md:w-auto shrink-0">
-            <a href="https://wa.me/77052563483" target="_blank" rel="noreferrer" className="bg-white hover:bg-slate-100 text-[#103E33] font-bold py-3 px-8 rounded-full flex items-center justify-center gap-2 transition-colors">
+            <a href="https://wa.me/77017433301" target="_blank" rel="noreferrer" className="bg-white hover:bg-slate-100 text-[#103E33] font-bold py-3 px-8 rounded-full flex items-center justify-center gap-2 transition-colors">
               <MessageSquareCode className="w-5 h-5 text-emerald-600" /> {t('Написать в WhatsApp', 'Message on WhatsApp')}
             </a>
-            <a href="https://t.me/Jyxndhos" target="_blank" rel="noreferrer" className="bg-white/10 hover:bg-white/20 text-white font-medium py-3 px-8 rounded-full border border-white/20 flex items-center justify-center gap-2 transition-colors">
-              Telegram · @Jyxndhos
+            <a href="https://t.me/mcenova" target="_blank" rel="noreferrer" className="bg-white/10 hover:bg-white/20 text-white font-medium py-3 px-8 rounded-full border border-white/20 flex items-center justify-center gap-2 transition-colors">
+              Telegram · @mcenova
             </a>
             <div className="text-center text-emerald-200/60 text-sm mt-2">
-              +7 705 256 3483
+              +7 701 743 3301
             </div>
           </div>
         </div>
