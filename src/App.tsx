@@ -21,6 +21,7 @@ import LegalPage from './components/LegalPage';
 import IntegrationPage from './components/IntegrationPage';
 import ComparisonPage from './components/ComparisonPage';
 import ThanksPage from './components/ThanksPage';
+import Partner1969Page from './components/Partner1969Page';
 
 // Modal + AmoCRM form are only needed once a CTA is clicked — keep them out of
 // the initial bundle and the prerendered HTML.
@@ -69,6 +70,7 @@ export default function App() {
         <Route path="/integrations/:slug" element={<IntegrationPage />} />
         <Route path="/compare/:slug" element={<ComparisonPage />} />
         <Route path="/thanks" element={<ThanksPage />} />
+        <Route path="/1969" element={<Partner1969Page />} />
         <Route path="/en" element={<HomePage />} />
         <Route path="/en/partnership" element={<PartnershipPage />} />
         <Route path="/en/privacy" element={<LegalPage kind="privacy" />} />
@@ -76,6 +78,7 @@ export default function App() {
         <Route path="/en/integrations/:slug" element={<IntegrationPage />} />
         <Route path="/en/compare/:slug" element={<ComparisonPage />} />
         <Route path="/en/thanks" element={<ThanksPage />} />
+        <Route path="/en/1969" element={<Partner1969Page />} />
         <Route path="/es" element={<HomePage />} />
         <Route path="/es/partnership" element={<PartnershipPage />} />
         <Route path="/es/privacy" element={<LegalPage kind="privacy" />} />
@@ -83,6 +86,7 @@ export default function App() {
         <Route path="/es/integrations/:slug" element={<IntegrationPage />} />
         <Route path="/es/compare/:slug" element={<ComparisonPage />} />
         <Route path="/es/thanks" element={<ThanksPage />} />
+        <Route path="/es/1969" element={<Partner1969Page />} />
       </Routes>
       <V2Footer />
       <V2Navbar />

@@ -415,6 +415,21 @@ const routes = [
       en: 'Terms of use for the wabase.ai website and the WABase WhatsApp Business API service.',
     },
   },
+  {
+    base: '/1969',
+    out: '1969/index.html',
+    robots: 'noindex, nofollow',
+    titles: {
+      ru: 'WaBase × Бюро 1969 — Специальные условия WhatsApp Business API',
+      en: 'WaBase × Bureau 1969 — Special WhatsApp Business API Offer',
+      es: 'WaBase × Bureau 1969 — Oferta especial WhatsApp Business API',
+    },
+    descriptions: {
+      ru: 'Официальный WhatsApp Business API для клиентов Бюро 1969: массовые рассылки без блокировок, интеграция с CRM, бесплатная верификация и запуск.',
+      en: 'Official WhatsApp Business API for Bureau 1969 clients: bulk messaging without bans, CRM integration, free verification and onboarding.',
+      es: 'WhatsApp Business API oficial para clientes de Bureau 1969: envíos masivos sin bloqueos, integración con CRM, verificación y lanzamiento gratuitos.',
+    },
+  },
 ];
 
 // hreflang block (same for every language version of a route): lists each language
