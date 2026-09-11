@@ -338,7 +338,7 @@ export default function IntegrationPage() {
             <button onClick={openModal} className="bg-emerald-500 hover:bg-emerald-400 text-white font-bold py-3 px-7 rounded-full flex items-center justify-center gap-2 transition-colors">
               {pick(cfg.cta)} <ArrowRight className="w-4 h-4" />
             </button>
-            <a href="https://wa.me/77052563483" target="_blank" rel="noreferrer" className="bg-white/10 hover:bg-white/20 text-white font-medium py-3 px-7 rounded-full border border-white/20 flex items-center justify-center gap-2 transition-colors">
+            <a href="https://wa.me/77017433301" target="_blank" rel="noreferrer" className="bg-white/10 hover:bg-white/20 text-white font-medium py-3 px-7 rounded-full border border-white/20 flex items-center justify-center gap-2 transition-colors">
               <MessageSquareCode className="w-4 h-4 text-emerald-400" /> WhatsApp
             </a>
           </div>

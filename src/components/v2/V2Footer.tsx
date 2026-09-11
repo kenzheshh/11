@@ -62,7 +62,7 @@ export default function V2Footer() {
           <div>
             <h3 className="text-white font-semibold mb-6">{t('Контакты', 'Contacts', 'Contacto')}</h3>
             <ul className="space-y-4 text-sm font-light">
-              <li><a href="https://wa.me/77052563483" target="_blank" rel="noreferrer" className="hover:text-emerald-400 transition-colors">{t('Поддержка', 'Support', 'Soporte')} (WhatsApp)</a></li>
+              <li><a href="https://wa.me/77017433301" target="_blank" rel="noreferrer" className="hover:text-emerald-400 transition-colors">{t('Поддержка', 'Support', 'Soporte')} (WhatsApp)</a></li>
               <li><a href="https://t.me/Jyxndhos" target="_blank" rel="noreferrer" className="hover:text-emerald-400 transition-colors">Sales (Telegram)</a></li>
             </ul>
           </div>
