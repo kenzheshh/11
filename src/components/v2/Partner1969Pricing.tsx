@@ -167,20 +167,6 @@ export default function Partner1969Pricing() {
 
   const plans = [
     {
-      name: "WABA Lite",
-      price: "19 990",
-      currency: t(" ₸/мес", " ₸/mo"),
-      desc: t("Базовый тариф с подписью сервиса", "Basic plan with service signature"),
-      features: [
-        t("Веб-Чат", "Web Chat"),
-        t("Массовые рассылки", "Bulk messaging"),
-        t("Рекламная подпись WABase", "WABase ad signature"),
-        t("Интеграция с CRM", "CRM integration"),
-        t("Бонус: Бесплатное подключение (0 ₸)", "Bonus: Free setup (0 ₸)")
-      ],
-      buttonText: t("Выбрать тариф", "Select plan")
-    },
-    {
       name: "WABA Pro",
       price: "39 990",
       currency: t(" ₸/мес", " ₸/mo"),
@@ -240,7 +226,7 @@ export default function Partner1969Pricing() {
           </div>
         </div>
 
-        <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           {plans.map((plan, i) => (
             <motion.div 
               key={i}
