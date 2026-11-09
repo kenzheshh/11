@@ -1,0 +1,4 @@
+.netlify
+dist
+dist-ssr
+deno.lock

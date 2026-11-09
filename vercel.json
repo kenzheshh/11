@@ -1,0 +1,23 @@
+{
+  "framework": "vite",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "rewrites": [
+    {
+      "source": "/blog",
+      "destination": "/api/blog?proxyPath=blog/"
+    },
+    {
+      "source": "/blog/",
+      "destination": "/api/blog?proxyPath=blog/"
+    },
+    {
+      "source": "/blog/:path*",
+      "destination": "/api/blog?proxyPath=blog/:path*"
+    },
+    {
+      "source": "/_vibeseo/:path*",
+      "destination": "/api/blog?proxyPath=_vibeseo/:path*"
+    }
+  ]
+}
