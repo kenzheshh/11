@@ -16,6 +16,20 @@
       } catch (e) {}
     </script>
 
+    <!-- OpenAI Pixel -->
+    <script>
+      if (!window.oaiq) {
+        var oaiqQueue = function () { oaiqQueue.q.push(arguments); };
+        oaiqQueue.q = [];
+        window.oaiq = oaiqQueue;
+        var pixelScript = document.createElement('script');
+        pixelScript.async = true;
+        pixelScript.src = 'https://bzrcdn.openai.com/sdk/oaiq.min.js';
+        document.head.appendChild(pixelScript);
+      }
+      window.oaiq('init', { pixelId: 'C29Zdq75kYiwnwKmkKQEUV', debug: true });
+    </script>
+
     <!-- SEO Meta Tags -->
     <title>Рассылки WhatsApp и WhatsApp Business API в Казахстане — WABase</title>
     <meta name="description" content="Официальная рассылка WhatsApp (ватсап) через WhatsApp Business API: массовые рассылки, чат-боты и интеграция с CRM за 5 минут. Без блокировок. Казахстан.">
